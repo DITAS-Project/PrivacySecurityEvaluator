@@ -1,23 +1,23 @@
 package de.tub.privacySecurityEvaluator.model;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
 import java.util.List;
 
 public class Property {
     private String id;
     private String name;
     private String type;
-    private List<JsonNode> properties;
+    private List<Propertiefield> properties;
 
-    public Property(String id, String name, String type, List<JsonNode> properties) {
+
+    public Property(String id, String name, String type, List<Propertiefield> properties) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.properties = properties;
     }
 
-    public Property(){}
+    public Property() {
+    }
 
     public String getId() {
         return id;
@@ -43,13 +43,15 @@ public class Property {
         this.type = type;
     }
 
-    public List<JsonNode> getProperties() {
+    public List<Propertiefield> getProperties() {
         return properties;
     }
 
-    public void setProperties(List<JsonNode> properties) {
+    public void setProperties(List<Propertiefield> properties) {
         this.properties = properties;
     }
 
-
+    public void addProperty(Propertiefield field) {
+        this.properties.add(field);
+    }
 }

@@ -1,0 +1,25 @@
+{
+  "name": "transport encryption",
+  "properties": [
+    {
+      "name": "Protocol",
+      "unit": "enum",
+      "value": "TLS"
+    },
+    {
+      "name": "Version",
+      "unit": "string",
+      "value": "1.2.13"
+    },
+    {
+      "name": "Algorithm",
+      "unit": "enum",
+      "value": "AES"
+    },
+    {
+      "name": "Keylength",
+      "unit": "number",
+      "value": 128
+    }
+  ]
+}

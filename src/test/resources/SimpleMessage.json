@@ -1,0 +1,63 @@
+{
+  "requirement": {
+    "id": "1",
+    "name": "Encryption AES 128",
+    "type": "Encryption",
+    "properties": [
+      {
+        "name": "Algorithm",
+        "unit": "enum",
+        "value": "AES"
+      },
+      {
+        "name": "Keylength",
+        "unit": "number",
+        "minimum": 128
+      }
+    ]
+  },
+  "blueprintMetrics": [
+    {
+      "type": "object",
+      "description": "Encryption",
+      "properties": {
+        "id": "1",
+        "name": "Encryption AES 128",
+        "type": "Encryption",
+        "properties": [
+          {
+            "name": "Algorithm",
+            "unit": "enum",
+            "value": "AES"
+          },
+          {
+            "name": "Keylength",
+            "unit": "number",
+            "value": 128
+          }
+        ]
+      }
+    },
+    {
+      "type": "object",
+      "description": "Encryption",
+      "properties": {
+        "id": "1",
+        "name": "Encryption AES 128",
+        "type": "Encryption",
+        "properties": [
+          {
+            "name": "Algorithm",
+            "unit": "enum",
+            "value": "AES"
+          },
+          {
+            "name": "Keylength",
+            "unit": "number",
+            "value": 256
+          }
+        ]
+      }
+    }
+  ]
+}
