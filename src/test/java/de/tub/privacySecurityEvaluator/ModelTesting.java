@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import de.tub.privacySecurityEvaluator.model.Propertiefield;
 import de.tub.privacySecurityEvaluator.model.Property;
-import de.tub.privacySecurityEvaluator.model.fields.ProtocolField;
+import de.tub.privacySecurityEvaluator.model.fields.*;
 import de.tub.privacySecurityEvaluator.util.PropertyDeserializer;
 import org.junit.Assert;
 import org.junit.Before;
@@ -49,10 +49,47 @@ public class ModelTesting {
 
             Assert.assertEquals(property.getName(), "transport encryption");
             Assert.assertTrue(contains(property.getProperties(), ProtocolField.class));
+            Assert.assertTrue(contains(property.getProperties(), VersionField.class));
+            Assert.assertTrue(contains(property.getProperties(), KeylengthField.class));
+            Assert.assertTrue(contains(property.getProperties(), AlgorithmField.class));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    @Test
+    public void testStorageEncryption() {
+        String propertyJson = readToString("/model/storage.json");
+
+        try {
+            Property property = mapper.readValue(propertyJson, Property.class);
+
+            Assert.assertEquals(property.getName(), "encryption");
+            Assert.assertTrue(contains(property.getProperties(), KeylengthField.class));
+            Assert.assertTrue(contains(property.getProperties(), AlgorithmField.class));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void testTracingAndAcessMonitoring() {
+        String propertyJson = readToString("/model/tracing.json");
+
+        try {
+            Property property = mapper.readValue(propertyJson, Property.class);
+
+            Assert.assertEquals(property.getName(), "tracing");
+            Assert.assertTrue(contains(property.getProperties(), LevelField.class));
+            Assert.assertTrue(contains(property.getProperties(), SamplerateField.class));
+            Assert.assertTrue(contains(property.getProperties(), InstrumentationField.class));
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

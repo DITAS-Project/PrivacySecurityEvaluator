@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import de.tub.privacySecurityEvaluator.model.Property;
-import de.tub.privacySecurityEvaluator.model.fields.ProtocolField;
+import de.tub.privacySecurityEvaluator.model.fields.*;
 
 import java.io.IOException;
 
@@ -34,6 +34,29 @@ public class PropertyDeserializer extends StdDeserializer<Property> {
             switch (n.get("name").textValue()) {
                 case "Protocol":
                     result.addProperty(mapper.readValue(n.toString(), ProtocolField.class));
+                    break;
+                case "Version":
+                    result.addProperty(mapper.readValue(n.toString(), VersionField.class));
+                    break;
+                case "Algorithm":
+                    result.addProperty(mapper.readValue(n.toString(), AlgorithmField.class));
+                    break;
+                case "Keylength":
+                    result.addProperty(mapper.readValue(n.toString(), KeylengthField.class));
+                    break;
+                case "level":
+                    result.addProperty(mapper.readValue(n.toString(), LevelField.class));
+                    break;
+                case "samplerate":
+                    result.addProperty(mapper.readValue(n.toString(), SamplerateField.class));
+                    break;
+                case "instrumentation":
+                    result.addProperty(mapper.readValue(n.toString(), InstrumentationField.class));
+                    break;
+
+
+
+
             }
         }
 
