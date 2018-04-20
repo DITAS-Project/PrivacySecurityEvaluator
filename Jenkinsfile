@@ -11,7 +11,7 @@ pipeline {
 			steps {
 				sh 'echo "Building! new"'
 				//sh 'npm install --prefix src' 
-				sh 'mvm test'
+				sh 'mvn test'
 			}
 		}
 		stage('Image creation') {
