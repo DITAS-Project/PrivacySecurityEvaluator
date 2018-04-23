@@ -1,15 +1,13 @@
 package de.tub.privacySecurityEvaluator.service;
 
 
-import de.tub.privacySecurityEvaluator.model.Blueprint;
-import de.tub.privacySecurityEvaluator.model.BlueprintRanking;
-import de.tub.privacySecurityEvaluator.model.Feature;
-import de.tub.privacySecurityEvaluator.model.Request;
+import de.tub.privacySecurityEvaluator.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EvaluatorServiceImpl implements EvaluatorService {
@@ -46,6 +44,21 @@ public class EvaluatorServiceImpl implements EvaluatorService {
     }
 
     private HashSet<Blueprint> filter(Feature requirement, List<Blueprint> blueprints) {
-        return null;
+        HashSet<Blueprint> filteredSubset = new HashSet<>();
+        final List<? extends Class<? extends Property>> clases = requirement.getProperties().stream().map(Property::getClass).collect(Collectors.toList());
+        for (Blueprint blueprint : blueprints) {
+            boolean valid = false;
+            for (Property property : blueprint.getFeature().getProperties()) {
+                if (!clases.contains(property.getClass())) {
+                    valid = false;
+                    break;
+                }
+                valid = true;
+            }
+            if (valid) filteredSubset.add(blueprint);
+
+        }
+
+        return filteredSubset;
     }
 }

@@ -75,7 +75,7 @@ public class ModelTesting {
     }
 
     @Test
-    public void testTracingAndAcessMonitoring() {
+    public void testTracingAndAccessMonitoring() {
         String propertyJson = readToString("/model/tracing.json");
 
         try {
@@ -93,7 +93,7 @@ public class ModelTesting {
     }
 
     @Test
-    public void testAcessControl() {
+    public void testAccessControl() {
         String propertyJson = readToString("/model/acl.json");
 
         try {

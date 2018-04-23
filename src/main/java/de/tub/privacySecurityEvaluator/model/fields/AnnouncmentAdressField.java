@@ -15,4 +15,9 @@ public class AnnouncmentAdressField extends Property {
     public void setValue(String value) {
         this.value = value;
     }
+
+    @Override
+    public boolean validate(Property field) {
+        return false;
+    }
 }
