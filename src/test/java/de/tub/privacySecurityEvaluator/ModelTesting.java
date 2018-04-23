@@ -92,6 +92,38 @@ public class ModelTesting {
         }
     }
 
+    @Test
+    public void testAcessControl() {
+        String propertyJson = readToString("/model/acl.json");
+
+        try {
+            Property property = mapper.readValue(propertyJson, Property.class);
+
+            Assert.assertEquals(property.getName(), "acl");
+            Assert.assertTrue(contains(property.getProperties(), Propertiefield.class));
+            Assert.assertTrue(contains(property.getProperties(), CredentialsField.class));
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testMutationControl() {
+        String propertyJson = readToString("/model/mutationControl.json");
+
+        try {
+            Property property = mapper.readValue(propertyJson, Property.class);
+
+            Assert.assertEquals(property.getName(), "mutation control");
+            Assert.assertTrue(contains(property.getProperties(), AnnouncmentAdressField.class));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private boolean contains(List<Propertiefield> list, Class<?> type) {
         for (Propertiefield f : list) {

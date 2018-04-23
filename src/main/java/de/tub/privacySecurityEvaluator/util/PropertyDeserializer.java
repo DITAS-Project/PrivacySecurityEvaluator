@@ -53,6 +53,13 @@ public class PropertyDeserializer extends StdDeserializer<Property> {
                 case "instrumentation":
                     result.addProperty(mapper.readValue(n.toString(), InstrumentationField.class));
                     break;
+                case "credentials":
+                    result.addProperty(mapper.readValue(n.toString(), CredentialsField.class));
+                    break;
+                case "announcmentAdress":
+                    result.addProperty(mapper.readValue(n.toString(), AnnouncmentAdressField.class));
+                    break;
+
 
 
 
