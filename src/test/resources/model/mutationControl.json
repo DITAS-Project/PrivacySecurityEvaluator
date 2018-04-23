@@ -2,7 +2,7 @@
   "name": "mutation control",
   "properties": [
     {
-      "name": "announcmentAdress",
+      "name": "announcementAddress",
       "unit": "string",
       "value": "https://..."
     }

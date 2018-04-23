@@ -117,7 +117,7 @@ public class ModelTesting {
             Feature property = mapper.readValue(propertyJson, Feature.class);
 
             Assert.assertEquals(property.getName(), "mutation control");
-            Assert.assertTrue(contains(property.getProperties(), AnnouncmentAdressField.class));
+            Assert.assertTrue(contains(property.getProperties(), AnnouncementAddressField.class));
 
         } catch (IOException e) {
             e.printStackTrace();

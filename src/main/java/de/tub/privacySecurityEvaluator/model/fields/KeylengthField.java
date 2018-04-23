@@ -18,8 +18,7 @@ public class KeylengthField extends Property {
 
     @Override
     public boolean validate(Property field) {
-        if (!(field instanceof KeylengthField)) return false;
-        return ((KeylengthField) field).getValue() <= value;
+        return field instanceof KeylengthField && ((KeylengthField) field).getValue() <= value;
     }
 
     @Override

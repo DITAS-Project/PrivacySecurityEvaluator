@@ -5,7 +5,7 @@ import de.tub.privacySecurityEvaluator.model.Property;
 /**
  * Created by Richard on 23.04.2018.
  */
-public class AnnouncmentAdressField extends Property {
+public class AnnouncementAddressField extends Property {
     public String value;
 
     public String getValue() {

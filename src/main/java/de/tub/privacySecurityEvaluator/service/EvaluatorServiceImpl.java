@@ -26,9 +26,7 @@ public class EvaluatorServiceImpl implements EvaluatorService {
 
         HashSet<Blueprint> validSubset = validate(request.getRequirement(), filteredSubset);
 
-        List<BlueprintRanking> ret = rankingService.rank(request.getRequirement(), validSubset);
-
-        return ret;
+        return rankingService.rank(request.getRequirement(), validSubset);
     }
 
 
@@ -45,11 +43,11 @@ public class EvaluatorServiceImpl implements EvaluatorService {
 
     private HashSet<Blueprint> filter(Feature requirement, List<Blueprint> blueprints) {
         HashSet<Blueprint> filteredSubset = new HashSet<>();
-        final List<? extends Class<? extends Property>> clases = requirement.getProperties().stream().map(Property::getClass).collect(Collectors.toList());
+        final List<? extends Class<? extends Property>> classes = requirement.getProperties().stream().map(Property::getClass).collect(Collectors.toList());
         for (Blueprint blueprint : blueprints) {
             boolean valid = false;
             for (Property property : blueprint.getFeature().getProperties()) {
-                if (!clases.contains(property.getClass())) {
+                if (!classes.contains(property.getClass())) {
                     valid = false;
                     break;
                 }

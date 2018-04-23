@@ -57,14 +57,14 @@ public class Feature {
 
     public boolean validate(Feature requirement) {
         for (Property req : requirement.getProperties()) {
-            boolean fullfied = false;
+            boolean fullfilled = false;
             for (Property property : properties) {
                 if (property.validate(req)) {
-                    fullfied = true;
+                    fullfilled = true;
                     break;
                 }
             }
-            if (!fullfied) {
+            if (!fullfilled) {
                 return false;
             }
         }

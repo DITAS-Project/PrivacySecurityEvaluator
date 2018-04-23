@@ -1,18 +1,18 @@
 package de.tub.privacySecurityEvaluator.api;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import de.tub.privacySecurityEvaluator.model.BlueprintRanking;
 import de.tub.privacySecurityEvaluator.model.Request;
 import de.tub.privacySecurityEvaluator.service.EvaluatorService;
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
 import java.util.List;
 
 @RestController
