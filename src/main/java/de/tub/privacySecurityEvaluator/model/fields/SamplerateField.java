@@ -1,11 +1,11 @@
 package de.tub.privacySecurityEvaluator.model.fields;
 
-import de.tub.privacySecurityEvaluator.model.Propertiefield;
+import de.tub.privacySecurityEvaluator.model.Property;
 
 /**
  * Created by Richard on 18.04.2018.
  */
-public class SamplerateField extends Propertiefield {
+public class SamplerateField extends Property {
     public String value;
 
     public String getValue() {

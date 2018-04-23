@@ -1,36 +1,51 @@
 package de.tub.privacySecurityEvaluator.service;
 
 
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import de.tub.privacySecurityEvaluator.model.Blueprint;
 import de.tub.privacySecurityEvaluator.model.BlueprintRanking;
+import de.tub.privacySecurityEvaluator.model.Feature;
 import de.tub.privacySecurityEvaluator.model.Request;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
 public class EvaluatorServiceImpl implements EvaluatorService {
 
+
+    private RankingService rankingService;
+
+    @Autowired
+    public void setRankingService(RankingService rankingService) {
+        this.rankingService = rankingService;
+    }
+
     @Override
     public List<BlueprintRanking> evaluateRequest(Request request) {
-        List<BlueprintRanking> ret = new ArrayList<>();
-        BlueprintRanking br1 = new BlueprintRanking();
-        BlueprintRanking br2 = new BlueprintRanking();
-//        br2.setScore(0.7);
-//        br1.setScore(0.9);
-//        br1.setBlueprint(new Property("1", "Encryption AES 128", "Encryption", Arrays.asList(createPropertyObject("Algorithm", "enum").put("value", "AES"),
-//                createPropertyObject("Keylength", "number").put("minimum", 128))));
-//        br2.setBlueprint(new Property("2", "Encryption AES 256", "Encryption", Arrays.asList(createPropertyObject("Algorithm", "enum").put("value", "AES"),
-//                createPropertyObject("Keylength", "number").put("minimum", 256))));
-//        ret.add(br1);
-//        ret.add(br2);
+        HashSet<Blueprint> filteredSubset = filter(request.getRequirement(), request.getBlueprintMetrics());
+
+        HashSet<Blueprint> validSubset = validate(request.getRequirement(), filteredSubset);
+
+        List<BlueprintRanking> ret = rankingService.rank(request.getRequirement(), validSubset);
+
         return ret;
     }
 
-    private ObjectNode createPropertyObject(String name, String unit) {
-        JsonNodeFactory factory = JsonNodeFactory.instance;
-        return factory.objectNode().put("name", name).put("unit", unit);
+
+    private HashSet<Blueprint> validate(Feature requirement, HashSet<Blueprint> blueprints) {
+        HashSet<Blueprint> validSet = new HashSet<>();
+
+        for (Blueprint bluePrintMetric : blueprints) {
+            if (bluePrintMetric.getFeature().validate(requirement)) {
+                validSet.add(bluePrintMetric);
+            }
+        }
+        return validSet;
+    }
+
+    private HashSet<Blueprint> filter(Feature requirement, List<Blueprint> blueprints) {
+        return null;
     }
 }

@@ -1,10 +1,14 @@
 package de.tub.privacySecurityEvaluator.model;
 
-public class BluePrintMetric {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class Blueprint {
 
     private String type;
     private String description;
-    private Property properties;
+    @JsonProperty(value = "feature")
+    private Feature feature;
 
     public String getType() {
         return type;
@@ -22,11 +26,13 @@ public class BluePrintMetric {
         this.description = description;
     }
 
-    public Property getProperties() {
-        return properties;
+    @JsonIgnore
+    public Feature getFeature() {
+        return feature;
     }
 
-    public void setProperties(Property properties) {
-        this.properties = properties;
+    @JsonIgnore
+    public void setFeature(Feature feature) {
+        this.feature = feature;
     }
 }

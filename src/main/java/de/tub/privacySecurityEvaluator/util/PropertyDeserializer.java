@@ -7,12 +7,12 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
-import de.tub.privacySecurityEvaluator.model.Property;
+import de.tub.privacySecurityEvaluator.model.Feature;
 import de.tub.privacySecurityEvaluator.model.fields.*;
 
 import java.io.IOException;
 
-public class PropertyDeserializer extends StdDeserializer<Property> {
+public class PropertyDeserializer extends StdDeserializer<Feature> {
     private ObjectMapper mapper;
 
     public PropertyDeserializer() {
@@ -25,10 +25,10 @@ public class PropertyDeserializer extends StdDeserializer<Property> {
     }
 
     @Override
-    public Property deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+    public Feature deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
         ObjectCodec codec = jsonParser.getCodec();
         FakeProperty fakeProperty = codec.readValue(jsonParser, FakeProperty.class);
-        Property result = fakeProperty.toProperty();
+        Feature result = fakeProperty.toProperty();
 
         for (JsonNode n : fakeProperty.properties) {
             switch (n.get("name").textValue()) {

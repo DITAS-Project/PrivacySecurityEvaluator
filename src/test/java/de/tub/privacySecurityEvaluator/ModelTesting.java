@@ -2,7 +2,7 @@ package de.tub.privacySecurityEvaluator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import de.tub.privacySecurityEvaluator.model.Propertiefield;
+import de.tub.privacySecurityEvaluator.model.Feature;
 import de.tub.privacySecurityEvaluator.model.Property;
 import de.tub.privacySecurityEvaluator.model.fields.*;
 import de.tub.privacySecurityEvaluator.util.PropertyDeserializer;
@@ -36,7 +36,7 @@ public class ModelTesting {
     public void prepare() {
         mapper = new ObjectMapper();
         SimpleModule module = new SimpleModule();
-        module.addDeserializer(Property.class, new PropertyDeserializer());
+        module.addDeserializer(Feature.class, new PropertyDeserializer());
         mapper.registerModule(module);
     }
 
@@ -45,7 +45,7 @@ public class ModelTesting {
         String propertyJson = readToString("/model/transport.json");
 
         try {
-            Property property = mapper.readValue(propertyJson, Property.class);
+            Feature property = mapper.readValue(propertyJson, Feature.class);
 
             Assert.assertEquals(property.getName(), "transport encryption");
             Assert.assertTrue(contains(property.getProperties(), ProtocolField.class));
@@ -63,7 +63,7 @@ public class ModelTesting {
         String propertyJson = readToString("/model/storage.json");
 
         try {
-            Property property = mapper.readValue(propertyJson, Property.class);
+            Feature property = mapper.readValue(propertyJson, Feature.class);
 
             Assert.assertEquals(property.getName(), "encryption");
             Assert.assertTrue(contains(property.getProperties(), KeylengthField.class));
@@ -79,7 +79,7 @@ public class ModelTesting {
         String propertyJson = readToString("/model/tracing.json");
 
         try {
-            Property property = mapper.readValue(propertyJson, Property.class);
+            Feature property = mapper.readValue(propertyJson, Feature.class);
 
             Assert.assertEquals(property.getName(), "tracing");
             Assert.assertTrue(contains(property.getProperties(), LevelField.class));
@@ -97,10 +97,10 @@ public class ModelTesting {
         String propertyJson = readToString("/model/acl.json");
 
         try {
-            Property property = mapper.readValue(propertyJson, Property.class);
+            Feature property = mapper.readValue(propertyJson, Feature.class);
 
             Assert.assertEquals(property.getName(), "acl");
-            Assert.assertTrue(contains(property.getProperties(), Propertiefield.class));
+            Assert.assertTrue(contains(property.getProperties(), Property.class));
             Assert.assertTrue(contains(property.getProperties(), CredentialsField.class));
 
 
@@ -114,7 +114,7 @@ public class ModelTesting {
         String propertyJson = readToString("/model/mutationControl.json");
 
         try {
-            Property property = mapper.readValue(propertyJson, Property.class);
+            Feature property = mapper.readValue(propertyJson, Feature.class);
 
             Assert.assertEquals(property.getName(), "mutation control");
             Assert.assertTrue(contains(property.getProperties(), AnnouncmentAdressField.class));
@@ -125,8 +125,8 @@ public class ModelTesting {
     }
 
 
-    private boolean contains(List<Propertiefield> list, Class<?> type) {
-        for (Propertiefield f : list) {
+    private boolean contains(List<Property> list, Class<?> type) {
+        for (Property f : list) {
             if (type.isInstance(f)) {
                 return true;
             }

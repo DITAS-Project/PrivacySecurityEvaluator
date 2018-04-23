@@ -1,30 +1,10 @@
 package de.tub.privacySecurityEvaluator.model;
 
-import java.util.List;
-
-public class Property {
-    private String id;
+public abstract class Property {
     private String name;
-    private String type;
-    private List<Propertiefield> properties;
-
-
-    public Property(String id, String name, String type, List<Propertiefield> properties) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.properties = properties;
-    }
+    private String unit;
 
     public Property() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -35,23 +15,13 @@ public class Property {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public String getUnit() {
+        return unit;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 
-    public List<Propertiefield> getProperties() {
-        return properties;
-    }
-
-    public void setProperties(List<Propertiefield> properties) {
-        this.properties = properties;
-    }
-
-    public void addProperty(Propertiefield field) {
-        this.properties.add(field);
-    }
+    public abstract boolean validate(Property field);
 }
