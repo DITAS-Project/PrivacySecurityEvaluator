@@ -70,4 +70,26 @@ public class Feature {
         }
         return true;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Feature feature = (Feature) o;
+
+        if (getId() != null ? !getId().equals(feature.getId()) : feature.getId() != null) return false;
+        if (getName() != null ? !getName().equals(feature.getName()) : feature.getName() != null) return false;
+        if (getType() != null ? !getType().equals(feature.getType()) : feature.getType() != null) return false;
+        return getProperties() != null ? getProperties().equals(feature.getProperties()) : feature.getProperties() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getType() != null ? getType().hashCode() : 0);
+        result = 31 * result + (getProperties() != null ? getProperties().hashCode() : 0);
+        return result;
+    }
 }

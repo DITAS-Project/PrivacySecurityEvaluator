@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,7 +31,7 @@ public class EvaluatorServiceImpl implements EvaluatorService {
     }
 
 
-    private HashSet<Blueprint> validate(Feature requirement, HashSet<Blueprint> blueprints) {
+    public HashSet<Blueprint> validate(Feature requirement, HashSet<Blueprint> blueprints) {
         HashSet<Blueprint> validSet = new HashSet<>();
 
         for (Blueprint bluePrintMetric : blueprints) {
@@ -41,9 +42,9 @@ public class EvaluatorServiceImpl implements EvaluatorService {
         return validSet;
     }
 
-    private HashSet<Blueprint> filter(Feature requirement, List<Blueprint> blueprints) {
+    public HashSet<Blueprint> filter(Feature requirement, List<Blueprint> blueprints) {
         HashSet<Blueprint> filteredSubset = new HashSet<>();
-        final List<? extends Class<? extends Property>> classes = requirement.getProperties().stream().map(Property::getClass).collect(Collectors.toList());
+        Set<? extends Class<? extends Property>> classes = requirement.getProperties().stream().map(Property::getClass).collect(Collectors.toSet());
         for (Blueprint blueprint : blueprints) {
             boolean valid = false;
             for (Property property : blueprint.getFeature().getProperties()) {

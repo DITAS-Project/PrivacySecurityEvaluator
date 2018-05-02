@@ -23,6 +23,6 @@ public class AlgorithmField extends Property {
         }
 
 
-        return false;
+        return !value.equals(((AlgorithmField) field).getValue());
     }
 }

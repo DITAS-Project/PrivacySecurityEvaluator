@@ -16,8 +16,7 @@ public class ProtocolField extends Property {
 
     @Override
     public boolean validate(Property field) {
-        if (!(field instanceof ProtocolField)) return false;
-        return true;
+        return this.equals(field);
     }
 
     @Override

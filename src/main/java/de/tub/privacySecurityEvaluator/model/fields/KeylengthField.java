@@ -1,18 +1,27 @@
 package de.tub.privacySecurityEvaluator.model.fields;
 
+import com.fasterxml.jackson.annotation.JsonSetter;
 import de.tub.privacySecurityEvaluator.model.Property;
 
 /**
  * Created by Richard on 18.04.2018.
  */
 public class KeylengthField extends Property {
+
+
     public int value;
 
     public int getValue() {
         return value;
     }
 
+    @JsonSetter("value")
     public void setValue(int value) {
+        this.value = value;
+    }
+
+    @JsonSetter("minimum")
+    public void setMinimum(int value) {
         this.value = value;
     }
 

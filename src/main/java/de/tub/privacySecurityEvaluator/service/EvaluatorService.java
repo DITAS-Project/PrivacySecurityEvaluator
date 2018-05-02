@@ -8,4 +8,6 @@ import java.util.List;
 public interface EvaluatorService {
 
     List<BlueprintRanking> evaluateRequest(Request request);
+
+
 }

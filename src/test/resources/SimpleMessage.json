@@ -42,8 +42,8 @@
       "type": "object",
       "description": "Encryption",
       "properties": {
-        "id": "1",
-        "name": "Encryption AES 128",
+        "id": "2",
+        "name": "Encryption AES 256",
         "type": "Encryption",
         "properties": [
           {

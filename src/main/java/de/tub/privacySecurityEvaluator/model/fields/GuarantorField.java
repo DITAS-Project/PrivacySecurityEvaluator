@@ -6,25 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Richard on 23.04.2018.
+ * Created by Richard on 02.05.2018.
  */
-public class CredentialsField extends Property {
+public class GuarantorField extends Property {
     public List<String> value;
-
-    public List<String> getValue() {
-        return value;
-    }
-
-    public void setValue(List<String> value) {
-        this.value = value;
-    }
 
     @Override
     public boolean validate(Property field) {
-        if (!(field instanceof CredentialsField)) return false;
+        if (!(field instanceof GuarantorField)) return false;
         List<String> workingList = new ArrayList<String>();
         workingList.addAll(value);
-        workingList.retainAll(((CredentialsField) field).getValue());
+        workingList.retainAll(((GuarantorField) field).getValue());
         return !workingList.isEmpty();
     }
 
@@ -33,7 +25,7 @@ public class CredentialsField extends Property {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CredentialsField that = (CredentialsField) o;
+        GuarantorField that = (GuarantorField) o;
 
         return value != null ? value.equals(that.value) : that.value == null;
     }
@@ -41,5 +33,13 @@ public class CredentialsField extends Property {
     @Override
     public int hashCode() {
         return value != null ? value.hashCode() : 0;
+    }
+
+    public List<String> getValue() {
+        return value;
+    }
+
+    public void setValue(List<String> value) {
+        this.value = value;
     }
 }

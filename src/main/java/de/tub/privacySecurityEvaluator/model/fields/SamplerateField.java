@@ -6,20 +6,20 @@ import de.tub.privacySecurityEvaluator.model.Property;
  * Created by Richard on 18.04.2018.
  */
 public class SamplerateField extends Property {
-    public String value;
+    public int value;
 
-    public String getValue() {
+    public int getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(int value) {
         this.value = value;
     }
 
     @Override
     public boolean validate(Property field) {
         if (!(field instanceof SamplerateField)) return false;
-        return true;
+        return ((SamplerateField) field).getValue() <= value;
     }
 
     @Override
@@ -29,11 +29,11 @@ public class SamplerateField extends Property {
 
         SamplerateField that = (SamplerateField) o;
 
-        return value != null ? value.equals(that.value) : that.value == null;
+        return value == that.value;
     }
 
     @Override
     public int hashCode() {
-        return value != null ? value.hashCode() : 0;
+        return value;
     }
 }
