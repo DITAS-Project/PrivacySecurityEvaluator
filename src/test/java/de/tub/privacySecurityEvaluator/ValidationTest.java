@@ -22,6 +22,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Richard on 02.05.2018.
@@ -70,8 +71,13 @@ public class ValidationTest {
     public void testAlgorithm() {
         try {
             List<Blueprint> start = Arrays.asList(mapper.readValue(readToString("/validation/algorithms.json"), Blueprint[].class));
-            Feature requirement = mapper.readValue(readToString("/validation/validationAlgorithm.json"), Feature.class);
-            evaluator.filter(requirement, start);
+            Feature requirement = mapper.readValue(readToString("/validation/requirementAlgorithm.json"), Feature.class);
+            List<BlueprintRanking> rankings = evaluator.evaluateRequest(new Request(requirement, start));
+            List<Blueprint> filteredList = rankings.stream().map(BlueprintRanking::getBlueprint).collect(Collectors.toList());
+            Assert.assertTrue(filteredList.contains(start.get(0)));
+            Assert.assertTrue(filteredList.contains(start.get(1)));
+            Assert.assertTrue(!filteredList.contains(start.get(2)));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -80,10 +86,29 @@ public class ValidationTest {
     }
 
     @Test
+    public void testKeylength() {
+        try {
+            List<Blueprint> start = Arrays.asList(mapper.readValue(readToString("/validation/keylength.json"), Blueprint[].class));
+            Feature requirement = mapper.readValue(readToString("/validation/requirementKeylength.json"), Feature.class);
+            List<BlueprintRanking> rankings = evaluator.evaluateRequest(new Request(requirement, start));
+            List<Blueprint> filteredList = rankings.stream().map(BlueprintRanking::getBlueprint).collect(Collectors.toList());
+            Assert.assertTrue(filteredList.contains(start.get(0)));
+            Assert.assertTrue(filteredList.contains(start.get(1)));
+            Assert.assertTrue(!filteredList.contains(start.get(2)));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+    @Test
     public void testFilter() {
         try {
             List<Blueprint> start = Arrays.asList(mapper.readValue(readToString("/validation/filterTest.json"), Blueprint[].class));
-            Feature requirement = mapper.readValue(readToString("/validation/validationAlgorithm.json"), Feature.class);
+            Feature requirement = mapper.readValue(readToString("/validation/requirementAlgorithm.json"), Feature.class);
             HashSet<Blueprint> filterd = evaluator.filter(requirement, start);
             Assert.assertTrue(filterd.contains(start.get(1)));
             Assert.assertTrue(filterd.size() < start.size());

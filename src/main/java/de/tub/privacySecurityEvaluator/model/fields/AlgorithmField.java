@@ -21,8 +21,6 @@ public class AlgorithmField extends Property {
         if (!(field instanceof AlgorithmField)) {
             return false;
         }
-
-
-        return !value.equals(((AlgorithmField) field).getValue());
+        return value.equals(((AlgorithmField) field).getValue());
     }
 }
