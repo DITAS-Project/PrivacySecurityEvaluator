@@ -1,0 +1,10 @@
+{
+  "name": "mutation control",
+  "properties": [
+    {
+      "name": "announcementAddress",
+      "unit": "string",
+      "value": "https://..."
+    }
+  ]
+}

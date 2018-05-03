@@ -1,0 +1,15 @@
+{
+  "name": "encryption",
+  "properties": [
+    {
+      "name": "Algorithm",
+      "unit": "enum",
+      "value": "AES"
+    },
+    {
+      "name": "Keylength",
+      "unit": "number",
+      "value": "128"
+    }
+  ]
+}

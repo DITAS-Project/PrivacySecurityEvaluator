@@ -3,22 +3,30 @@ package de.tub.privacySecurityEvaluator.model;
 import java.util.List;
 
 public class Request {
-    private Property requirement;
-    private List<BluePrintMetric> blueprintMetrics;
+    private Feature requirement;
+    private List<Blueprint> blueprintMetrics;
 
-    public Property getRequirement() {
+    public Request(Feature requirement, List<Blueprint> blueprintMetrics) {
+        this.requirement = requirement;
+        this.blueprintMetrics = blueprintMetrics;
+    }
+
+    public Request() {
+    }
+
+    public Feature getRequirement() {
         return requirement;
     }
 
-    public void setRequirement(Property requirement) {
+    public void setRequirement(Feature requirement) {
         this.requirement = requirement;
     }
 
-    public List<BluePrintMetric> getBlueprintMetrics() {
+    public List<Blueprint> getBlueprintMetrics() {
         return blueprintMetrics;
     }
 
-    public void setBlueprintMetrics(List<BluePrintMetric> bluePrintMetrics) {
+    public void setBlueprintMetrics(List<Blueprint> bluePrintMetrics) {
         this.blueprintMetrics = bluePrintMetrics;
     }
 

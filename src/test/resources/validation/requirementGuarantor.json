@@ -1,0 +1,15 @@
+{
+  "id": "1",
+  "name": "Encryption AES 128",
+  "type": "Encryption",
+  "properties": [
+    {
+      "name": "guarantor",
+      "unit": "list",
+      "value": [
+        "b31d032cfdcf47a399990a71e43c5d2a",
+        "d63d0e21fdc05f618d55ef306c54af82"
+      ]
+    }
+  ]
+}

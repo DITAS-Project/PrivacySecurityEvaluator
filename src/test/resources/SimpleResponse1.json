@@ -1,0 +1,20 @@
+{
+  "blueprint": {
+    "id": "1",
+    "name": "Encryption AES 128",
+    "type": "Encryption",
+    "properties": [
+      {
+        "name": "Algorithm",
+        "unit": "enum",
+        "value": "AES"
+      },
+      {
+        "name": "Keylength",
+        "unit": "number",
+        "minimum": 128
+      }
+    ]
+  },
+  "score": 0.9
+}
