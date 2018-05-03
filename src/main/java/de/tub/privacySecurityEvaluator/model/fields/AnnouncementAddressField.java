@@ -18,6 +18,8 @@ public class AnnouncementAddressField extends Property {
 
     @Override
     public boolean validate(Property field) {
-        return false;
+        if (!(field instanceof AnnouncementAddressField)) return false;
+        return ((AnnouncementAddressField) field).getValue().equals(value);
+
     }
 }

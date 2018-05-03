@@ -19,7 +19,7 @@ public class VersionField extends Property {
     @Override
     public boolean validate(Property field) {
         if (!(field instanceof VersionField)) return false;
-        return true;
+        else return true;
     }
 
     @Override

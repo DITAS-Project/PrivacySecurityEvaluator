@@ -32,7 +32,7 @@ public class PropertyDeserializer extends StdDeserializer<Feature> {
 
         for (JsonNode n : fakeProperty.properties) {
             switch (n.get("name").textValue()) {
-                case "Protocol":
+                case "protocol":
                     result.addProperty(mapper.readValue(n.toString(), ProtocolField.class));
                     break;
                 case "Version":
@@ -61,6 +61,8 @@ public class PropertyDeserializer extends StdDeserializer<Feature> {
                     break;
                 case "required":
                     result.addProperty(mapper.readValue(n.toString(), RequiredField.class));
+                case "guarantor":
+                    result.addProperty(mapper.readValue(n.toString(), GuarantorField.class));
 
 
 

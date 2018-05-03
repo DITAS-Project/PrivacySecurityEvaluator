@@ -19,7 +19,7 @@ public class InstrumentationField extends Property {
     @Override
     public boolean validate(Property field) {
         if (!(field instanceof InstrumentationField)) return false;
-        return true;
+        return ((InstrumentationField) field).getValue().equals(value);
     }
 
     @Override
