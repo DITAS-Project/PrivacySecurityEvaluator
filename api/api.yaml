@@ -23,7 +23,6 @@ paths:
         - application/json
       produces:
         - application/json
-        - '*/*'
       parameters:
         - in: body
           name: input
