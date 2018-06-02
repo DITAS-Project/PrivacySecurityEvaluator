@@ -61,8 +61,10 @@ public class PropertyDeserializer extends StdDeserializer<Feature> {
                     break;
                 case "required":
                     result.addProperty(mapper.readValue(n.toString(), RequiredField.class));
+                    break;
                 case "guarantor":
                     result.addProperty(mapper.readValue(n.toString(), GuarantorField.class));
+                    break;
 
 
 
