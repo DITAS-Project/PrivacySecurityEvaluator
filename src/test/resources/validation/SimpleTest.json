@@ -1,19 +1,19 @@
 [
   {
     "type": "object",
-    "description": "Encryption",
+    "description": "encryption",
     "properties": {
       "id": "1",
       "name": "Encryption AES 128",
       "type": "Encryption",
       "properties": [
         {
-          "name": "Algorithm",
+          "name": "algorithm",
           "unit": "enum",
           "value": "AES"
         },
         {
-          "name": "Keylength",
+          "name": "keylength",
           "unit": "number",
           "value": 128
         }
@@ -22,19 +22,19 @@
   },
   {
     "type": "object",
-    "description": "Encryption",
+    "description": "encryption",
     "properties": {
       "id": "2",
       "name": "Encryption AES 256",
       "type": "Encryption",
       "properties": [
         {
-          "name": "Algorithm",
+          "name": "algorithm",
           "unit": "enum",
           "value": "AES"
         },
         {
-          "name": "Keylength",
+          "name": "keylength",
           "unit": "number",
           "value": 256
         }

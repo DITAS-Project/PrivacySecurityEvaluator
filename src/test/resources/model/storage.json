@@ -2,12 +2,12 @@
   "name": "encryption",
   "properties": [
     {
-      "name": "Algorithm",
+      "name": "algorithm",
       "unit": "enum",
       "value": "AES"
     },
     {
-      "name": "Keylength",
+      "name": "keylength",
       "unit": "number",
       "value": "128"
     }
