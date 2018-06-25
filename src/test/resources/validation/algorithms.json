@@ -8,7 +8,7 @@
       "type": "Encryption",
       "properties": [
         {
-          "name": "Algorithm",
+          "name": "algorithm",
           "unit": "enum",
           "value": "AES"
         }
@@ -24,7 +24,7 @@
       "type": "Encryption",
       "properties": [
         {
-          "name": "Algorithm",
+          "name": "algorithm",
           "unit": "enum",
           "value": "AES"
         }
@@ -40,7 +40,7 @@
       "type": "Encryption",
       "properties": [
         {
-          "name": "Algorithm",
+          "name": "algorithm",
           "unit": "enum",
           "value": "to fail"
         }
