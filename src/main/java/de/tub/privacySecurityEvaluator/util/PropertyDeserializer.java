@@ -35,13 +35,13 @@ public class PropertyDeserializer extends StdDeserializer<Feature> {
                 case "protocol":
                     result.addProperty(mapper.readValue(n.toString(), ProtocolField.class));
                     break;
-                case "Version":
+                case "version":
                     result.addProperty(mapper.readValue(n.toString(), VersionField.class));
                     break;
-                case "Algorithm":
+                case "algorithm":
                     result.addProperty(mapper.readValue(n.toString(), AlgorithmField.class));
                     break;
-                case "Keylength":
+                case "keylength":
                     result.addProperty(mapper.readValue(n.toString(), KeylengthField.class));
                     break;
                 case "level":
