@@ -21,7 +21,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-//@WebMvcTest(PrivacySecurityEvaluator.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 public class ApplicationTests {
@@ -39,7 +38,7 @@ public class ApplicationTests {
 
     @BeforeClass
     public static void loadJsons() {
-        body = readToString("/SimpleMessage.json");
+        body = readToString("/newInput.json");
         output1 = readToString("/SimpleResponse1.json");
         output2 = readToString("/SimpleResponse2.json");
 
@@ -69,7 +68,6 @@ public class ApplicationTests {
      */
     @Test
     public void inputOutputFilterTest() throws Exception {
-
 
         ResultActions perform = mockMvc.perform(post("/filter")
                 .content(body)

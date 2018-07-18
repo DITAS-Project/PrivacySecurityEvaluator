@@ -1,12 +1,12 @@
 package de.tub.privacySecurityEvaluator.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Blueprint {
 
     private String type;
     private String description;
+    private String id;
 
     @JsonProperty("properties")
     private Feature feature;
@@ -36,12 +36,20 @@ public class Blueprint {
         this.description = description;
     }
 
-    @JsonIgnore
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    //@JsonIgnore
     public Feature getFeature() {
         return feature;
     }
 
-    @JsonIgnore
+    //@JsonIgnore
     public void setFeature(Feature feature) {
         this.feature = feature;
     }

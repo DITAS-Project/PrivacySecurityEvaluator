@@ -1,22 +1,20 @@
 {
-  "name": "tracing",
-  "properties": [
-    {
-      "name": "level",
+  "id": "tracing",
+  "description": "tracing",
+  "properties": {
+    "level": {
       "unit": "enum",
       "value": "datasource"
     },
-    {
-      "name": "samplerate",
+    "samplerate": {
       "unit": "percentage",
       "value": "10"
     },
-    {
-      "name": "instrumentation",
+    "instrumentation": {
       "unit": "enum",
       "value": "VDC"
     }
-  ]
+  }
 }
 
 

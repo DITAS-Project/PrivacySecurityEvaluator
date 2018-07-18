@@ -2,7 +2,6 @@ package de.tub.privacySecurityEvaluator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import de.tub.privacySecurityEvaluator.model.Blueprint;
 import de.tub.privacySecurityEvaluator.model.BlueprintRanking;
 import de.tub.privacySecurityEvaluator.model.Feature;
 import de.tub.privacySecurityEvaluator.model.Request;
@@ -129,9 +128,9 @@ public class ValidationTest {
     @Test
     public void testFilter() {
         try {
-            List<Blueprint> start = Arrays.asList(mapper.readValue(readToString("/validation/filterTest.json"), Blueprint[].class));
+            List<Feature> start = Arrays.asList(mapper.readValue(readToString("/validation/filterTest.json"), Feature[].class));
             Feature requirement = mapper.readValue(readToString("/validation/requirementAlgorithm.json"), Feature.class);
-            HashSet<Blueprint> filterd = evaluator.filter(requirement, start);
+            HashSet<Feature> filterd = evaluator.filter(requirement, start);
             Assert.assertTrue(filterd.contains(start.get(1))); //could cause problems when unordered
             Assert.assertTrue(filterd.size() < start.size());
         } catch (IOException e) {
@@ -152,10 +151,10 @@ public class ValidationTest {
 
     private void fieldTest(String inputFile, String requirementFile) {
         try {
-            List<Blueprint> start = Arrays.asList(mapper.readValue(readToString(inputFile), Blueprint[].class));
+            List<Feature> start = Arrays.asList(mapper.readValue(readToString(inputFile), Feature[].class));
             Feature requirement = mapper.readValue(readToString(requirementFile), Feature.class);
             List<BlueprintRanking> rankings = evaluator.evaluateRequest(new Request(requirement, start));
-            List<Blueprint> filteredList = rankings.stream().map(BlueprintRanking::getBlueprint).collect(Collectors.toList());
+            List<Feature> filteredList = rankings.stream().map(BlueprintRanking::getBlueprint).collect(Collectors.toList());
             Assert.assertTrue(filteredList.contains(start.get(0))); //could cause problems when unordered
             Assert.assertTrue(filteredList.size() < start.size());
 

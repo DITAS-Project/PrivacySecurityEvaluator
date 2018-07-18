@@ -4,11 +4,12 @@ import java.util.List;
 
 public class Request {
     private Feature requirement;
-    private List<Blueprint> blueprintMetrics;
+    //  @JsonIgnore()
+    private List<Feature> blueprintAttributes;
 
-    public Request(Feature requirement, List<Blueprint> blueprintMetrics) {
+    public Request(Feature requirement, List<Feature> blueprintAttributes) {
         this.requirement = requirement;
-        this.blueprintMetrics = blueprintMetrics;
+        this.blueprintAttributes = blueprintAttributes;
     }
 
     public Request() {
@@ -22,12 +23,14 @@ public class Request {
         this.requirement = requirement;
     }
 
-    public List<Blueprint> getBlueprintMetrics() {
-        return blueprintMetrics;
+    //@JsonIgnore()
+    public List<Feature> getBlueprintAttributes() {
+        return blueprintAttributes;
     }
 
-    public void setBlueprintMetrics(List<Blueprint> bluePrintMetrics) {
-        this.blueprintMetrics = bluePrintMetrics;
+    //@JsonIgnore()
+    public void setBlueprintAttributes(List<Feature> bluePrintMetrics) {
+        this.blueprintAttributes = bluePrintMetrics;
     }
 
 

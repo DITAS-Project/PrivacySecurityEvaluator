@@ -13,7 +13,7 @@ import org.junit.Test;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
+import java.util.Map;
 
 public class ModelTesting {
 
@@ -47,7 +47,7 @@ public class ModelTesting {
         try {
             Feature property = mapper.readValue(propertyJson, Feature.class);
 
-            Assert.assertEquals(property.getName(), "transport encryption");
+            Assert.assertEquals(property.getDescription(), "transport encryption");
             Assert.assertTrue(contains(property.getProperties(), ProtocolField.class));
             Assert.assertTrue(contains(property.getProperties(), VersionField.class));
             Assert.assertTrue(contains(property.getProperties(), KeylengthField.class));
@@ -65,7 +65,7 @@ public class ModelTesting {
         try {
             Feature property = mapper.readValue(propertyJson, Feature.class);
 
-            Assert.assertEquals(property.getName(), "encryption");
+            Assert.assertEquals(property.getDescription(), "encryption");
             Assert.assertTrue(contains(property.getProperties(), KeylengthField.class));
             Assert.assertTrue(contains(property.getProperties(), AlgorithmField.class));
         } catch (IOException e) {
@@ -81,7 +81,7 @@ public class ModelTesting {
         try {
             Feature property = mapper.readValue(propertyJson, Feature.class);
 
-            Assert.assertEquals(property.getName(), "tracing");
+            Assert.assertEquals(property.getDescription(), "tracing");
             Assert.assertTrue(contains(property.getProperties(), LevelField.class));
             Assert.assertTrue(contains(property.getProperties(), SamplerateField.class));
             Assert.assertTrue(contains(property.getProperties(), InstrumentationField.class));
@@ -99,7 +99,7 @@ public class ModelTesting {
         try {
             Feature property = mapper.readValue(propertyJson, Feature.class);
 
-            Assert.assertEquals(property.getName(), "acl");
+            Assert.assertEquals(property.getDescription(), "acl");
             Assert.assertTrue(contains(property.getProperties(), Property.class));
             Assert.assertTrue(contains(property.getProperties(), CredentialsField.class));
 
@@ -116,7 +116,7 @@ public class ModelTesting {
         try {
             Feature property = mapper.readValue(propertyJson, Feature.class);
 
-            Assert.assertEquals(property.getName(), "mutation control");
+            Assert.assertEquals(property.getDescription(), "mutation control");
             Assert.assertTrue(contains(property.getProperties(), AnnouncementAddressField.class));
 
         } catch (IOException e) {
@@ -125,8 +125,8 @@ public class ModelTesting {
     }
 
 
-    private boolean contains(List<Property> list, Class<?> type) {
-        for (Property f : list) {
+    private boolean contains(Map<String, Property> list, Class<?> type) {
+        for (Property f : list.values()) {
             if (type.isInstance(f)) {
                 return true;
             }
