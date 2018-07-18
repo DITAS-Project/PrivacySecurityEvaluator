@@ -1,35 +1,40 @@
 package de.tub.privacySecurityEvaluator;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import de.tub.privacySecurityEvaluator.api.PrivacySecurityEvaluator;
-import de.tub.privacySecurityEvaluator.model.BlueprintRanking;
-import de.tub.privacySecurityEvaluator.model.Request;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
+import java.nio.charset.Charset;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
+//@WebMvcTest(PrivacySecurityEvaluator.class)
 @SpringBootTest
+@AutoConfigureMockMvc
 public class ApplicationTests {
     private static String body;
     private static String output1;
     private static String output2;
+    private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
+            MediaType.APPLICATION_JSON.getSubtype(),
+            Charset.forName("utf8"));
 
+    @Autowired
+    private MockMvc mockMvc;
 
-    private PrivacySecurityEvaluator privacySecurityEvaluator;
 
 
     @BeforeClass
@@ -39,6 +44,7 @@ public class ApplicationTests {
         output2 = readToString("/SimpleResponse2.json");
 
     }
+
 
     private static String readToString(String filename) {
         final StringBuilder sb = new StringBuilder();
@@ -51,10 +57,6 @@ public class ApplicationTests {
         return sb.toString();
     }
 
-    @Autowired
-    public void setPrivacySecurityEvaluator(PrivacySecurityEvaluator privacySecurityEvaluator) {
-        this.privacySecurityEvaluator = privacySecurityEvaluator;
-    }
 
     /**
      * @Test public void contextLoads() {
@@ -66,23 +68,14 @@ public class ApplicationTests {
      * }
      */
     @Test
-    public void inputOutputFilterTest() {
-        System.out.println(body);
-        ObjectMapper mapper = new ObjectMapper();
-        List<BlueprintRanking> blueprintRanking = null;
-        try {
-            blueprintRanking = privacySecurityEvaluator.filterPolicies(mapper.readValue(body,Request.class));
-        } catch (IOException e) {
-            fail();
-        }
-        try {
-            String testOutput1 = mapper.writeValueAsString(blueprintRanking.get(0));
-            String testOutput2 = mapper.writeValueAsString(blueprintRanking.get(1));
-            assertEquals(testOutput1, output1);
-            assertEquals(testOutput2, output2);
-        } catch (JsonProcessingException e) {
-            fail();
-        }
+    public void inputOutputFilterTest() throws Exception {
+
+
+        ResultActions perform = mockMvc.perform(post("/filter")
+                .content(body)
+                .contentType(contentType));
+        perform.andExpect(status().isOk());
+
     }
 
 

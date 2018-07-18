@@ -1,7 +1,11 @@
 package de.tub.privacySecurityEvaluator.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import de.tub.privacySecurityEvaluator.util.PropertyDeserializer;
+
 import java.util.List;
 
+@JsonDeserialize(using = PropertyDeserializer.class)
 public class Feature {
     private String id;
     private String name;
