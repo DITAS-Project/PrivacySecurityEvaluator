@@ -1,12 +1,12 @@
 {
   "id": "1",
-  "name": "Encryption AES 128",
+
   "type": "Encryption",
-  "properties": [
-    {
-      "name": "announcementAddress",
+  "description": "Encryption",
+  "properties": {
+    "announcementAddress": {
       "unit": "string",
       "value": "https://..."
     }
-  ]
+  }
 }
