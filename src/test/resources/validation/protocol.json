@@ -1,50 +1,35 @@
 [
   {
-    "type": "object",
     "description": "Encryption",
+    "id": "1",
+    "type": "Encryption",
     "properties": {
-      "id": "1",
-      "name": "Encryption AES 128",
-      "type": "Encryption",
-      "properties": [
-        {
-          "name": "protocol",
-          "unit": "enum",
-          "value": "TLS"
-        }
-      ]
+      "protocol": {
+        "unit": "enum",
+        "value": "TLS"
+      }
     }
   },
   {
-    "type": "object",
     "description": "Encryption",
+    "id": "2",
+    "type": "Encryption",
     "properties": {
-      "id": "2",
-      "name": "Encryption AES 256",
-      "type": "Encryption",
-      "properties": [
-        {
-          "name": "protocol",
-          "unit": "enum",
-          "value": "TLS"
-        }
-      ]
+      "protocol": {
+        "unit": "enum",
+        "value": "TLS"
+      }
     }
   },
   {
-    "type": "object",
     "description": "Encryption",
+    "id": "3",
+    "type": "Encryption",
     "properties": {
-      "id": "3",
-      "name": "to fail",
-      "type": "Encryption",
-      "properties": [
-        {
-          "name": "protcol",
-          "unit": "enum",
-          "value": "to fail"
-        }
-      ]
+      "protcol": {
+        "unit": "enum",
+        "value": "to fail"
+      }
     }
   }
 ]

@@ -1,12 +1,11 @@
 {
   "id": "1",
-  "name": "Encryption AES 128",
+  "description": "Encryption AES 128",
   "type": "Encryption",
-  "properties": [
-    {
-      "name": "Version",
+  "properties": {
+    "version": {
       "unit": "number",
       "value": "1.2"
     }
-  ]
+  }
 }
