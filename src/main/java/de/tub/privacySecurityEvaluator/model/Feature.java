@@ -5,6 +5,11 @@ import de.tub.privacySecurityEvaluator.util.PropertyDeserializer;
 
 import java.util.Map;
 
+/**
+ * Data representation of a blueprint/requirement
+ * holds data according to the specified json format file
+ */
+
 @JsonDeserialize(using = PropertyDeserializer.class)
 public class Feature {
     private String id;
@@ -60,6 +65,12 @@ public class Feature {
         this.properties.put(name, field);
     }
 
+    /**
+     * Validation method to determine if a blueprint fullfills the requirement
+     *
+     * @param requirement
+     * @return
+     */
     public boolean validate(Feature requirement) {
         for (Map.Entry<String, Property> req : requirement.getProperties().entrySet()) {
             boolean fullfilled = false;

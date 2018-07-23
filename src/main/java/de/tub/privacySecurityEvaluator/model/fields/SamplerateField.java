@@ -3,10 +3,10 @@ package de.tub.privacySecurityEvaluator.model.fields;
 import de.tub.privacySecurityEvaluator.model.Property;
 
 /**
- * Created by Richard on 18.04.2018.
+ * SamplerateField
  */
 public class SamplerateField extends Property {
-    public int value;
+    private int value;
 
     public int getValue() {
         return value;

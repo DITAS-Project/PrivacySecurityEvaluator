@@ -2,9 +2,11 @@ package de.tub.privacySecurityEvaluator.model;
 
 import java.util.List;
 
+/**
+ * Input data format
+ */
 public class Request {
     private Feature requirement;
-    //  @JsonIgnore()
     private List<Feature> blueprintAttributes;
 
     public Request(Feature requirement, List<Feature> blueprintAttributes) {
@@ -23,16 +25,13 @@ public class Request {
         this.requirement = requirement;
     }
 
-    //@JsonIgnore()
     public List<Feature> getBlueprintAttributes() {
         return blueprintAttributes;
     }
 
-    //@JsonIgnore()
     public void setBlueprintAttributes(List<Feature> bluePrintMetrics) {
         this.blueprintAttributes = bluePrintMetrics;
     }
-
 
 
 }

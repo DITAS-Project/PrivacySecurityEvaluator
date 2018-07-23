@@ -6,6 +6,9 @@ import de.tub.privacySecurityEvaluator.model.Feature;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * helperclass to deserialize the Properties
+ */
 public class FakeProperty {
     public String id;
     public String type;

@@ -3,11 +3,11 @@ package de.tub.privacySecurityEvaluator.model.fields;
 import de.tub.privacySecurityEvaluator.model.Property;
 
 /**
- * Created by Richard on 02.05.2018.
- */
+ * RequiredField
+ **/
 public class RequiredField extends Property {
 
-    public boolean value;
+    private boolean value;
 
     @Override
     public boolean validate(Property field) {

@@ -1,7 +1,6 @@
 package de.tub.privacySecurityEvaluator.util;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -26,12 +25,13 @@ public class PropertyDeserializer extends StdDeserializer<Feature> {
     }
 
     @Override
-    public Feature deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+    public Feature deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         ObjectCodec codec = jsonParser.getCodec();
         FakeProperty fakeProperty = codec.readValue(jsonParser, FakeProperty.class);
         Feature result = fakeProperty.toProperty();
         Map<String, JsonNode> properties = fakeProperty.properties;
         for (Map.Entry<String, JsonNode> s : properties.entrySet()) {
+            //pattern matching to determine which impl of property should be used
             switch (s.getKey()) {
                 case "protocol":
                     result.addProperty(mapper.treeToValue(s.getValue(), ProtocolField.class), s.getKey());

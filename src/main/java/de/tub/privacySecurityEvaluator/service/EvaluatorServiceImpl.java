@@ -18,15 +18,16 @@ import java.util.stream.Collectors;
 public class EvaluatorServiceImpl implements EvaluatorService {
 
 
-    private RankingService rankingService;
+    private HashRankingService rankingService;
 
     @Autowired
-    public void setRankingService(RankingService rankingService) {
+    public void setRankingService(HashRankingService rankingService) {
         this.rankingService = rankingService;
     }
 
     @Override
     public List<BlueprintRanking> evaluateRequest(Request request) {
+
         HashSet<Feature> filteredSubset = filter(request.getRequirement(), request.getBlueprintAttributes());
 
         HashSet<Feature> validSubset = validate(request.getRequirement(), filteredSubset);
@@ -34,18 +35,14 @@ public class EvaluatorServiceImpl implements EvaluatorService {
         return rankingService.rank(request.getRequirement(), validSubset);
     }
 
-
-    public HashSet<Feature> validate(Feature requirement, HashSet<Feature> blueprints) {
-        HashSet<Feature> validSet = new HashSet<>();
-
-        for (Feature bluePrintMetric : blueprints) {
-            if (bluePrintMetric.validate(requirement)) {
-                validSet.add(bluePrintMetric);
-            }
-        }
-        return validSet;
-    }
-
+    /**
+     * filters the featurelist
+     * filtered list only holds blueprints that have all required fields
+     *
+     * @param requirement
+     * @param blueprints
+     * @return
+     */
     public HashSet<Feature> filter(Feature requirement, List<Feature> blueprints) {
         HashSet<Feature> filteredSubset = new HashSet<>();
         Set<? extends Class<? extends Property>> classes = requirement.getProperties().values().stream().map(Property::getClass).collect(Collectors.toSet());
@@ -64,4 +61,24 @@ public class EvaluatorServiceImpl implements EvaluatorService {
 
         return filteredSubset;
     }
+
+    /**
+     * validates the filtered subset of the blueprints
+     *
+     * @param requirement
+     * @param blueprints
+     * @return
+     */
+    public HashSet<Feature> validate(Feature requirement, HashSet<Feature> blueprints) {
+        HashSet<Feature> validSet = new HashSet<>();
+
+        for (Feature bluePrintMetric : blueprints) {
+            if (bluePrintMetric.validate(requirement)) {
+                validSet.add(bluePrintMetric);
+            }
+        }
+        return validSet;
+    }
+
+
 }

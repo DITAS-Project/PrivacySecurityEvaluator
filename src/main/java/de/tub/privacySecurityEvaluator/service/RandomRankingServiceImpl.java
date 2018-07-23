@@ -10,10 +10,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Richard on 23.04.2018.
+ * rankingservice that ranks the blueprints with a random score between 1.0 and 0.0
  */
 @Service
 public class RandomRankingServiceImpl implements RankingService {
+
+
     @Override
     public List<BlueprintRanking> rank(Feature requirement, Collection<Feature> blueprints) {
         List<BlueprintRanking> rankings = new LinkedList<>();
