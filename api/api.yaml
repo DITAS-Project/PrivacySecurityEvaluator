@@ -1,0 +1,89 @@
+swagger: '2.0'
+info:
+  description: Api Documentation
+  version: '1.0'
+  title: Api Documentation
+  termsOfService: 'urn:tos'
+  contact: {}
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0'
+basePath: /
+tags:
+  - name: privacy-security-evaluator
+    description: DITAS privacy security blueprint evaluator
+paths:
+  /filter:
+    post:
+      tags:
+        - privacy-security-evaluator
+      summary: evaluates a given blueprint request
+      operationId: filterPoliciesUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: input
+          description: input
+          required: true
+          schema:
+            $ref: '#/definitions/Request'
+      responses:
+        '200':
+          description: ranked blueprint metrics
+          schema:
+            $ref: '#/definitions/BlueprintRanking'
+        '400':
+          description: Request input did not match expected format or could not be ranked
+definitions:
+  BluePrintMetric:
+    type: object
+    properties:
+      description:
+        type: string
+      properties:
+        $ref: '#/definitions/Property'
+      type:
+        type: string
+  BlueprintRanking:
+    type: object
+    properties:
+      blueprint:
+        $ref: '#/definitions/Property'
+      score:
+        type: number
+        format: double
+  Property:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      properties:
+        type: array
+        items: 
+          $ref: '#/definitions/BaseProperty'
+      type:
+        type: string
+  BaseProperty:
+    type: object
+    properties:
+      name:
+        type: string
+      unit:
+        type: string
+      value:
+        type: string
+        description: can be any data type not only a string (swagger 2.0 dose not support mixed types...)
+  Request:
+    type: object
+    properties:
+      blueprintMetrics:
+        type: array
+        items:
+          $ref: '#/definitions/BluePrintMetric'
+      requirement:
+        $ref: '#/definitions/Property'
