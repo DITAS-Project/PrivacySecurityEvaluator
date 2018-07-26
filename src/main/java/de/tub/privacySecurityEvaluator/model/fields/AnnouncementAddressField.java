@@ -3,10 +3,10 @@ package de.tub.privacySecurityEvaluator.model.fields;
 import de.tub.privacySecurityEvaluator.model.Property;
 
 /**
- * Created by Richard on 23.04.2018.
+ * AnnouncementAddressField
  */
 public class AnnouncementAddressField extends Property {
-    public String value;
+    private String value;
 
     public String getValue() {
         return value;

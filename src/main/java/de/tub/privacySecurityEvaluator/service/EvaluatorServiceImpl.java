@@ -1,12 +1,16 @@
 package de.tub.privacySecurityEvaluator.service;
 
 
-import de.tub.privacySecurityEvaluator.model.*;
+import de.tub.privacySecurityEvaluator.model.BlueprintRanking;
+import de.tub.privacySecurityEvaluator.model.Feature;
+import de.tub.privacySecurityEvaluator.model.Property;
+import de.tub.privacySecurityEvaluator.model.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -14,41 +18,38 @@ import java.util.stream.Collectors;
 public class EvaluatorServiceImpl implements EvaluatorService {
 
 
-    private RankingService rankingService;
+    private HashRankingService rankingService;
 
     @Autowired
-    public void setRankingService(RankingService rankingService) {
+    public void setRankingService(HashRankingService rankingService) {
         this.rankingService = rankingService;
     }
 
     @Override
     public List<BlueprintRanking> evaluateRequest(Request request) {
-        HashSet<Blueprint> filteredSubset = filter(request.getRequirement(), request.getBlueprintMetrics());
 
-        HashSet<Blueprint> validSubset = validate(request.getRequirement(), filteredSubset);
+        HashSet<Feature> filteredSubset = filter(request.getRequirement(), request.getBlueprintAttributes());
+
+        HashSet<Feature> validSubset = validate(request.getRequirement(), filteredSubset);
 
         return rankingService.rank(request.getRequirement(), validSubset);
     }
 
-
-    public HashSet<Blueprint> validate(Feature requirement, HashSet<Blueprint> blueprints) {
-        HashSet<Blueprint> validSet = new HashSet<>();
-
-        for (Blueprint bluePrintMetric : blueprints) {
-            if (bluePrintMetric.getFeature().validate(requirement)) {
-                validSet.add(bluePrintMetric);
-            }
-        }
-        return validSet;
-    }
-
-    public HashSet<Blueprint> filter(Feature requirement, List<Blueprint> blueprints) {
-        HashSet<Blueprint> filteredSubset = new HashSet<>();
-        Set<? extends Class<? extends Property>> classes = requirement.getProperties().stream().map(Property::getClass).collect(Collectors.toSet());
-        for (Blueprint blueprint : blueprints) {
+    /**
+     * filters the featurelist
+     * filtered list only holds blueprints that have all required fields
+     *
+     * @param requirement
+     * @param blueprints
+     * @return
+     */
+    public HashSet<Feature> filter(Feature requirement, List<Feature> blueprints) {
+        HashSet<Feature> filteredSubset = new HashSet<>();
+        Set<? extends Class<? extends Property>> classes = requirement.getProperties().values().stream().map(Property::getClass).collect(Collectors.toSet());
+        for (Feature blueprint : blueprints) {
             boolean valid = false;
-            for (Property property : blueprint.getFeature().getProperties()) {
-                if (!classes.contains(property.getClass())) {
+            for (Map.Entry<String, Property> property : blueprint.getProperties().entrySet()) {
+                if (!classes.contains(property.getValue().getClass())) {
                     valid = false;
                     break;
                 }
@@ -60,4 +61,24 @@ public class EvaluatorServiceImpl implements EvaluatorService {
 
         return filteredSubset;
     }
+
+    /**
+     * validates the filtered subset of the blueprints
+     *
+     * @param requirement
+     * @param blueprints
+     * @return
+     */
+    public HashSet<Feature> validate(Feature requirement, HashSet<Feature> blueprints) {
+        HashSet<Feature> validSet = new HashSet<>();
+
+        for (Feature bluePrintMetric : blueprints) {
+            if (bluePrintMetric.validate(requirement)) {
+                validSet.add(bluePrintMetric);
+            }
+        }
+        return validSet;
+    }
+
+
 }

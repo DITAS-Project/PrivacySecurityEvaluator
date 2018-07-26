@@ -1,18 +1,14 @@
 package de.tub.privacySecurityEvaluator.model;
 
+/**
+ * Superclass for all fields
+ * to implement add the value field and add validate
+ */
 public abstract class Property {
-    private String name;
+
     private String unit;
 
     public Property() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getUnit() {

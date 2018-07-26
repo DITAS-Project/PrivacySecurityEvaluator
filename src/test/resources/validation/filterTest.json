@@ -1,39 +1,28 @@
 [
   {
-    "type": "object",
+    "id": "1",
     "description": "Encryption",
+    "type": "Encryption",
     "properties": {
-      "id": "1",
-      "name": "Encryption AES 128",
-      "type": "Encryption",
-      "properties": [
-        {
-          "name": "algorithm",
-          "unit": "enum",
-          "value": "AES"
-        },
-        {
-          "name": "keylength",
-          "unit": "number",
-          "value": 128
-        }
-      ]
+      "Algorithm": {
+        "unit": "enum",
+        "value": "AES"
+      },
+      "keylength": {
+        "unit": "number",
+        "value": 128
+      }
     }
   },
   {
-    "type": "object",
+    "id": "2",
     "description": "Encryption",
+    "type": "Encryption",
     "properties": {
-      "id": "2",
-      "name": "Encryption AES 256",
-      "type": "Encryption",
-      "properties": [
-        {
-          "name": "algorithm",
-          "unit": "enum",
-          "value": "AES"
-        }
-      ]
+      "algorithm": {
+        "unit": "enum",
+        "value": "AES"
+      }
     }
   }
 ]

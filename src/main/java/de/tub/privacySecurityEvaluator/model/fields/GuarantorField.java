@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Richard on 02.05.2018.
+ * GuarantorField
  */
 public class GuarantorField extends Property {
-    public List<String> value;
+    private List<String> value;
 
     @Override
     public boolean validate(Property field) {

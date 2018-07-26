@@ -1,15 +1,14 @@
 {
-  "name": "encryption",
-  "properties": [
-    {
-      "name": "algorithm",
+  "id": "encryption",
+  "description": "encryption",
+  "properties": {
+    "algorithm": {
       "unit": "enum",
       "value": "AES"
     },
-    {
-      "name": "keylength",
+    "keylength": {
       "unit": "number",
       "value": "128"
     }
-  ]
+  }
 }

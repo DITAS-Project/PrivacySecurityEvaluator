@@ -1,18 +1,17 @@
 {
-  "name": "acl",
-  "properties": [
-    {
-      "name": "protocol",
+  "id": "acl",
+  "description": "acl",
+  "properties": {
+    "protocol": {
       "unit": "enum",
       "value": "username/password"
     },
-    {
-      "name": "credentials",
+    "credentials": {
       "unit": "list",
       "value": [
         "b31d032cfdcf47a399990a71e43c5d2a",
         "d63d0e21fdc05f618d55ef306c54af82"
       ]
     }
-  ]
+  }
 }

@@ -1,25 +1,22 @@
 {
-  "name": "transport encryption",
-  "properties": [
-    {
-      "name": "protocol",
+  "id": "transport encryption",
+  "description": "transport encryption",
+  "properties": {
+    "protocol": {
       "unit": "enum",
       "value": "TLS"
     },
-    {
-      "name": "version",
+    "version": {
       "unit": "string",
       "value": "1.2.13"
     },
-    {
-      "name": "algorithm",
+    "algorithm": {
       "unit": "enum",
       "value": "AES"
     },
-    {
-      "name": "keylength",
+    "keylength": {
       "unit": "number",
       "value": 128
     }
-  ]
+  }
 }

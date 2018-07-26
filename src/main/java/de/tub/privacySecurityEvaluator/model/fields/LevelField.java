@@ -3,10 +3,10 @@ package de.tub.privacySecurityEvaluator.model.fields;
 import de.tub.privacySecurityEvaluator.model.Property;
 
 /**
- * Created by Richard on 18.04.2018.
+ * LevelField
  */
 public class LevelField extends Property {
-    public String value;
+    private String value;
 
     public String getValue() {
         return value;
@@ -18,8 +18,7 @@ public class LevelField extends Property {
 
     @Override
     public boolean validate(Property field) {
-        if (!(field instanceof LevelField)) return false;
-        return true;
+        return field instanceof LevelField;
     }
 
     @Override

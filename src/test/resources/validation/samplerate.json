@@ -1,50 +1,35 @@
 [
   {
-    "type": "object",
     "description": "Encryption",
+    "id": "1",
+    "type": "Encryption",
     "properties": {
-      "id": "1",
-      "name": "Encryption AES 128",
-      "type": "Encryption",
-      "properties": [
-        {
-          "name": "samplerate",
-          "unit": "percentage",
-          "value": 10
-        }
-      ]
+      "samplerate": {
+        "unit": "percentage",
+        "value": 10
+      }
     }
   },
   {
-    "type": "object",
     "description": "Encryption",
+    "id": "2",
+    "type": "Encryption",
     "properties": {
-      "id": "2",
-      "name": "Encryption AES 256",
-      "type": "Encryption",
-      "properties": [
-        {
-          "name": "samplerate",
-          "unit": "percentage",
-          "value": 11
-        }
-      ]
+      "samplerate": {
+        "unit": "percentage",
+        "value": 11
+      }
     }
   },
   {
-    "type": "object",
     "description": "Encryption",
+    "id": "3",
+    "type": "Encryption",
     "properties": {
-      "id": "3",
-      "name": "to fail",
-      "type": "Encryption",
-      "properties": [
-        {
-          "name": "samplerate",
-          "unit": "percentage",
-          "value": 9
-        }
-      ]
+      "samplerate": {
+        "unit": "percentage",
+        "value": 9
+      }
     }
   }
 ]

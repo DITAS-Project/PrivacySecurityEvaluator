@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Richard on 23.04.2018.
+ * CredentialsField
  */
 public class CredentialsField extends Property {
-    public List<String> value;
+    private List<String> value;
 
     public List<String> getValue() {
         return value;

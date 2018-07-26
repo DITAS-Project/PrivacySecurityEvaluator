@@ -1,10 +1,14 @@
 package de.tub.privacySecurityEvaluator.model;
 
-public class BlueprintRanking  {
-    private Blueprint blueprint;
+/**
+ * class to hold blueprint and a score between 0.0 and 1.0
+ */
+
+public class BlueprintRanking {
+    private Feature blueprint;
     private double score;
 
-    public BlueprintRanking(Blueprint blueprint, double score) {
+    public BlueprintRanking(Feature blueprint, double score) {
         this.blueprint = blueprint;
         this.score = score;
     }
@@ -12,15 +16,13 @@ public class BlueprintRanking  {
     public BlueprintRanking() {
     }
 
-    public Blueprint getBlueprint() {
+    public Feature getBlueprint() {
         return blueprint;
     }
 
-    public void setBlueprint(Blueprint blueprint) {
+    public void setBlueprint(Feature blueprint) {
         this.blueprint = blueprint;
     }
-
-
 
     public double getScore() {
         return score;

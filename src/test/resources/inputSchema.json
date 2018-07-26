@@ -1,0 +1,93 @@
+{
+  "requirement": {
+    "type": "object",
+    "description": "definition of the attribute",
+    "properties": {
+      "id": {
+        "description": "id of the attribute",
+        "type": "string"
+      },
+      "name": {
+        "description": "name of the attribute",
+        "type": "string"
+      },
+      "type": {
+        "description": "type of the attribute",
+        "type": "string"
+      },
+      "properties": {
+        "type": "object",
+        "description": "properties related to the attribute",
+        "additionalProperties": {
+          "type": "object",
+          "description": "properties related to the attribute",
+          "properties": {
+            "unit": {
+              "description": "unit of measure of the property",
+              "type": "string"
+            },
+            "maximum": {
+              "description": "lower limit of the offered property",
+              "type": "number"
+            },
+            "minimum": {
+              "description": "upper limit of the offered property",
+              "type": "number"
+            },
+            "value": {
+              "description": "value of the property",
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "blueprintAttributes": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "description": "definition of the attribute",
+      "properties": {
+        "id": {
+          "description": "id of the attribute",
+          "type": "string"
+        },
+        "name": {
+          "description": "name of the attribute",
+          "type": "string"
+        },
+        "type": {
+          "description": "type of the attribute",
+          "type": "string"
+        },
+        "properties": {
+          "type": "object",
+          "description": "properties related to the attribute",
+          "additionalProperties": {
+            "type": "object",
+            "description": "properties related to the attribute",
+            "properties": {
+              "unit": {
+                "description": "unit of measure of the property",
+                "type": "string"
+              },
+              "maximum": {
+                "description": "lower limit of the offered property",
+                "type": "number"
+              },
+              "minimum": {
+                "description": "upper limit of the offered property",
+                "type": "number"
+              },
+              "value": {
+                "description": "value of the property",
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,10 +1,10 @@
 {
-  "name": "mutation control",
-  "properties": [
-    {
-      "name": "announcementAddress",
+  "id": "mutation control",
+  "description": "mutation control",
+  "properties": {
+    "announcementAddress": {
       "unit": "string",
       "value": "https://..."
     }
-  ]
+  }
 }
