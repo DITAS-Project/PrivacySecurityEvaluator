@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>deployment</name>
-	<description>Demo project for acessing Privacy and Security policies thru a REST interface</description>
+	<description>Privacy and Security Evaluator Service (PSES)</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -18,11 +18,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-    <feature>
+    <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-    </feature>
+    </properties>
 
 	<dependencies>
 		<dependency>
