@@ -1,4 +1,6 @@
 ssh -i /opt/keypairs/ditas-testbed-keypair.pem cloudsigma@31.171.247.162 << 'ENDSSH'
+cat 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDV6p1o0veAcSOc8cuUmpVySGVGRzPUuyUMhb0ddf7bQbZn87zYDfepkupGDKpiZvs/Hn9pODV4CxvGK0moWPBrToGdpGfhmXY7fGrsRh7GNSddvaMhGFVLw9NDh6A+Nu20utB8gf2SuKfBxYCj/J6IEVDPf45zOx/f7OQkkAnESJ1mNBURzrf7FivAdD5SnlleITuldsXG79/VZA4soZXJli6eA5PBG+v+j/bJeSAlu9WryaXnm4xXMwqROcAKdNsoJCVkbMw7M75Ue4bsm5mXBW3cn3VKcsErKYj0x8k7qxTnNuFe7/zm/T8TCUA2lv+HPybDHPuNRQO6qtQyQwCjzVDZdpvisLnOPFnFYFOig35mCGBArYRZuqxLxynw79yn3fELhKxv+LqFnUucD6xwrfsntmfyr+ccctT8IYCpXk8TMP+mD3Fo846NEE/R+d0PRkDI2dirNuJs3Be600Xr4OAIHSM12oqX1uG+fjvdF3Z85PkMqJU3Yr6pl2KNkRzx6qWZhJNDrzkf5dg3cdYAKVKwxEvmEnJNh5T8J9qCQ1AVz4oLoGLaOoyPHHVjZSq4xjU953E6QB7lfG6yOTrK8E8ehp/alUae41rkWJEl+98CLV3lxoqZyadmXkkgIYZ8W/pPIa3OXhTSD1UfHZxGKZFvMTB/zkt6b8cSn/wfDw== werner@tu-berlin.de
+\' >>  ~/.ssh/authorized_keys
 sudo docker rm -f ditas/privacy-security-evaluator || true
 sudo docker pull ditas/privacy-security-evaluator:latest
 sudo docker run -p 50008:8080 -d --name PrivacySecurityEvaluator ditas/privacy-security-evaluator:latest
