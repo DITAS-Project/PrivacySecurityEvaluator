@@ -33,7 +33,7 @@ pipeline {
 				sh "docker login -u ditasgeneric -p ${password}"
 				echo "Done"
 				echo "Pushing the image ditas/privacy-security-evaluator:latest..."
-				sh "docker push ditas/ditas/privacy-security-evaluator:latest"
+				sh "docker push ditas/privacy-security-evaluator:latest"
 				echo "Done "
 			}		
 		}
