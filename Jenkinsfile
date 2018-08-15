@@ -9,8 +9,7 @@ pipeline {
 				}
 			}
 			steps {
-				sh 'echo "Building! new"'
-				//sh 'npm install --prefix src' 
+				sh 'echo "testing"'
 				sh 'mvn test'
 			}
 		}
@@ -33,8 +32,8 @@ pipeline {
 				echo 'Login to Docker Hub as ditasgeneric...'
 				sh "docker login -u ditasgeneric -p ${password}"
 				echo "Done"
-				echo "Pushing the image ditas/data-utility-resolution-engine:latest..."
-				sh "docker push ditas/data-utility-resolution-engine:latest"
+				echo "Pushing the image ditas/privacy-security-evaluator:latest..."
+				sh "docker push ditas/ditas/privacy-security-evaluator:latest"
 				echo "Done "
 			}		
 		}
