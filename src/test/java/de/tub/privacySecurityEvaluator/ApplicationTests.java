@@ -25,8 +25,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class ApplicationTests {
     private static String body;
-    private static String output1;
-    private static String output2;
     private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
             MediaType.APPLICATION_JSON.getSubtype(),
             Charset.forName("utf8"));
@@ -39,8 +37,6 @@ public class ApplicationTests {
     @BeforeClass
     public static void loadJsons() {
         body = readToString("/newInput.json");
-        output1 = readToString("/SimpleResponse1.json");
-        output2 = readToString("/SimpleResponse2.json");
 
     }
 
