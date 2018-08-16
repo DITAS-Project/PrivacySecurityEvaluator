@@ -6,6 +6,7 @@ import de.tub.privacySecurityEvaluator.model.Feature;
 import de.tub.privacySecurityEvaluator.model.Property;
 import de.tub.privacySecurityEvaluator.model.Request;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -18,10 +19,10 @@ import java.util.stream.Collectors;
 public class EvaluatorServiceImpl implements EvaluatorService {
 
 
-    private HashRankingService rankingService;
+    private RankingService rankingService;
 
     @Autowired
-    public void setRankingService(HashRankingService rankingService) {
+    public void setRankingService(RankingService rankingService) {
         this.rankingService = rankingService;
     }
 
