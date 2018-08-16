@@ -57,7 +57,7 @@ public class PropertyDeserializer extends StdDeserializer<Feature> {
                 case "credentials":
                     result.addProperty(mapper.treeToValue(s.getValue(), CredentialsField.class), s.getKey());
                     break;
-                case "announcementAddress":
+                case "announcementaddress":
                     result.addProperty(mapper.treeToValue(s.getValue(), AnnouncementAddressField.class), s.getKey());
                     break;
                 case "required":
