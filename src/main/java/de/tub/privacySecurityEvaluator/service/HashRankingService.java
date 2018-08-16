@@ -26,7 +26,7 @@ public class HashRankingService implements RankingService {
     public List<BlueprintRanking> rank(Feature requirement, Collection<Feature> blueprints) {
         LinkedList<BlueprintRanking> ret = new LinkedList<>();
         for (Feature blueprint : blueprints) {
-            ret.add(new BlueprintRanking(blueprint, 1+(blueprint.hashCode() % 157) / 100.0));
+            ret.add(new BlueprintRanking(blueprint, 1.0+((blueprint.hashCode() % 157) / 100.0)));
         }
 
         return ret;

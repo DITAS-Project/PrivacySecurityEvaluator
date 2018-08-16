@@ -25,7 +25,7 @@ public class RandomRankingServiceImpl implements RankingService {
         DecimalFormat df = new DecimalFormat("#.#");
 
         for (Feature b : blueprints) {
-            rankings.add(new BlueprintRanking(b, (double) Math.round(Math.random() * 10d) / 10d));
+            rankings.add(new BlueprintRanking(b, (double) 1.0+Math.round(Math.random() * 10d) / 10d));
         }
         return rankings;
     }
