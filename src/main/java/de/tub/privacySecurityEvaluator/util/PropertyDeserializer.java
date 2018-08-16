@@ -32,7 +32,7 @@ public class PropertyDeserializer extends StdDeserializer<Feature> {
         Map<String, JsonNode> properties = fakeProperty.properties;
         for (Map.Entry<String, JsonNode> s : properties.entrySet()) {
             //pattern matching to determine which impl of property should be used
-            switch (s.getKey()) {
+            switch (s.getKey().toLowerCase()) {
                 case "protocol":
                     result.addProperty(mapper.treeToValue(s.getValue(), ProtocolField.class), s.getKey());
                     break;
@@ -42,7 +42,6 @@ public class PropertyDeserializer extends StdDeserializer<Feature> {
                 case "algorithm":
                     result.addProperty(mapper.treeToValue(s.getValue(), AlgorithmField.class), s.getKey());
                     break;
-                case "keyLength":
                 case "keylength":
                     result.addProperty(mapper.treeToValue(s.getValue(), KeylengthField.class), s.getKey());
                     break;
