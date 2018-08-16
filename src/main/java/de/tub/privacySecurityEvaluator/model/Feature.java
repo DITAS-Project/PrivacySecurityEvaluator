@@ -3,6 +3,7 @@ package de.tub.privacySecurityEvaluator.model;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import de.tub.privacySecurityEvaluator.util.PropertyDeserializer;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -27,6 +28,7 @@ public class Feature {
     }
 
     public Feature() {
+        this.properties = new HashMap<>();
     }
 
     public String getDescription() {

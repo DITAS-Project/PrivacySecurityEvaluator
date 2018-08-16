@@ -42,6 +42,7 @@ public class PropertyDeserializer extends StdDeserializer<Feature> {
                 case "algorithm":
                     result.addProperty(mapper.treeToValue(s.getValue(), AlgorithmField.class), s.getKey());
                     break;
+                case "keyLength":
                 case "keylength":
                     result.addProperty(mapper.treeToValue(s.getValue(), KeylengthField.class), s.getKey());
                     break;
