@@ -9,6 +9,14 @@ import de.tub.privacySecurityEvaluator.model.Property;
 public class KeylengthField extends Property {
 
 
+    public KeylengthField() {
+    }
+
+    public KeylengthField(String unit, int value) {
+        super(unit);
+        this.value = value;
+    }
+
     private int value;
 
     public int getValue() {

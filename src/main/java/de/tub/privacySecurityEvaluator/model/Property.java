@@ -11,6 +11,10 @@ public abstract class Property {
     public Property() {
     }
 
+    public Property(String unit) {
+        this.unit = unit;
+    }
+
     public String getUnit() {
         return unit;
     }

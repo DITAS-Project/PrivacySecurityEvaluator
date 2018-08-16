@@ -8,6 +8,16 @@ import de.tub.privacySecurityEvaluator.model.Property;
 public class AlgorithmField extends Property {
     private String value;
 
+
+    public AlgorithmField(){
+
+    }
+
+    public AlgorithmField(String unit,String value) {
+        super(unit);
+        this.value = value;
+    }
+
     public String getValue() {
         return value;
     }

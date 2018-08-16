@@ -1,0 +1,49 @@
+{
+  "requirement": {
+    "id": "encryptionAES_192",
+    "description": "Encryption AES 192",
+    "type": "Encryption",
+    "properties": {
+      "algorithm": {
+        "unit": "enum",
+        "value": "AES"
+      },
+      "keyLength": {
+        "unit": "number",
+        "minimum": 192
+      }
+    }
+  },
+  "blueprintAttributes": [
+    {
+      "id": "encryptionAES_128",
+      "description": "Encryption AES 128",
+      "type": "Encryption",
+      "properties": {
+        "algorithm": {
+          "unit": "enum",
+          "value": "AES"
+        },
+        "keyLength": {
+          "unit": "number",
+          "minimum": 128
+        }
+      }
+    },
+    {
+      "id": "encryptionAES_256",
+      "description": "Encryption AES 256",
+      "type": "Encryption",
+      "properties": {
+        "algorithm": {
+          "unit": "enum",
+          "value": "AES"
+        },
+        "keyLength": {
+          "unit": "number",
+          "minimum": 256
+        }
+      }
+    }
+  ]
+}

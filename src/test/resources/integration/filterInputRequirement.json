@@ -1,0 +1,15 @@
+{
+  "id": "encryptionAES_192",
+  "description": "Encryption AES 192",
+  "type": "Encryption",
+  "properties": {
+    "algorithm": {
+      "unit": "enum",
+      "value": "AES"
+    },
+    "keyLength": {
+      "unit": "number",
+      "minimum": 192
+    }
+  }
+}
