@@ -66,8 +66,12 @@ public class PropertyDeserializer extends StdDeserializer<Feature> {
                 case "guarantor":
                     result.addProperty(mapper.treeToValue(s.getValue(), GuarantorField.class), s.getKey());
                     break;
-
-
+                case "availablepurpose":
+                    result.addProperty(mapper.treeToValue(s.getValue(),AvailablePurposeField.class),s.getKey());
+                    break;
+                case "allowedguarantor":
+                    result.addProperty(mapper.treeToValue(s.getValue(),AllowedGuarantorField.class),s.getKey());
+                    break;
             }
         }
 

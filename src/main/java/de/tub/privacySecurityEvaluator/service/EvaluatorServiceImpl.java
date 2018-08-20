@@ -51,6 +51,7 @@ public class EvaluatorServiceImpl implements EvaluatorService {
         HashSet<Feature> filteredSubset = new HashSet<>();
 
         Set<? extends Class<? extends Property>> classes = requirement.getProperties().values().stream().map(Property::getClass).collect(Collectors.toSet());
+        logger.debug("match set of {}",classes.stream().map(f->((Class) f).getCanonicalName()).toArray());
 
         for (Feature blueprint : blueprints) {
             boolean valid = false;
@@ -82,6 +83,8 @@ public class EvaluatorServiceImpl implements EvaluatorService {
         for (Feature bluePrintMetric : blueprints) {
             if (bluePrintMetric.validate(requirement)) {
                 validSet.add(bluePrintMetric);
+            } else {
+                logger.debug("feature {} was invalid",bluePrintMetric.getId());
             }
         }
         return validSet;
