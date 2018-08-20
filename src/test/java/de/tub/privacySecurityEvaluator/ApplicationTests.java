@@ -31,6 +31,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class ApplicationTests {
+
+    private final static TestHelper testHelper = new TestHelper();
+
     private static String body;
     private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
             MediaType.APPLICATION_JSON.getSubtype(),
@@ -60,14 +63,7 @@ public class ApplicationTests {
 
 
     private static String readToString(String filename) {
-        final StringBuilder sb = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(ApplicationTests.class.getResourceAsStream(filename)))) {
-            reader.lines().forEach(s -> sb.append(s));
-        } catch (IOException ex) {
-            Assert.fail("could not load json data");
-            ex.printStackTrace();
-        }
-        return sb.toString();
+        return testHelper.readToString(filename);
     }
 
 
