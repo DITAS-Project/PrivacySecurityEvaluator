@@ -5,6 +5,8 @@ import de.tub.privacySecurityEvaluator.model.BlueprintRanking;
 import de.tub.privacySecurityEvaluator.model.Feature;
 import de.tub.privacySecurityEvaluator.model.Property;
 import de.tub.privacySecurityEvaluator.model.Request;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class EvaluatorServiceImpl implements EvaluatorService {
-
+    private static final Logger logger = LoggerFactory.getLogger(EvaluatorServiceImpl.class);
 
     private RankingService rankingService;
 
@@ -45,13 +47,17 @@ public class EvaluatorServiceImpl implements EvaluatorService {
      * @return
      */
     public HashSet<Feature> filter(Feature requirement, List<Feature> blueprints) {
+        logger.debug("begin filtering of {}",requirement);
         HashSet<Feature> filteredSubset = new HashSet<>();
+
         Set<? extends Class<? extends Property>> classes = requirement.getProperties().values().stream().map(Property::getClass).collect(Collectors.toSet());
+
         for (Feature blueprint : blueprints) {
             boolean valid = false;
             for (Map.Entry<String, Property> property : blueprint.getProperties().entrySet()) {
                 if (!classes.contains(property.getValue().getClass())) {
                     valid = false;
+                    logger.debug("mismatch due to {} - {}",property.getKey(),property.getValue().getClass().getName());
                     break;
                 }
                 valid = true;

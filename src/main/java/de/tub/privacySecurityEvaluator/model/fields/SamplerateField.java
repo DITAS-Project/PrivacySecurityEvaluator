@@ -1,5 +1,6 @@
 package de.tub.privacySecurityEvaluator.model.fields;
 
+import com.fasterxml.jackson.annotation.JsonSetter;
 import de.tub.privacySecurityEvaluator.model.Property;
 
 /**
@@ -13,6 +14,12 @@ public class SamplerateField extends Property {
     }
 
     public void setValue(int value) {
+        this.value = value;
+    }
+
+
+    @JsonSetter("minimum")
+    public void setMinimum(int value) {
         this.value = value;
     }
 

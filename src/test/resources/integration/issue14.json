@@ -1,0 +1,42 @@
+{
+  "requirement": {
+    "id": "tracing_1",
+    "description": "Tracing",
+    "type": "Tracing",
+    "properties": {
+      "level": {
+        "unit": "enum",
+        "value": "datasource"
+      },
+      "sampleRate": {
+        "unit": "percentage",
+        "minimum": 1
+      },
+      "instrumentation": {
+        "unit": "enum",
+        "value": "VDC"
+      }
+    }
+  },
+  "blueprintAttributes": [
+    {
+      "id": "tracing_1",
+      "description": "Tracing 1",
+      "type": "Tracing",
+      "properties": {
+        "level": {
+          "unit": "enum",
+          "value": "datasource"
+        },
+        "sampleRate": {
+          "unit": "percentage",
+          "value": 1
+        },
+        "instrumentation": {
+          "unit": "enum",
+          "value": "VDC"
+        }
+      }
+    }
+  ]
+}

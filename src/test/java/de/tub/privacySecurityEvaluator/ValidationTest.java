@@ -30,6 +30,8 @@ import java.util.stream.Collectors;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ValidationTest {
+    private final TestHelper testHelper = new TestHelper();
+
 
     EvaluatorServiceImpl evaluator;
     ObjectMapper mapper;
@@ -139,14 +141,7 @@ public class ValidationTest {
     }
 
     private String readToString(String filename) {
-        final StringBuilder sb = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(ApplicationTests.class.getResourceAsStream(filename)))) {
-            reader.lines().forEach(s -> sb.append(s));
-        } catch (IOException ex) {
-            Assert.fail("could not load json data");
-            ex.printStackTrace();
-        }
-        return sb.toString();
+        return testHelper.readToString(filename);
     }
 
     private void fieldTest(String inputFile, String requirementFile) {
