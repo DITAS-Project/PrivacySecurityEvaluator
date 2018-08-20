@@ -1,7 +1,10 @@
 package de.tub.privacySecurityEvaluator.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import de.tub.privacySecurityEvaluator.service.EvaluatorServiceImpl;
 import de.tub.privacySecurityEvaluator.util.PropertyDeserializer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +21,8 @@ public class Feature {
     private String description;
     private Map<String, Property> properties;
 
+
+    private static final Logger logger = LoggerFactory.getLogger(Feature.class);
 
     public Feature(String id, String type, Map<String, Property> properties, String description) {
         this.id = id;

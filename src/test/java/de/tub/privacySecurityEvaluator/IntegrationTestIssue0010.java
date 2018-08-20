@@ -18,14 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by Richard on 02.05.2018.
@@ -54,8 +48,8 @@ public class IntegrationTestIssue0010 {
 
     @BeforeClass
     public static void checkIfFilesPresent() {
-        Assert.assertNotNull(ApplicationTests.class.getResourceAsStream("/integration/filterInput.json"));
-        Assert.assertNotNull(ApplicationTests.class.getResourceAsStream("/integration/filterInputRequirement.json"));
+        Assert.assertNotNull(ApplicationTests.class.getResourceAsStream("/integration/issue10.json"));
+        Assert.assertNotNull(ApplicationTests.class.getResourceAsStream("/integration/issue10Requirement.json"));
     }
 
     @Test
@@ -104,7 +98,7 @@ public class IntegrationTestIssue0010 {
     public void testParsingProblem() {
         try {
 
-            Feature requiremenet = mapper.readValue(readToString("/integration/filterInputRequirement.json"), Feature.class);
+            Feature requiremenet = mapper.readValue(readToString("/integration/issue10Requirement.json"), Feature.class);
 
             Assert.assertEquals(2,requiremenet.getProperties().size());
 
@@ -118,7 +112,7 @@ public class IntegrationTestIssue0010 {
     public void test() {
         try {
 
-            Request request = mapper.readValue(readToString("/integration/filterInput.json"), Request.class);
+            Request request = mapper.readValue(readToString("/integration/issue10.json"), Request.class);
 
             testRequest(request);
 
