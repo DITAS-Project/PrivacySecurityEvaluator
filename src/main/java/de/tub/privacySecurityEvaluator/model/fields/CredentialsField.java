@@ -1,14 +1,16 @@
 package de.tub.privacySecurityEvaluator.model.fields;
 
 import de.tub.privacySecurityEvaluator.model.Property;
+import de.tub.privacySecurityEvaluator.model.Rankabale;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
  * CredentialsField
  */
-public class CredentialsField extends Property {
+public class CredentialsField extends Property implements Rankabale{
     private List<String> value;
 
     public List<String> getValue() {
@@ -42,4 +44,18 @@ public class CredentialsField extends Property {
     public int hashCode() {
         return value != null ? value.hashCode() : 0;
     }
+
+    @Override
+    public double rank(Property requirement) {
+        if (!(requirement instanceof CredentialsField)) {
+            return 0;
+        }
+        HashSet<String> req = new HashSet<>(((CredentialsField) requirement).value);
+
+        HashSet<String> intersection = new HashSet<>(value);
+        HashSet<String> union = new HashSet<>(value);
+        union.addAll(req);
+        intersection.retainAll(req);
+
+        return (double) intersection.size()/union.size();    }
 }

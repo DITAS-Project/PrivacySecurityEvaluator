@@ -7,7 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Data representation of a blueprint/requirement
@@ -81,7 +83,10 @@ public class Feature {
     public boolean validate(Feature requirement) {
         for (Map.Entry<String, Property> req : requirement.getProperties().entrySet()) {
             boolean fullfilled = false;
+
+            //search for the right fieldtype and validate
             for (Map.Entry<String, Property> property : properties.entrySet()) {
+
                 if (property.getValue().validate(req.getValue())) {
                     fullfilled = true;
                     break;
@@ -115,5 +120,18 @@ public class Feature {
         result = 31 * result + (getType() != null ? getType().hashCode() : 0);
         result = 31 * result + (getProperties() != null ? getProperties().hashCode() : 0);
         return result;
+    }
+
+    public double rank(Feature requirement) {
+        Set<Map.Entry<String, Property>> rankProperties = new HashSet<Map.Entry<String, Property>>(properties.entrySet());
+        rankProperties.removeIf((Map.Entry<String, Property> c) -> !(c.getValue() instanceof Rankabale));
+        double score = 0.0;
+        for (Map.Entry<String, Property> prop : rankProperties) {
+            for (Map.Entry<String, Property> req : requirement.properties.entrySet()) {
+                score += ((Rankabale) prop.getValue()).rank(req.getValue());
+            }
+        }
+        return score;
+
     }
 }

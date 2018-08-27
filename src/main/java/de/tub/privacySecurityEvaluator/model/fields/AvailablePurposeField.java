@@ -1,6 +1,7 @@
 package de.tub.privacySecurityEvaluator.model.fields;
 
 import de.tub.privacySecurityEvaluator.model.Property;
+import de.tub.privacySecurityEvaluator.model.Rankabale;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -8,16 +9,16 @@ import java.util.HashSet;
 /**
  * AvailablePurposeField
  **/
-public class AvailablePurposeField extends Property {
+public class AvailablePurposeField extends Property implements Rankabale{
 
-    private String[] value;
+    private HashSet<String> value;
 
     @Override
     public boolean validate(Property field) {
         if (!(field instanceof AvailablePurposeField)) {
             return false;
         }
-        HashSet expected = new HashSet<String>(Arrays.asList(((AvailablePurposeField) field).value));
+        HashSet expected = ((AvailablePurposeField) field).value;
 
         for (String guarantor : value) {
             if (expected.contains(guarantor)) {
@@ -27,11 +28,11 @@ public class AvailablePurposeField extends Property {
         return false;
     }
 
-    public String[] getValue() {
+    public  HashSet<String> getValue() {
         return value;
     }
 
-    public void setValue(String[] value) {
+    public void setValue(HashSet<String>value) {
         this.value = value;
     }
 
@@ -42,11 +43,26 @@ public class AvailablePurposeField extends Property {
 
         AvailablePurposeField that = (AvailablePurposeField) o;
 
-        return Arrays.equals(value,((AvailablePurposeField) o).value);
+        return value.equals(((AvailablePurposeField) o).value);
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(value);
+        return value.hashCode();
+    }
+
+    @Override
+    public double rank(Property requirement) {
+        if (!(requirement instanceof AvailablePurposeField)) {
+            return 0;
+        }
+        HashSet<String> req = ((AvailablePurposeField) requirement).value;
+
+        HashSet<String> intersection = new HashSet<>(value);
+        HashSet<String> union = new HashSet<>(value);
+        union.addAll(req);
+        intersection.retainAll(req);
+
+        return (double) intersection.size()/union.size();
     }
 }
