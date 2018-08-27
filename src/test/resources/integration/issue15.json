@@ -1,0 +1,31 @@
+{
+  "requirement": {
+    "id": "tracing_1",
+    "description": "Tracing",
+    "type": "Tracing",
+    "properties": {
+      "level": {
+        "unit": "enum",
+        "value": "datasource"
+      }
+    }
+  },
+  "blueprintAttributes": [
+    {
+      "id": "tracing_1",
+      "description": "Tracing 1",
+      "type": "Tracing",
+      "properties": {
+        "level": {
+          "unit": "enum",
+          "value": "datasource"
+        },
+        "Level": {
+          "unit": "enum",
+          "value": "datasource"
+        }
+      }
+    }
+  ]
+}
+

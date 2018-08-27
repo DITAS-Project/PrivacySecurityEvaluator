@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import de.tub.privacySecurityEvaluator.model.Feature;
+import de.tub.privacySecurityEvaluator.model.Property;
 import de.tub.privacySecurityEvaluator.model.fields.*;
 
 import java.io.IOException;
@@ -32,46 +33,52 @@ public class PropertyDeserializer extends StdDeserializer<Feature> {
         Map<String, JsonNode> properties = fakeProperty.properties;
         for (Map.Entry<String, JsonNode> s : properties.entrySet()) {
             //pattern matching to determine which impl of property should be used
-            switch (s.getKey().toLowerCase()) {
+            Property property = null;
+
+            String key = s.getKey().toLowerCase();
+            switch (key) {
                 case "protocol":
-                    result.addProperty(mapper.treeToValue(s.getValue(), ProtocolField.class), s.getKey());
+                    property = mapper.treeToValue(s.getValue(), ProtocolField.class);
                     break;
                 case "version":
-                    result.addProperty(mapper.treeToValue(s.getValue(), VersionField.class), s.getKey());
+                    property = mapper.treeToValue(s.getValue(), VersionField.class);
                     break;
                 case "algorithm":
-                    result.addProperty(mapper.treeToValue(s.getValue(), AlgorithmField.class), s.getKey());
+                    property = mapper.treeToValue(s.getValue(), AlgorithmField.class);
                     break;
                 case "keylength":
-                    result.addProperty(mapper.treeToValue(s.getValue(), KeylengthField.class), s.getKey());
+                    property = mapper.treeToValue(s.getValue(), KeylengthField.class);
                     break;
                 case "level":
-                    result.addProperty(mapper.treeToValue(s.getValue(), LevelField.class), s.getKey());
+                    property = mapper.treeToValue(s.getValue(), LevelField.class);
                     break;
                 case "samplerate":
-                    result.addProperty(mapper.treeToValue(s.getValue(), SamplerateField.class), s.getKey());
+                    property = mapper.treeToValue(s.getValue(), SamplerateField.class);
                     break;
                 case "instrumentation":
-                    result.addProperty(mapper.treeToValue(s.getValue(), InstrumentationField.class), s.getKey());
+                    property = mapper.treeToValue(s.getValue(), InstrumentationField.class);
                     break;
                 case "credentials":
-                    result.addProperty(mapper.treeToValue(s.getValue(), CredentialsField.class), s.getKey());
+                    property = mapper.treeToValue(s.getValue(), CredentialsField.class);
                     break;
                 case "announcementaddress":
-                    result.addProperty(mapper.treeToValue(s.getValue(), AnnouncementAddressField.class), s.getKey());
+                    property = mapper.treeToValue(s.getValue(), AnnouncementAddressField.class);
                     break;
                 case "required":
-                    result.addProperty(mapper.treeToValue(s.getValue(), RequiredField.class), s.getKey());
+                    property = mapper.treeToValue(s.getValue(), RequiredField.class);
                     break;
                 case "guarantor":
-                    result.addProperty(mapper.treeToValue(s.getValue(), GuarantorField.class), s.getKey());
+                    property = mapper.treeToValue(s.getValue(), GuarantorField.class);
                     break;
                 case "availablepurpose":
-                    result.addProperty(mapper.treeToValue(s.getValue(),AvailablePurposeField.class),s.getKey());
+                    property = mapper.treeToValue(s.getValue(),AvailablePurposeField.class);
                     break;
                 case "allowedguarantor":
-                    result.addProperty(mapper.treeToValue(s.getValue(),AllowedGuarantorField.class),s.getKey());
+                    property = mapper.treeToValue(s.getValue(),AllowedGuarantorField.class);
                     break;
+            }
+            if (property != null){
+                result.addProperty(property, key);
             }
         }
 
