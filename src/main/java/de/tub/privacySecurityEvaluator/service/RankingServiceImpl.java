@@ -23,7 +23,15 @@ public class RankingServiceImpl implements RankingService {
         return rankings;
     }
 
-    public double rank(Feature requirement, Feature blueprint) {
+
+    /**
+     * internal method to rank the blueprints based on their ranking method
+     * priorities can be changed for now all have the same priority and add up
+     * @param requirement
+     * @param blueprint
+     * @return
+     */
+    private double rank(Feature requirement, Feature blueprint) {
         Map<String,Property> properties= blueprint.getProperties();
         Set<Map.Entry<String, Property>> rankProperties = new HashSet<Map.Entry<String, Property>>(properties.entrySet());
         rankProperties.removeIf((Map.Entry<String, Property> c) -> !(c.getValue() instanceof Rankabale));
