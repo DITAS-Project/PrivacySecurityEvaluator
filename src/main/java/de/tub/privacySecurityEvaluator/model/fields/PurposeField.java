@@ -14,7 +14,15 @@ public class PurposeField extends Property{
 
     @Override
     public boolean validate(Property field) {
+        if(!(field instanceof AvailablePurposeField))return false;
+
+        String[] availablePurpose= ((AvailablePurposeField)field).getValue();
+        for(String s: availablePurpose){
+            if(value.containsVertex(s))return true;
+        }
+
         return false;
+
     }
 
     public Graph<String, DefaultEdge> getValue() {
