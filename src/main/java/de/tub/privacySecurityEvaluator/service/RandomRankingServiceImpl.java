@@ -22,7 +22,6 @@ public class RandomRankingServiceImpl implements RankingService {
     @Override
     public List<BlueprintRanking> rank(Feature requirement, Collection<Feature> blueprints) {
         List<BlueprintRanking> rankings = new LinkedList<>();
-        DecimalFormat df = new DecimalFormat("#.#");
 
         for (Feature b : blueprints) {
             rankings.add(new BlueprintRanking(b, (double) 1.0+Math.round(Math.random() * 10d) / 10d));

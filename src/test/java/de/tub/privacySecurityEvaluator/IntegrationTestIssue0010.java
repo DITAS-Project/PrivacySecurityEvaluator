@@ -79,7 +79,7 @@ public class IntegrationTestIssue0010 {
             en256.setId("encryptionAES_256");
             en256.setType("Encryption");
             en256.addProperty(new AlgorithmField("enum","AES"),"algorithm");
-            en256.addProperty(new KeylengthField("number",256),"keyLength");
+            en256.addProperty(new KeylengthField("number",256),"keylength");
             blueprintAttributes.add(en256);
 
             request.setBlueprintAttributes(blueprintAttributes);
@@ -129,7 +129,7 @@ public class IntegrationTestIssue0010 {
         Assert.assertEquals(1, blueprintRankingList.size());
 
         for (BlueprintRanking result : blueprintRankingList){
-            int keyLenght = ((KeylengthField) result.getBlueprint().getProperties().get("keyLength")).getValue();
+            int keyLenght = ((KeylengthField) result.getBlueprint().getProperties().get("keylength")).getValue();
 
             Assert.assertTrue(keyLenght > 128);
         }

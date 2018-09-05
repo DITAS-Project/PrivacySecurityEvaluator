@@ -107,7 +107,7 @@ public class ApplicationTests {
             BlueprintRanking[] rankings = mapper.readValue(result.getResponse().getContentAsString(), BlueprintRanking[].class);
 
             for (BlueprintRanking rank : rankings){
-                Assert.assertTrue(rank.getScore() > 0);
+                Assert.assertTrue(rank.getScore() >= 0);
             }
         });
 

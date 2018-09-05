@@ -117,6 +117,21 @@ public class ModelTesting {
         }
     }
 
+    @Test
+    public void testPurpose(){
+        String propertyJson = readToString("/model/purpose.json");
+
+        try {
+            Feature property = mapper.readValue(propertyJson, Feature.class);
+
+            Assert.assertEquals(property.getDescription(), "purpose");
+            Assert.assertTrue(contains(property.getProperties(), PurposeField.class));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private boolean contains(Map<String, Property> list, Class<?> type) {
         for (Property f : list.values()) {
