@@ -7,7 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Data representation of a blueprint/requirement
@@ -81,7 +83,10 @@ public class Feature {
     public boolean validate(Feature requirement) {
         for (Map.Entry<String, Property> req : requirement.getProperties().entrySet()) {
             boolean fullfilled = false;
+
+            //search for the right fieldtype and validate
             for (Map.Entry<String, Property> property : properties.entrySet()) {
+
                 if (property.getValue().validate(req.getValue())) {
                     fullfilled = true;
                     break;
@@ -116,4 +121,6 @@ public class Feature {
         result = 31 * result + (getProperties() != null ? getProperties().hashCode() : 0);
         return result;
     }
+
+
 }

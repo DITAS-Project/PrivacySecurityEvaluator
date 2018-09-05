@@ -7,6 +7,7 @@ import de.tub.privacySecurityEvaluator.model.Property;
  * SamplerateField
  */
 public class SamplerateField extends Property {
+
     private int value;
 
     public int getValue() {

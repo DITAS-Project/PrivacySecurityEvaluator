@@ -83,6 +83,9 @@ public class ValidationTest {
     }
 
     @Test
+    public  void testAllowedGuarantor() {fieldTest("/validation/allowedGuarantor.json", "/validation/requirementAllowedGuarantor.json");}
+
+    @Test
     public void testAnnouncementAddress() {
         fieldTest("/validation/announcementAddress.json", "/validation/requirementAnnouncementAddress.json");
     }

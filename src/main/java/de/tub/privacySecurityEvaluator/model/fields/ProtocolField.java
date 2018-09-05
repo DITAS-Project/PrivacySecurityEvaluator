@@ -6,6 +6,7 @@ import de.tub.privacySecurityEvaluator.model.Property;
  * ProtocolField
  */
 public class ProtocolField extends Property {
+
     private String value;
 
 
