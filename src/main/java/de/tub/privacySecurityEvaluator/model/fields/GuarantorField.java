@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * GuarantorField
  */
+@Deprecated
 public class GuarantorField extends Property {
     private List<String> value;
 

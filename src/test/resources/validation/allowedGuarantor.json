@@ -1,0 +1,44 @@
+[
+  {
+    "description": "Encryption",
+    "id": "1",
+    "type": "Encryption",
+    "properties": {
+      "allowedGuarantor": {
+        "unit": "list",
+        "value": [
+          "b31d032cfdcf47a399990a71e43c5d2a",
+          "d63d0e21fdc05f618d55ef306c54af82"
+        ]
+      }
+    }
+  },
+  {
+    "description": "Encryption",
+    "id": "2",
+    "type": "Encryption",
+    "properties": {
+      "allowedGuarantor": {
+        "unit": "list",
+        "value": [
+          "b31d032cfdcf47a399990a71e43c5d2a",
+          "d3d0e21fdc05f618d55ef306c54af82"
+        ]
+      }
+    }
+  },
+  {
+    "description": "Encryption",
+    "id": "3",
+    "type": "Encryption",
+    "properties": {
+      "allowedGuarantor": {
+        "unit": "list",
+        "value": [
+          "b1d032cfdcf47a399990a71e43c5d2a",
+          "d63d0e21fdc05f618d5ef306c54af82"
+        ]
+      }
+    }
+  }
+]
