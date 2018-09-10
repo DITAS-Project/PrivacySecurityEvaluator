@@ -22,6 +22,7 @@ public class PurposeField extends Property{
 
     @Override
     public boolean validate(Property field) {
+        System.out.println(field);
         if(!(field instanceof AvailablePurposeField))return false;
 
         String[] availablePurpose= ((AvailablePurposeField)field).getValue();

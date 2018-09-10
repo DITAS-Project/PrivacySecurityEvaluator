@@ -6,9 +6,15 @@ import de.tub.privacySecurityEvaluator.model.BlueprintRanking;
 import de.tub.privacySecurityEvaluator.model.Feature;
 import de.tub.privacySecurityEvaluator.model.Request;
 import de.tub.privacySecurityEvaluator.model.fields.AlgorithmField;
+import de.tub.privacySecurityEvaluator.model.fields.AvailablePurposeField;
 import de.tub.privacySecurityEvaluator.model.fields.KeylengthField;
+import de.tub.privacySecurityEvaluator.model.fields.PurposeField;
 import de.tub.privacySecurityEvaluator.service.EvaluatorServiceImpl;
+import de.tub.privacySecurityEvaluator.util.GraphDeserializer;
 import de.tub.privacySecurityEvaluator.util.PropertyDeserializer;
+import org.jgrapht.Graph;
+import org.jgrapht.graph.DefaultDirectedGraph;
+import org.jgrapht.graph.DefaultEdge;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -23,7 +29,7 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class IntegrationTestIssue0010 {
+public class IntegrationTestIssue0008 {
 
     EvaluatorServiceImpl evaluator;
     ObjectMapper mapper;
@@ -39,45 +45,51 @@ public class IntegrationTestIssue0010 {
         mapper = new ObjectMapper();
         SimpleModule module = new SimpleModule();
         module.addDeserializer(Feature.class, new PropertyDeserializer());
+        module.addDeserializer(PurposeField.class, new GraphDeserializer());
         mapper.registerModule(module);
 
     }
 
     @BeforeClass
     public static void checkIfFilesPresent() {
-        Assert.assertNotNull(ApplicationTests.class.getResourceAsStream("/integration/issue10.json"));
-        Assert.assertNotNull(ApplicationTests.class.getResourceAsStream("/integration/issue10Requirement.json"));
+        Assert.assertNotNull(ApplicationTests.class.getResourceAsStream("/integration/issue08.json"));
     }
 
     @Test
-    public void testPrecondition(){
+    public void testPrecondition() {
         try {
 
             Request request = new Request();
 
             Feature requirement = new Feature();
-            requirement.setId("encryptionAES_192");
-            requirement.setType("Encryption");
-            requirement.addProperty(new AlgorithmField("enum","AES"),"algorithm");
-            requirement.addProperty(new KeylengthField("number",192),"keyLength");
+            requirement.setId("purpose requirement");
+            requirement.setType("availablePurpose");
+            requirement.setDescription("stuff");
+            String[] availablePurpose = {"research", "medical research", "nutritional research"};
+            requirement.addProperty(new AvailablePurposeField(availablePurpose), "availablePurpose");
             request.setRequirement(requirement);
 
 
             List<Feature> blueprintAttributes = new ArrayList<>();
 
-            Feature en128 = new Feature();
-            en128.setId("encryptionAES_128");
-            en128.setType("Encryption");
-            en128.addProperty(new AlgorithmField("enum","AES"),"algorithm");
-            en128.addProperty(new KeylengthField("number",128),"keyLength");
-            blueprintAttributes.add(en128);
+            Feature purpose1 = new Feature();
+            purpose1.setId("purpose1");
+            purpose1.setDescription("purposeTest1");
+            purpose1.setType("graph");
+            Graph<String, DefaultEdge> graph1 = new DefaultDirectedGraph<String, DefaultEdge>(DefaultEdge.class);
+            graph1.addVertex("nutritional research");
+            purpose1.addProperty(new PurposeField(graph1),"purpose");
+            blueprintAttributes.add(purpose1);
 
-            Feature en256 = new Feature();
-            en256.setId("encryptionAES_256");
-            en256.setType("Encryption");
-            en256.addProperty(new AlgorithmField("enum","AES"),"algorithm");
-            en256.addProperty(new KeylengthField("number",256),"keylength");
-            blueprintAttributes.add(en256);
+
+            Feature purpose2 = new Feature();
+            purpose2.setId("purpose2");
+            purpose2.setDescription("purposeTest2");
+            purpose2.setType("graph");
+            Graph<String, DefaultEdge> graph2 = new DefaultDirectedGraph<String, DefaultEdge>(DefaultEdge.class);
+            graph2.addVertex("resch");
+            purpose2.addProperty(new PurposeField(graph2),"purpose");
+            blueprintAttributes.add(purpose2);
 
             request.setBlueprintAttributes(blueprintAttributes);
 
@@ -85,36 +97,25 @@ public class IntegrationTestIssue0010 {
             testRequest(request);
 
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Assert.fail();
         }
     }
 
-    @Test
-    public void testParsingProblem() {
-        try {
 
-            Feature requiremenet = mapper.readValue(readToString("/integration/issue10Requirement.json"), Feature.class);
-
-            Assert.assertEquals(2,requiremenet.getProperties().size());
-
-
-        } catch (Exception e){
-            Assert.fail();
-        }
-    }
 
     @Test
     public void test() {
         try {
 
-            Request request = mapper.readValue(readToString("/integration/issue10.json"), Request.class);
+            Request request = mapper.readValue(readToString("/integration/issue08.json"), Request.class);
 
             testRequest(request);
 
 
-        } catch (Exception e){
+        } catch (Exception e) {
+            e.printStackTrace();
             Assert.fail();
         }
     }
@@ -125,11 +126,7 @@ public class IntegrationTestIssue0010 {
 
         Assert.assertEquals(1, blueprintRankingList.size());
 
-        for (BlueprintRanking result : blueprintRankingList){
-            int keyLenght = ((KeylengthField) result.getBlueprint().getProperties().get("keylength")).getValue();
 
-            Assert.assertTrue(keyLenght > 128);
-        }
     }
 
     private String readToString(String filename) {

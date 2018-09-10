@@ -32,7 +32,8 @@ public class GraphDeserializer extends StdDeserializer<PurposeField>{
     public PurposeField deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         ObjectCodec codec = jsonParser.getCodec();
         TypeReference<HashMap<String, String[]>> typeReference= new TypeReference<HashMap<String, String[]>>() {};
-        HashMap<String, String[]> fakeGraph= codec.readValue(jsonParser,typeReference);
+        FakeGraph fakeGraphObject= codec.readValue(jsonParser,FakeGraph.class);
+        HashMap<String, String[]> fakeGraph= fakeGraphObject.value;
         Graph<String,DefaultEdge> purposeGraph= new DefaultDirectedGraph<String, DefaultEdge>(DefaultEdge.class);
 
         //add all vertexes
@@ -49,6 +50,7 @@ public class GraphDeserializer extends StdDeserializer<PurposeField>{
         PurposeField ret= new PurposeField(purposeGraph);
         String root = findRoot(purposeGraph);
         ret.setRoot(root);
+        ret.setUnit(fakeGraphObject.unit);
         return ret;
 
     }

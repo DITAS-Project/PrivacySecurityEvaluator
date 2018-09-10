@@ -12,6 +12,14 @@ public class AvailablePurposeField extends Property {
 
     private String[] value;
 
+    public AvailablePurposeField(){
+        super();
+    }
+
+    public AvailablePurposeField(String [] value){
+        this.value= value;
+    }
+
     @Override
     public boolean validate(Property field) {
         if (!(field instanceof AvailablePurposeField)) {
@@ -19,8 +27,8 @@ public class AvailablePurposeField extends Property {
         }
         HashSet expected = new HashSet<String>(Arrays.asList(((AvailablePurposeField) field).value));
 
-        for (String guarantor : value) {
-            if (expected.contains(guarantor)) {
+        for (String purpose : value) {
+            if (expected.contains(purpose)) {
                 return true;
             }
         }

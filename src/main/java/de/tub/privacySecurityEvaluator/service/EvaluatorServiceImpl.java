@@ -5,6 +5,7 @@ import de.tub.privacySecurityEvaluator.model.BlueprintRanking;
 import de.tub.privacySecurityEvaluator.model.Feature;
 import de.tub.privacySecurityEvaluator.model.Property;
 import de.tub.privacySecurityEvaluator.model.Request;
+import de.tub.privacySecurityEvaluator.model.fields.PurposeField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,10 @@ public class EvaluatorServiceImpl implements EvaluatorService {
         for (Feature blueprint : blueprints) {
             boolean valid = false;
             for (Map.Entry<String, Property> property : blueprint.getProperties().entrySet()) {
+                if(property.getValue() instanceof PurposeField){
+                    valid= true;
+                    break;
+                }
                 if (!classes.contains(property.getValue().getClass())) {
                     valid = false;
                     logger.debug("mismatch due to {} - {}",property.getKey(),property.getValue().getClass().getName());
