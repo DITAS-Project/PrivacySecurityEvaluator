@@ -46,9 +46,18 @@ public class GraphDeserializer extends StdDeserializer<PurposeField>{
                 purposeGraph.addEdge(entry.getKey(),entry.getValue()[i]);
             }
         }
-        PurposeField ret= new PurposeField();
-        ret.setValue(purposeGraph);
+        PurposeField ret= new PurposeField(purposeGraph);
+        String root = findRoot(purposeGraph);
+        ret.setRoot(root);
         return ret;
 
+    }
+
+    private String findRoot(Graph<String, DefaultEdge> graph){
+        graph.vertexSet();
+        for(String s: graph.vertexSet()){
+            if(graph.incomingEdgesOf(s).size()==0) return s;
+        }
+        return null;
     }
 }
