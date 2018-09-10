@@ -25,6 +25,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -65,7 +67,7 @@ public class IntegrationTestIssue0008 {
             requirement.setId("purpose requirement");
             requirement.setType("availablePurpose");
             requirement.setDescription("stuff");
-            String[] availablePurpose = {"research", "medical research", "nutritional research"};
+            HashSet<String> availablePurpose = new HashSet<>(Arrays.asList("research", "medical research", "nutritional research"));
             requirement.addProperty(new AvailablePurposeField(availablePurpose), "availablePurpose");
             request.setRequirement(requirement);
 

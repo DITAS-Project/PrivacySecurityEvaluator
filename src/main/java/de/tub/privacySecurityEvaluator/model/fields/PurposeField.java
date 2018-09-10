@@ -2,15 +2,18 @@ package de.tub.privacySecurityEvaluator.model.fields;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import de.tub.privacySecurityEvaluator.model.Property;
+import de.tub.privacySecurityEvaluator.model.Rankabale;
 import de.tub.privacySecurityEvaluator.util.GraphDeserializer;
 import org.jgrapht.Graph;
 import org.jgrapht.GraphPath;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultEdge;
 
+import java.util.HashSet;
+
 
 @JsonDeserialize(using = GraphDeserializer.class)
-public class PurposeField extends Property{
+public class PurposeField extends Property implements Rankabale{
 
     private Graph<String, DefaultEdge> value;
     private String root;
@@ -25,7 +28,7 @@ public class PurposeField extends Property{
         System.out.println(field);
         if(!(field instanceof AvailablePurposeField))return false;
 
-        String[] availablePurpose= ((AvailablePurposeField)field).getValue();
+        HashSet<String> availablePurpose= ((AvailablePurposeField)field).getValue();
         for(String s: availablePurpose){
             if(value.containsVertex(s))return true;
         }
@@ -54,7 +57,7 @@ public class PurposeField extends Property{
         if(!(requirement instanceof AvailablePurposeField))return 0;
         if(root==null)return 0;
         DijkstraShortestPath<String, DefaultEdge> dijkstraAlg= new DijkstraShortestPath<>(value);
-        String[] availablePurpose= ((AvailablePurposeField)requirement).getValue();
+        HashSet<String> availablePurpose= ((AvailablePurposeField)requirement).getValue();
         double rank= 0;
         for(String s: availablePurpose){
             if(value.containsVertex(s)){

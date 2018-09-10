@@ -17,7 +17,7 @@ public class AvailablePurposeField extends Property implements Rankabale{
         super();
     }
 
-    public AvailablePurposeField(String [] value){
+    public AvailablePurposeField(HashSet<String> value){
         this.value= value;
     }
 
