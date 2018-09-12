@@ -77,7 +77,6 @@ public class PropertyDeserializer extends StdDeserializer<Feature> {
                     property = mapper.treeToValue(s.getValue(),AllowedGuarantorField.class);
                     break;
                 case "purpose":
-                    System.out.println(s.getValue());
                     property=mapper.treeToValue(s.getValue(), PurposeField.class);
                     break;
             }

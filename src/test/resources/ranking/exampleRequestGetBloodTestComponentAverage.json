@@ -1,0 +1,117 @@
+{ "requirement": {
+  "id": "aclUserPWResearcher",
+  "description": "ACL rolebased readOnly",
+  "type": "ACL",
+  "properties": {
+    "protocol": {
+      "unit": "enum",
+      "value": "username/password"
+    },
+    "credentials": {
+      "unit": "list",
+      "value": ["researcher_id"]
+    }
+  }
+},
+  "blueprintAttributes": [
+    {
+      "id": "acl_userPW_doctor",
+      "description": "ACL username/password doctor_er_id",
+      "type": "ACL",
+      "properties": {
+        "protocol": {
+          "unit": "enum",
+          "value": "username/password"
+        },
+        "credentials": {
+          "unit": "list",
+          "value": [
+            "doctor_er_id"
+          ]
+        }
+      }
+    },
+    {
+      "id": "acl_userPW_doctor1",
+      "description": "ACL username/password doctor_er_id",
+      "type": "ACL",
+      "properties": {
+        "protocol": {
+          "unit": "enum",
+          "value": "username/password"
+        },
+        "credentials": {
+          "unit": "list",
+          "value": [
+            "doctor_er_id"
+          ]
+        }
+      }
+    },  {
+      "id": "acl_userPW_doctor2",
+      "description": "ACL username/password doctor_er_id",
+      "type": "ACL",
+      "properties": {
+        "protocol": {
+          "unit": "enum",
+          "value": "username/password"
+        },
+        "credentials": {
+          "unit": "list",
+          "value": [
+            "doctor_er_id"
+          ]
+        }
+      }
+    },
+    {
+      "id": "acl_userPW_doctor_osr",
+      "description": "ACL username/password doctor_er_id",
+      "type": "ACL",
+      "properties": {
+        "protocol": {
+          "unit": "enum",
+          "value": "username/password"
+        },
+        "credentials": {
+          "unit": "list",
+          "value": [
+            "doctor_er_id"
+          ]
+        }
+      }
+    }, {
+      "id": "acl_userPW_doctor_suboptimum1",
+      "description": "ACL username/password doctor_er_id",
+      "type": "ACL",
+      "properties": {
+        "protocol": {
+          "unit": "enum",
+          "value": "username/password"
+        },
+        "credentials": {
+          "unit": "list",
+          "value": [
+            "doctor_er_id"
+          ]
+        }
+      }
+    }, {
+      "id": "acl_userPW_doctor_suboptimum2",
+      "description": "ACL username/password doctor_er_id",
+      "type": "ACL",
+      "properties": {
+        "protocol": {
+          "unit": "enum",
+          "value": "username/password"
+        },
+        "credentials": {
+          "unit": "list",
+          "value": [
+            "doctor_er_id"
+          ]
+        }
+      }
+    }
+
+  ]}
