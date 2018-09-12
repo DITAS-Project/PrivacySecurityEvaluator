@@ -50,7 +50,6 @@ public class EvaluatorServiceImpl implements EvaluatorService {
     public HashSet<Feature> filter(Feature requirement, List<Feature> blueprints) {
         logger.debug("begin filtering of {}",requirement);
         HashSet<Feature> filteredSubset = new HashSet<>();
-
         Set<? extends Class<? extends Property>> classes = requirement.getProperties().values().stream().map(Property::getClass).collect(Collectors.toSet());
         logger.debug("match set of {}",classes.stream().map(f->((Class) f).getCanonicalName()).toArray());
 

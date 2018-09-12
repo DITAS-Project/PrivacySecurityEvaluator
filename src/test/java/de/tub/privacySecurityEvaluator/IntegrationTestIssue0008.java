@@ -24,10 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -80,7 +77,7 @@ public class IntegrationTestIssue0008 {
             purpose1.setType("graph");
             Graph<String, DefaultEdge> graph1 = new DefaultDirectedGraph<String, DefaultEdge>(DefaultEdge.class);
             graph1.addVertex("nutritional research");
-            purpose1.addProperty(new PurposeField(graph1),"purpose");
+            purpose1.addProperty(new PurposeField(graph1, new HashMap<>()),"purpose");
             blueprintAttributes.add(purpose1);
 
 
@@ -90,7 +87,7 @@ public class IntegrationTestIssue0008 {
             purpose2.setType("graph");
             Graph<String, DefaultEdge> graph2 = new DefaultDirectedGraph<String, DefaultEdge>(DefaultEdge.class);
             graph2.addVertex("resch");
-            purpose2.addProperty(new PurposeField(graph2),"purpose");
+            purpose2.addProperty(new PurposeField(graph2, new HashMap<>()),"purpose");
             blueprintAttributes.add(purpose2);
 
             request.setBlueprintAttributes(blueprintAttributes);

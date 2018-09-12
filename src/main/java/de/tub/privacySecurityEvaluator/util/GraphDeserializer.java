@@ -42,12 +42,13 @@ public class GraphDeserializer extends StdDeserializer<PurposeField>{
         //add all edges
         for(Map.Entry<String, String[]> entry:fakeGraph.entrySet()){
             int length = entry.getValue().length;
-            if(length <1)break;
+            if(length <1)continue;
             for(int i = 0; i< length; i++){
-                purposeGraph.addEdge(entry.getKey(),entry.getValue()[i]);
+               purposeGraph.addEdge(entry.getKey(),entry.getValue()[i] );
             }
         }
-        PurposeField ret= new PurposeField(purposeGraph);
+
+        PurposeField ret= new PurposeField(purposeGraph, fakeGraph);
         String root = findRoot(purposeGraph);
         ret.setRoot(root);
         ret.setUnit(fakeGraphObject.unit);
