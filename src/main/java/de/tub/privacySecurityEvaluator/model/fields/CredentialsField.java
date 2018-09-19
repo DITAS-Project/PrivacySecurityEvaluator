@@ -10,17 +10,8 @@ import java.util.List;
 /**
  * CredentialsField
  */
-public class CredentialsField extends Property implements Rankabale{
-    private List<String> value;
-
-    public List<String> getValue() {
-        return value;
-    }
-
-    public void setValue(List<String> value) {
-        this.value = value;
-    }
-
+public class CredentialsField extends Property<HashSet<String>> {
+    /**
     @Override
     public boolean validate(Property field) {
         if (!(field instanceof CredentialsField)) return false;
@@ -29,7 +20,7 @@ public class CredentialsField extends Property implements Rankabale{
         workingList.retainAll(((CredentialsField) field).getValue());
         return !workingList.isEmpty();
     }
-
+*/
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -37,14 +28,14 @@ public class CredentialsField extends Property implements Rankabale{
 
         CredentialsField that = (CredentialsField) o;
 
-        return value != null ? value.equals(that.value) : that.value == null;
+        return getValue() != null ? getValue().equals(that.getValue()) : that.getValue() == null;
     }
 
     @Override
     public int hashCode() {
-        return value != null ? value.hashCode() : 0;
+        return getValue() != null ? getValue().hashCode() : 0;
     }
-
+/**
     @Override
     public double rank(Property requirement) {
         if (!(requirement instanceof CredentialsField)) {
@@ -57,5 +48,5 @@ public class CredentialsField extends Property implements Rankabale{
         union.addAll(req);
         intersection.retainAll(req);
 
-        return (double) intersection.size()/union.size();    }
+        return (double) intersection.size()/union.size();    } */
 }

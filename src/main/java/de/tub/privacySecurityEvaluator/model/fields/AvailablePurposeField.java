@@ -9,19 +9,18 @@ import java.util.HashSet;
 /**
  * AvailablePurposeField
  **/
-public class AvailablePurposeField extends Property implements Rankabale{
+public class AvailablePurposeField extends Property<HashSet<String>>{
 
-    private HashSet<String> value;
 
     public AvailablePurposeField(){
         super();
     }
 
     public AvailablePurposeField(HashSet<String> value){
-        this.value= value;
+        setValue(value);
     }
 
-    @Override
+   /** @Override
     public boolean validate(Property field) {
         if (!(field instanceof AvailablePurposeField)) {
             return false;
@@ -35,14 +34,8 @@ public class AvailablePurposeField extends Property implements Rankabale{
         }
         return false;
     }
+*/
 
-    public  HashSet<String> getValue() {
-        return value;
-    }
-
-    public void setValue(HashSet<String>value) {
-        this.value = value;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -51,15 +44,15 @@ public class AvailablePurposeField extends Property implements Rankabale{
 
         AvailablePurposeField that = (AvailablePurposeField) o;
 
-        return value.equals(((AvailablePurposeField) o).value);
+        return getValue().equals(((AvailablePurposeField) o).getValue());
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return getValue().hashCode();
     }
 
-    @Override
+ /**   @Override
     public double rank(Property requirement) {
         if (!(requirement instanceof AvailablePurposeField)) {
             return 0;
@@ -72,5 +65,5 @@ public class AvailablePurposeField extends Property implements Rankabale{
         intersection.retainAll(req);
 
         return (double) intersection.size()/union.size();
-    }
+    }*/
 }

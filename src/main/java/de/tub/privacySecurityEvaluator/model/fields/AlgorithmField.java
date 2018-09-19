@@ -5,9 +5,7 @@ import de.tub.privacySecurityEvaluator.model.Property;
 /**
  * Algorithmfield
  */
-public class AlgorithmField extends Property {
-    private String value;
-
+public class AlgorithmField extends Property<String> {
 
     public AlgorithmField(){
 
@@ -15,22 +13,7 @@ public class AlgorithmField extends Property {
 
     public AlgorithmField(String unit,String value) {
         super(unit);
-        this.value = value;
+        setValue(value);
     }
 
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    @Override
-    public boolean validate(Property field) {
-        if (!(field instanceof AlgorithmField)) {
-            return false;
-        }
-        return value.equals(((AlgorithmField) field).getValue());
-    }
 }

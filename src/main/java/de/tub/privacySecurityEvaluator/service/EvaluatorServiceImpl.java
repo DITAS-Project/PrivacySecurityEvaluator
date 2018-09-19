@@ -1,6 +1,7 @@
 package de.tub.privacySecurityEvaluator.service;
 
 
+import com.sun.deploy.cache.CachedJarFile14;
 import de.tub.privacySecurityEvaluator.model.BlueprintRanking;
 import de.tub.privacySecurityEvaluator.model.Feature;
 import de.tub.privacySecurityEvaluator.model.Property;
@@ -24,6 +25,11 @@ public class EvaluatorServiceImpl implements EvaluatorService {
 
     private RankingService rankingService;
 
+    private FilterService filterService;
+
+    @Autowired
+    public void setFilterService(FilterService filterService) { this.filterService = filterService; }
+
     @Autowired
     public void setRankingService(RankingService rankingService) {
         this.rankingService = rankingService;
@@ -32,7 +38,7 @@ public class EvaluatorServiceImpl implements EvaluatorService {
     @Override
     public List<BlueprintRanking> evaluateRequest(Request request) {
 
-        HashSet<Feature> filteredSubset = filter(request.getRequirement(), request.getBlueprintAttributes());
+        HashSet<Feature> filteredSubset = filterService.filter(request);
 
         HashSet<Feature> validSubset = validate(request.getRequirement(), filteredSubset);
 

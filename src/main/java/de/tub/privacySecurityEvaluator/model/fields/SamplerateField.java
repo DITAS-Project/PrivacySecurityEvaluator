@@ -6,29 +6,16 @@ import de.tub.privacySecurityEvaluator.model.Property;
 /**
  * SamplerateField
  */
-public class SamplerateField extends Property {
+public class SamplerateField extends Property <Integer>{
 
-    private int value;
 
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
-    }
 
 
     @JsonSetter("minimum")
     public void setMinimum(int value) {
-        this.value = value;
+        setValue(value);
     }
 
-    @Override
-    public boolean validate(Property field) {
-        if (!(field instanceof SamplerateField)) return false;
-        return ((SamplerateField) field).getValue() <= value;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -37,11 +24,11 @@ public class SamplerateField extends Property {
 
         SamplerateField that = (SamplerateField) o;
 
-        return value == that.value;
+        return this.getValue().equals( that.getValue());
     }
 
     @Override
     public int hashCode() {
-        return value;
+        return getValue().intValue();
     }
 }

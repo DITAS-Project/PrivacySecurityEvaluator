@@ -4,9 +4,16 @@ package de.tub.privacySecurityEvaluator.model;
  * Superclass for all fields
  * to implement add the value field and add validate
  */
-public abstract class Property {
+public abstract class Property<T> {
 
     private String unit;
+
+    private T value;
+
+    private ValidationStrategy<Property<T>> valStrategy;
+
+    private RankingStrategy<Property<T>> rankStrategy;
+
 
     public Property() {
     }
@@ -23,5 +30,26 @@ public abstract class Property {
         this.unit = unit;
     }
 
-    public abstract boolean validate(Property field);
+    public T getValue() { return value;    }
+
+    public void setValue(T value) { this.value = value; }
+
+    public ValidationStrategy<Property<T>> getValStrategy() { return valStrategy;}
+
+    public void setValStrategy(ValidationStrategy<Property<T>> valStrategy) { this.valStrategy = valStrategy; }
+
+    public RankingStrategy<Property<T>> getRankStrategy() { return rankStrategy; }
+
+    public void setRankStrategy(RankingStrategy<Property<T>> rankStrategy) { this.rankStrategy = rankStrategy; }
+
+
+
+    public boolean validate(Property req){
+       return valStrategy.validate(req, this);
+    }
+
+    public double rank(Property req){
+        // if null exception
+        return rankStrategy.rank(req,this);
+    }
 }

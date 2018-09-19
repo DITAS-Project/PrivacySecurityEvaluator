@@ -8,22 +8,7 @@ import de.tub.privacySecurityEvaluator.util.PropertyDeserializer;
 /**
  * RequiredField
  **/
-public class RequiredField extends Property {
-
-    private boolean value;
-
-    @Override
-    public boolean validate(Property field) {
-        return false;
-    }
-
-    public boolean isValue() {
-        return value;
-    }
-
-    public void setValue(boolean value) {
-        this.value = value;
-    }
+public class RequiredField extends Property<Boolean> {
 
     @Override
     public boolean equals(Object o) {
@@ -32,11 +17,11 @@ public class RequiredField extends Property {
 
         RequiredField that = (RequiredField) o;
 
-        return value == that.value;
+        return getValue() == that.getValue();
     }
 
     @Override
     public int hashCode() {
-        return (value ? 1 : 0);
+        return (getValue() ? 1 : 0);
     }
 }

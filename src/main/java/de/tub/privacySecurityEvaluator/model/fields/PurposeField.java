@@ -18,7 +18,7 @@ import java.util.HashSet;
 
 
 @JsonDeserialize(using = GraphDeserializer.class)
-public class PurposeField extends Property implements Rankabale{
+public class PurposeField extends Property<Graph<String,DefaultEdge>> {
     @JsonIgnore
     private Graph<String, DefaultEdge> value;
     @JsonIgnore
@@ -32,7 +32,7 @@ private final HashMap<String, String []> purpose;
         this.purpose=purpose;
     }
 
-    @Override
+   /** @Override
     public boolean validate(Property field) {
         System.out.println(field);
         if(!(field instanceof AvailablePurposeField))return false;
@@ -45,7 +45,7 @@ private final HashMap<String, String []> purpose;
         return false;
 
     }
-
+*/
     public String getRoot() {
         return root;
     }
@@ -61,7 +61,7 @@ private final HashMap<String, String []> purpose;
     public void setValue(Graph<String, DefaultEdge> value) {
         this.value = value;
     }
-
+/**
     public double rank(Property requirement) {
         if(!(requirement instanceof AvailablePurposeField))return 0;
         if(root==null)return 0;
@@ -76,5 +76,5 @@ private final HashMap<String, String []> purpose;
         }
 
       return rank;
-    }
+    }*/
 }

@@ -6,39 +6,21 @@ import de.tub.privacySecurityEvaluator.model.Property;
 /**
  * KeylengthField
  */
-public class KeylengthField extends Property {
-
-    private int value;
+public class KeylengthField extends Property<Integer> {
 
 
-    public KeylengthField() {
-    }
 
     public KeylengthField(String unit, int value) {
         super(unit);
-        this.value = value;
+      setValue(value);
     }
 
-
-
-    public int getValue() {
-        return value;
-    }
-
-    @JsonSetter("value")
-    public void setValue(int value) {
-        this.value = value;
-    }
 
     @JsonSetter("minimum")
     public void setMinimum(int value) {
-        this.value = value;
+        setValue(value);
     }
 
-    @Override
-    public boolean validate(Property field) {
-        return field instanceof KeylengthField && ((KeylengthField) field).getValue() <= value;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -47,11 +29,11 @@ public class KeylengthField extends Property {
 
         KeylengthField that = (KeylengthField) o;
 
-        return value == that.value;
+        return getValue() == that.getValue();
     }
 
     @Override
     public int hashCode() {
-        return value;
+        return getValue();
     }
 }

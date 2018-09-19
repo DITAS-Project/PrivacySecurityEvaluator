@@ -5,21 +5,8 @@ import de.tub.privacySecurityEvaluator.model.Property;
 /**
  * LevelField
  */
-public class LevelField extends Property {
-    private String value;
+public class LevelField extends Property<String> {
 
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    @Override
-    public boolean validate(Property field) {
-        return field instanceof LevelField;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -28,11 +15,11 @@ public class LevelField extends Property {
 
         LevelField that = (LevelField) o;
 
-        return value != null ? value.equals(that.value) : that.value == null;
+        return getValue() != null ? getValue().equals(that.getValue()) : that.getValue() == null;
     }
 
     @Override
     public int hashCode() {
-        return value != null ? value.hashCode() : 0;
+        return getValue() != null ? getValue().hashCode() : 0;
     }
 }
