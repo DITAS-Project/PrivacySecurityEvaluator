@@ -8,7 +8,9 @@ import de.tub.privacySecurityEvaluator.model.Property;
  */
 public class KeylengthField extends Property<Integer> {
 
-
+public KeylengthField(){
+    super();
+}
 
     public KeylengthField(String unit, int value) {
         super(unit);

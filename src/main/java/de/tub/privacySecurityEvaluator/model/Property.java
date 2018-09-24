@@ -1,5 +1,7 @@
 package de.tub.privacySecurityEvaluator.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Superclass for all fields
  * to implement add the value field and add validate
@@ -9,9 +11,9 @@ public abstract class Property<T> {
     private String unit;
 
     private T value;
-
+@JsonIgnore
     private ValidationStrategy<Property<T>> valStrategy;
-
+@JsonIgnore
     private RankingStrategy<Property<T>> rankStrategy;
 
 

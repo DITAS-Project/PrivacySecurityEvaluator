@@ -86,10 +86,11 @@ public class Feature {
 
             //search for the right fieldtype and validate
             for (Map.Entry<String, Property> property : properties.entrySet()) {
-
-                if (property.getValue().validate(req.getValue())) {
-                    fullfilled = true;
-                    break;
+                if (property.getValue().getClass().equals(req.getValue().getClass())) {
+                    if (property.getValue().validate(req.getValue())) {
+                        fullfilled = true;
+                        break;
+                    }
                 }
             }
             if (!fullfilled) {
