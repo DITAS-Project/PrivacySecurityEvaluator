@@ -1,6 +1,6 @@
-package de.tub.privacySecurityEvaluator.model.strategies;
+package de.tub.privacySecurityEvaluator.model.strategies.validation;
 
-import de.tub.privacySecurityEvaluator.model.ValidationStrategy;
+import de.tub.privacySecurityEvaluator.model.strategies.ValidationStrategy;
 
 public class NoValidStrategy implements ValidationStrategy{
     @Override

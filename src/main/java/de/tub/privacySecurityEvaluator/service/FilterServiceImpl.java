@@ -3,8 +3,7 @@ package de.tub.privacySecurityEvaluator.service;
 import de.tub.privacySecurityEvaluator.model.Feature;
 import de.tub.privacySecurityEvaluator.model.Property;
 import de.tub.privacySecurityEvaluator.model.Request;
-import de.tub.privacySecurityEvaluator.model.fields.PurposeField;
-import de.tub.privacySecurityEvaluator.model.strategies.*;
+import de.tub.privacySecurityEvaluator.model.strategies.validation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,7 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public HashSet<Feature> filter(Request request) {
-        setStrategies(new HashSet<>(request.getBlueprintAttributes()));
+        setStrategies(request.getBlueprintAttributes());
         Feature requirement= request.getRequirement();
         List<Feature> blueprints= request.getBlueprintAttributes();
 
@@ -43,18 +42,21 @@ public class FilterServiceImpl implements FilterService {
                 }
                 valid = true;
             }
-            if (valid) filteredSubset.add(blueprint);
+            if (valid&& blueprint.validate(requirement)) filteredSubset.add(blueprint);
 
         }
 
         return filteredSubset;
     }
 
+
+    private boolean validate(Feature )
+
     /**
      * TODO move to separate StrategyBuilder Class
      * @param blueprints
      */
-    public void setStrategies(HashSet<Feature> blueprints) {
+    public void setStrategies(List<Feature> blueprints) {
         DefaultStringStrategy stringStrategy = new DefaultStringStrategy();
         ContainsAllStrategy containsAllStrategy = new ContainsAllStrategy();
         DefaultGraphStrategy graphStrategy = new DefaultGraphStrategy();

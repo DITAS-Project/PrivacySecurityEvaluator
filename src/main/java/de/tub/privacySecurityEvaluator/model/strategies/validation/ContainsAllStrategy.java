@@ -1,8 +1,7 @@
-package de.tub.privacySecurityEvaluator.model.strategies;
+package de.tub.privacySecurityEvaluator.model.strategies.validation;
 
 import de.tub.privacySecurityEvaluator.model.Property;
-import de.tub.privacySecurityEvaluator.model.ValidationStrategy;
-import de.tub.privacySecurityEvaluator.model.fields.CredentialsField;
+import de.tub.privacySecurityEvaluator.model.strategies.ValidationStrategy;
 
 import java.util.ArrayList;
 import java.util.HashSet;

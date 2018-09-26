@@ -1,7 +1,7 @@
-package de.tub.privacySecurityEvaluator.model.strategies;
+package de.tub.privacySecurityEvaluator.model.strategies.validation;
 
 import de.tub.privacySecurityEvaluator.model.Property;
-import de.tub.privacySecurityEvaluator.model.ValidationStrategy;
+import de.tub.privacySecurityEvaluator.model.strategies.ValidationStrategy;
 import de.tub.privacySecurityEvaluator.model.fields.AvailablePurposeField;
 import de.tub.privacySecurityEvaluator.model.fields.PurposeField;
 import org.jgrapht.Graph;

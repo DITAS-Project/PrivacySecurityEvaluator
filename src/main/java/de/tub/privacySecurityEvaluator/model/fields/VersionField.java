@@ -5,7 +5,7 @@ import de.tub.privacySecurityEvaluator.model.Property;
 /**
  * VersionField
  */
-public class VersionField extends Property {
+public class VersionField extends Property<String> {
 
 
     @Override

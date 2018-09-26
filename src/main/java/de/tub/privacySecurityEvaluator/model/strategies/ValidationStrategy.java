@@ -1,4 +1,4 @@
-package de.tub.privacySecurityEvaluator.model;
+package de.tub.privacySecurityEvaluator.model.strategies;
 
 public interface ValidationStrategy <Property> {
 

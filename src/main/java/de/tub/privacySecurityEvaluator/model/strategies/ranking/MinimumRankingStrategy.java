@@ -1,7 +1,7 @@
-package de.tub.privacySecurityEvaluator.model.strategies;
+package de.tub.privacySecurityEvaluator.model.strategies.ranking;
 
 import de.tub.privacySecurityEvaluator.model.Property;
-import de.tub.privacySecurityEvaluator.model.RankingStrategy;
+import de.tub.privacySecurityEvaluator.model.strategies.RankingStrategy;
 
 public class MinimumRankingStrategy<T extends Number> implements RankingStrategy<Property<T >>{
 
