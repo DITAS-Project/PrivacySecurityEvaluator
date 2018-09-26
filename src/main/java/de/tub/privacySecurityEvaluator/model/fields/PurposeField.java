@@ -18,34 +18,34 @@ import java.util.HashSet;
 
 
 @JsonDeserialize(using = GraphDeserializer.class)
-public class PurposeField extends Property<Graph<String,DefaultEdge>> {
+public class PurposeField extends Property<Graph<String, DefaultEdge>> {
     @JsonIgnore
     private Graph<String, DefaultEdge> value;
     @JsonIgnore
     private String root;
-@JsonSerialize
-@JsonProperty("value")
-private final HashMap<String, String []> purpose;
+    @JsonSerialize
+    @JsonProperty("value")
+    private final HashMap<String, String[]> purpose;
 
-    public PurposeField (Graph<String, DefaultEdge> value, HashMap<String,String[]> purpose){
-        this.value=value;
-        this.purpose=purpose;
+    public PurposeField(Graph<String, DefaultEdge> value, HashMap<String, String[]> purpose) {
+        this.value = value;
+        this.purpose = purpose;
     }
 
-   /** @Override
-    public boolean validate(Property field) {
-        System.out.println(field);
-        if(!(field instanceof AvailablePurposeField))return false;
-
-        HashSet<String> availablePurpose= ((AvailablePurposeField)field).getValue();
-        for(String s: availablePurpose){
-            if(value.containsVertex(s))return true;
-        }
-
-        return false;
-
-    }
-*/
+    /**
+     * @Override public boolean validate(Property field) {
+     * System.out.println(field);
+     * if(!(field instanceof AvailablePurposeField))return false;
+     * <p>
+     * HashSet<String> availablePurpose= ((AvailablePurposeField)field).getValue();
+     * for(String s: availablePurpose){
+     * if(value.containsVertex(s))return true;
+     * }
+     * <p>
+     * return false;
+     * <p>
+     * }
+     */
     public String getRoot() {
         return root;
     }
@@ -62,19 +62,19 @@ private final HashMap<String, String []> purpose;
         this.value = value;
     }
 /**
-    public double rank(Property requirement) {
-        if(!(requirement instanceof AvailablePurposeField))return 0;
-        if(root==null)return 0;
-        DijkstraShortestPath<String, DefaultEdge> dijkstraAlg= new DijkstraShortestPath<>(value);
-        HashSet<String> availablePurpose= ((AvailablePurposeField)requirement).getValue();
-        double rank= 0;
-        for(String s: availablePurpose){
-            if(value.containsVertex(s)){
-                int pathLen = dijkstraAlg.getPath(root, s).getLength();
-                if(rank< pathLen)rank= pathLen;
-            }
-        }
+ public double rank(Property requirement) {
+ if(!(requirement instanceof AvailablePurposeField))return 0;
+ if(root==null)return 0;
+ DijkstraShortestPath<String, DefaultEdge> dijkstraAlg= new DijkstraShortestPath<>(value);
+ HashSet<String> availablePurpose= ((AvailablePurposeField)requirement).getValue();
+ double rank= 0;
+ for(String s: availablePurpose){
+ if(value.containsVertex(s)){
+ int pathLen = dijkstraAlg.getPath(root, s).getLength();
+ if(rank< pathLen)rank= pathLen;
+ }
+ }
 
-      return rank;
-    }*/
+ return rank;
+ }*/
 }

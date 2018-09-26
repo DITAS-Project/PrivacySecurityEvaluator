@@ -3,45 +3,60 @@
 "description": "purpose",
 "properties": {
 "purpose": {
+  "unit": "graph",
 
-  "all_purposes": ["healthcare", "research"],
-
-  "healthcare": ["anamnesis", "consultation"],
-
-  "research": ["medical_research", "pharmaceutical_research"],
-
-  "anamnesis": ["view_historic_diagnosis", "view_past_surgeries"],
-
-  "consultation": ["view_historic_diagnosis", "view_historic_blood-values", "view_historic_CT-scans", "view_historic_echocardiograms", "view_past_surgeries"],
-
-  "medical_research": ["oncological_research", "gastrointestinal_research", "neurological_research"],
-
-  "pharmaceutical_research": ["commercial_research", "noncommercial_research"],
-
-  "view_historic_diagnosis": [],
-
-  "view_historic_blood-values": [],
-
-  "view_historic_CT-scans": [],
-
-  "view_historic_echocardiograms": [],
-
-  "view_past_surgeries": [],
-
-  "oncological_research": [],
-
-  "gastrointestinal_research": [],
-
-  "neurological_research": [],
-
-  "commercial_research": ["sample-based_research", "clinical_trail"],
-
-  "noncommercial_research": ["sample-based_research", "clinical_trail"],
-
-  "sample-based_research": [],
-
-  "clinical_trail": []
-
+  "value": {
+    "all_purposes": [
+      "healthcare",
+      "research"
+    ],
+    "healthcare": [
+      "anamnesis",
+      "consultation"
+    ],
+    "research": [
+      "medical_research",
+      "pharmaceutical_research"
+    ],
+    "anamnesis": [
+      "view_historic_diagnosis",
+      "view_past_surgeries"
+    ],
+    "consultation": [
+      "view_historic_diagnosis",
+      "view_historic_blood-values",
+      "view_historic_CT-scans",
+      "view_historic_echocardiograms",
+      "view_past_surgeries"
+    ],
+    "medical_research": [
+      "oncological_research",
+      "gastrointestinal_research",
+      "neurological_research"
+    ],
+    "pharmaceutical_research": [
+      "commercial_research",
+      "noncommercial_research"
+    ],
+    "view_historic_diagnosis": [],
+    "view_historic_blood-values": [],
+    "view_historic_CT-scans": [],
+    "view_historic_echocardiograms": [],
+    "view_past_surgeries": [],
+    "oncological_research": [],
+    "gastrointestinal_research": [],
+    "neurological_research": [],
+    "commercial_research": [
+      "sample-based_research",
+      "clinical_trail"
+    ],
+    "noncommercial_research": [
+      "sample-based_research",
+      "clinical_trail"
+    ],
+    "sample-based_research": [],
+    "clinical_trail": []
+  }
 }
 }
 }

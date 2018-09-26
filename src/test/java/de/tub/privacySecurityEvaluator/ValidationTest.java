@@ -6,6 +6,7 @@ import de.tub.privacySecurityEvaluator.model.BlueprintRanking;
 import de.tub.privacySecurityEvaluator.model.Feature;
 import de.tub.privacySecurityEvaluator.model.Request;
 import de.tub.privacySecurityEvaluator.service.EvaluatorServiceImpl;
+import de.tub.privacySecurityEvaluator.service.FilterServiceImpl;
 import de.tub.privacySecurityEvaluator.util.PropertyDeserializer;
 import org.junit.Assert;
 import org.junit.Before;
@@ -34,12 +35,20 @@ public class ValidationTest {
 
 
     EvaluatorServiceImpl evaluator;
+
+
+    FilterServiceImpl filterService;
     ObjectMapper mapper;
 
 
     @Autowired
     public void setEvaluator(EvaluatorServiceImpl evaluator) {
         this.evaluator = evaluator;
+    }
+
+    @Autowired
+    public void setFilterService(FilterServiceImpl filterService) {
+        this.filterService = filterService;
     }
 
     @Before
@@ -83,7 +92,9 @@ public class ValidationTest {
     }
 
     @Test
-    public  void testAllowedGuarantor() {fieldTest("/validation/allowedGuarantor.json", "/validation/requirementAllowedGuarantor.json");}
+    public void testAllowedGuarantor() {
+        fieldTest("/validation/allowedGuarantor.json", "/validation/requirementAllowedGuarantor.json");
+    }
 
     @Test
     public void testAnnouncementAddress() {
@@ -135,7 +146,7 @@ public class ValidationTest {
         try {
             List<Feature> start = Arrays.asList(mapper.readValue(readToString("/validation/filterTest.json"), Feature[].class));
             Feature requirement = mapper.readValue(readToString("/validation/requirementAlgorithm.json"), Feature.class);
-            HashSet<Feature> filterd = evaluator.filter(requirement, start);
+            HashSet<Feature> filterd = filterService.filter(new Request(requirement, start));
             Assert.assertTrue(filterd.contains(start.get(1))); //could cause problems when unordered
             Assert.assertTrue(filterd.size() < start.size());
         } catch (IOException e) {

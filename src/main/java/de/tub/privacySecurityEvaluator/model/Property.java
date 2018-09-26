@@ -13,9 +13,9 @@ public abstract class Property<T> {
     private String unit;
 
     private T value;
-@JsonIgnore
+    @JsonIgnore
     private ValidationStrategy<Property<T>> valStrategy;
-@JsonIgnore
+    @JsonIgnore
     private RankingStrategy<Property<T>> rankStrategy;
 
 
@@ -34,26 +34,37 @@ public abstract class Property<T> {
         this.unit = unit;
     }
 
-    public T getValue() { return value;    }
-
-    public void setValue(T value) { this.value = value; }
-
-    public ValidationStrategy<Property<T>> getValStrategy() { return valStrategy;}
-
-    public void setValStrategy(ValidationStrategy<Property<T>> valStrategy) { this.valStrategy = valStrategy; }
-
-    public RankingStrategy<Property<T>> getRankStrategy() { return rankStrategy; }
-
-    public void setRankStrategy(RankingStrategy<Property<T>> rankStrategy) { this.rankStrategy = rankStrategy; }
-
-
-
-    public boolean validate(Property req){
-       return valStrategy.validate(req, this);
+    public T getValue() {
+        return value;
     }
 
-    public double rank(Property req){
+    public void setValue(T value) {
+        this.value = value;
+    }
+
+    public ValidationStrategy<Property<T>> getValStrategy() {
+        return valStrategy;
+    }
+
+    public void setValStrategy(ValidationStrategy<Property<T>> valStrategy) {
+        this.valStrategy = valStrategy;
+    }
+
+    public RankingStrategy<Property<T>> getRankStrategy() {
+        return rankStrategy;
+    }
+
+    public void setRankStrategy(RankingStrategy<Property<T>> rankStrategy) {
+        this.rankStrategy = rankStrategy;
+    }
+
+
+    public boolean validate(Property req) {
+        return valStrategy.validate(req, this);
+    }
+
+    public double rank(Property req) {
         // if null exception
-        return rankStrategy.rank(req,this);
+        return rankStrategy.rank(req, this);
     }
 }

@@ -1,6 +1,8 @@
 package de.tub.privacySecurityEvaluator.model.strategies;
 
-public interface ValidationStrategy <Property> {
+import de.tub.privacySecurityEvaluator.model.Property;
 
-    boolean validate(Property req, Property blueprint);
+public interface ValidationStrategy <P extends Property> {
+
+    boolean validate(P req, P blueprint);
 }

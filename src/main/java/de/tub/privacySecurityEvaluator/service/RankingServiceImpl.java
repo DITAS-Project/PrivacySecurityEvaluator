@@ -20,7 +20,7 @@ public class RankingServiceImpl implements RankingService {
 
     @Override
     public List<BlueprintRanking> rank(Feature requirement, Collection<Feature> blueprints) {
-        setStrategies(blueprints);
+        StrategyBuilder.setDefaultRanking(blueprints);
         List<BlueprintRanking> rankings = new LinkedList<>();
 
         for (Feature b : blueprints) {
@@ -51,45 +51,5 @@ public class RankingServiceImpl implements RankingService {
 
     }
 
-    /**
-     * TODO move to separate StrategyBuilder Class
-     *
-     * @param blueprints
-     */
-    public void setStrategies(Collection<Feature> blueprints) {
-        GraphRankingStrategy graphStrategy = new GraphRankingStrategy();
-        JaccardRankingStrategy jaccardStrategy = new JaccardRankingStrategy();
-        MinimumRankingStrategy minimumStrategy = new MinimumRankingStrategy();
-        NoRankingStrategy noStrategy = new NoRankingStrategy();
 
-
-        for (Feature f : blueprints) {
-            for (Map.Entry<String, Property> entry : f.getProperties().entrySet()) {
-
-                String key = entry.getKey().toLowerCase();
-                switch (key) {
-                    case "keylength":
-                        entry.getValue().setRankStrategy(minimumStrategy);
-                        break;
-                    case "samplerate":
-                        entry.getValue().setRankStrategy(minimumStrategy);
-                        break;
-                    case "credentials":
-                        entry.getValue().setRankStrategy(jaccardStrategy);
-                        break;
-                    case "availablepurpose":
-                        entry.getValue().setRankStrategy(graphStrategy);//does not work like this
-                        break;
-                    case "allowedguarantor":
-                        entry.getValue().setRankStrategy(jaccardStrategy);
-                        break;
-                    case "purpose":
-                        entry.getValue().setRankStrategy(graphStrategy);
-                        break;
-                    default:
-                        entry.getValue().setRankStrategy(noStrategy);
-                }
-            }
-        }
-    }
 }

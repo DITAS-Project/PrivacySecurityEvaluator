@@ -9,6 +9,8 @@ import de.tub.privacySecurityEvaluator.model.Property;
 import de.tub.privacySecurityEvaluator.model.Request;
 import de.tub.privacySecurityEvaluator.model.fields.AllowedGuarantorField;
 import de.tub.privacySecurityEvaluator.service.EvaluatorServiceImpl;
+import de.tub.privacySecurityEvaluator.service.FilterService;
+import de.tub.privacySecurityEvaluator.service.FilterServiceImpl;
 import de.tub.privacySecurityEvaluator.util.PropertyDeserializer;
 import org.junit.Assert;
 import org.junit.Before;
@@ -29,12 +31,19 @@ public class RankingTest {
 
     private final TestHelper testHelper = new TestHelper();
     EvaluatorServiceImpl evaluator;
+    FilterServiceImpl filterService;
     ObjectMapper mapper;
 
     @BeforeClass
     public static void checkIfFilesPresent() {
         Assert.assertNotNull(ApplicationTests.class.getResourceAsStream("/ranking/allowedGuarantor.json"));
 
+    }
+
+
+    @Autowired
+    public void setFilterService(FilterServiceImpl filterService){
+        this.filterService= filterService;
     }
 
     @Autowired
@@ -58,8 +67,8 @@ public class RankingTest {
             Request request = mapper.readValue(testHelper.readToString("/ranking/allowedGuarantor.json"), Request.class);
 
             Feature required = request.getRequirement();
-            HashSet<Feature> filtered = evaluator.filter(required, request.getBlueprintAttributes());
-            HashSet<Feature> valid = evaluator.validate(required, filtered);
+            HashSet<Feature> valid = filterService.filter(request);
+
 
             List<Feature> allowedGuarantors = new LinkedList<>();
             for (Feature f : valid) {

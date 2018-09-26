@@ -77,9 +77,7 @@ public class Feature {
     /**
      * Validation method to determine if a blueprint fullfills the requirement
      *
-     * @param requirement
-     * @return
-     */
+
     public boolean validate(Feature requirement) {
         for (Map.Entry<String, Property> req : requirement.getProperties().entrySet()) {
             boolean fullfilled = false;
@@ -99,6 +97,7 @@ public class Feature {
         }
         return true;
     }
+*/
 
     @Override
     public boolean equals(Object o) {

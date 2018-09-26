@@ -13,6 +13,7 @@ import java.util.HashSet;
 public class GraphRankingStrategy implements RankingStrategy<Property> {
     @Override
     public double rank(Property req, Property blueprint) {
+
         if(!(req instanceof AvailablePurposeField)||!(blueprint instanceof PurposeField))return 0;
 
         String root = ((PurposeField) blueprint).getRoot();

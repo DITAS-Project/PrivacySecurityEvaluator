@@ -1,0 +1,11 @@
+{
+  "description": "Encryption",
+  "id": "2",
+  "type": "Encryption",
+  "properties": {
+    "level": {
+      "unit": "enum",
+      "value": "datasource"
+    }
+  }
+}

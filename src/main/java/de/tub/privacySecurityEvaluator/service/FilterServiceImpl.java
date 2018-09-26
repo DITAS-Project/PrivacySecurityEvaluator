@@ -3,6 +3,9 @@ package de.tub.privacySecurityEvaluator.service;
 import de.tub.privacySecurityEvaluator.model.Feature;
 import de.tub.privacySecurityEvaluator.model.Property;
 import de.tub.privacySecurityEvaluator.model.Request;
+import de.tub.privacySecurityEvaluator.model.fields.AvailablePurposeField;
+import de.tub.privacySecurityEvaluator.model.fields.PurposeField;
+import de.tub.privacySecurityEvaluator.model.strategies.ValidationStrategy;
 import de.tub.privacySecurityEvaluator.model.strategies.validation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +25,9 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public HashSet<Feature> filter(Request request) {
-        setStrategies(request.getBlueprintAttributes());
+
+        StrategyBuilder.setDefaultValidation(request.getBlueprintAttributes());
+
         Feature requirement= request.getRequirement();
         List<Feature> blueprints= request.getBlueprintAttributes();
 
@@ -34,15 +39,22 @@ public class FilterServiceImpl implements FilterService {
         for (Feature blueprint : blueprints) {
             boolean valid = false;
             for (Map.Entry<String, Property> property : blueprint.getProperties().entrySet()) {
-
-                if (!classes.contains(property.getValue().getClass())) {
+                if(property.getValue().getClass().equals(PurposeField.class) && classes.contains(AvailablePurposeField.class)){
+                    valid = true;
+                    break;
+                }
+                else if (!classes.contains(property.getValue().getClass())) {
                     valid = false;
                     logger.debug("mismatch due to {} - {}",property.getKey(),property.getValue().getClass().getName());
                     break;
                 }
                 valid = true;
             }
-            if (valid&& blueprint.validate(requirement)) filteredSubset.add(blueprint);
+            if(valid&&validate(requirement,blueprint)) {
+                filteredSubset.add(blueprint);
+            }else{
+                logger.debug("feature {} was invalid",blueprint.getId());
+            }
 
         }
 
@@ -50,69 +62,31 @@ public class FilterServiceImpl implements FilterService {
     }
 
 
-    private boolean validate(Feature )
+    private boolean validate(Feature requirement, Feature blueprint){
+        for (Map.Entry<String, Property> req : requirement.getProperties().entrySet()) {
+            boolean fullfilled = false;
 
-    /**
-     * TODO move to separate StrategyBuilder Class
-     * @param blueprints
-     */
-    public void setStrategies(List<Feature> blueprints) {
-        DefaultStringStrategy stringStrategy = new DefaultStringStrategy();
-        ContainsAllStrategy containsAllStrategy = new ContainsAllStrategy();
-        DefaultGraphStrategy graphStrategy = new DefaultGraphStrategy();
-        ContainsOnceStrategy containsOnceStrategy = new ContainsOnceStrategy();
-        DefaultIntegerStrategy integerStrategy = new DefaultIntegerStrategy();
-        NoValidStrategy noValidStrategy = new NoValidStrategy();
+            //search for the right fieldtype and validate
+            for (Map.Entry<String, Property> property : blueprint.getProperties().entrySet()) {
 
-        for (Feature f : blueprints) {
-            for (Map.Entry<String, Property> entry : f.getProperties().entrySet()) {
-
-                String key = entry.getKey().toLowerCase();
-                switch (key) {
-                    case "protocol":
-                        entry.getValue().setValStrategy(stringStrategy);
+                Class<? extends Property> propClass = property.getValue().getClass();
+                Class<? extends Property> reqClass = req.getValue().getClass();
+                if (propClass.equals(reqClass) ||
+                        (reqClass.equals(AvailablePurposeField.class)&&propClass.equals(PurposeField.class))) {
+                    if (property.getValue().validate(req.getValue())) {
+                        fullfilled = true;
                         break;
-                    case "version":
-                        entry.getValue().setValStrategy(stringStrategy);
-                        break;
-                    case "algorithm":
-                        entry.getValue().setValStrategy(stringStrategy);
-                        break;
-                    case "keylength":
-                        entry.getValue().setValStrategy(integerStrategy);
-                        break;
-                    case "level":
-                        entry.getValue().setValStrategy(stringStrategy);
-                        break;
-                    case "samplerate":
-                        entry.getValue().setValStrategy(integerStrategy);
-                        break;
-                    case "instrumentation":
-                        entry.getValue().setValStrategy(stringStrategy);
-                        break;
-                    case "credentials":
-                        entry.getValue().setValStrategy(containsAllStrategy);
-                        break;
-                    case "announcementaddress":
-                        entry.getValue().setValStrategy(stringStrategy);
-                        break;
-                    case "required":
-                        entry.getValue().setValStrategy(noValidStrategy);
-                        break;
-                    case "guarantor":
-                        entry.getValue().setValStrategy(noValidStrategy);
-                        break;
-                    case "availablepurpose":
-                        entry.getValue().setValStrategy(containsOnceStrategy);//need to think of this later because no validation method needed
-                        break;
-                    case "allowedguarantor":
-                        entry.getValue().setValStrategy(containsOnceStrategy);
-                        break;
-                    case "purpose":
-                        entry.getValue().setValStrategy(graphStrategy);
-                        break;
+                    }
                 }
             }
+            if (!fullfilled) {
+                return false;
+            }
         }
-    }
+        return true;
+
+
+}
+
+
 }
