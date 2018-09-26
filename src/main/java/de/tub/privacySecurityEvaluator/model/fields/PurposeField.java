@@ -32,20 +32,6 @@ public class PurposeField extends Property<Graph<String, DefaultEdge>> {
         this.purpose = purpose;
     }
 
-    /**
-     * @Override public boolean validate(Property field) {
-     * System.out.println(field);
-     * if(!(field instanceof AvailablePurposeField))return false;
-     * <p>
-     * HashSet<String> availablePurpose= ((AvailablePurposeField)field).getValue();
-     * for(String s: availablePurpose){
-     * if(value.containsVertex(s))return true;
-     * }
-     * <p>
-     * return false;
-     * <p>
-     * }
-     */
     public String getRoot() {
         return root;
     }
@@ -61,20 +47,5 @@ public class PurposeField extends Property<Graph<String, DefaultEdge>> {
     public void setValue(Graph<String, DefaultEdge> value) {
         this.value = value;
     }
-/**
- public double rank(Property requirement) {
- if(!(requirement instanceof AvailablePurposeField))return 0;
- if(root==null)return 0;
- DijkstraShortestPath<String, DefaultEdge> dijkstraAlg= new DijkstraShortestPath<>(value);
- HashSet<String> availablePurpose= ((AvailablePurposeField)requirement).getValue();
- double rank= 0;
- for(String s: availablePurpose){
- if(value.containsVertex(s)){
- int pathLen = dijkstraAlg.getPath(root, s).getLength();
- if(rank< pathLen)rank= pathLen;
- }
- }
 
- return rank;
- }*/
 }

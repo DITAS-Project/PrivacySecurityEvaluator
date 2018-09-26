@@ -74,30 +74,6 @@ public class Feature {
         this.properties.put(name, field);
     }
 
-    /**
-     * Validation method to determine if a blueprint fullfills the requirement
-     *
-
-    public boolean validate(Feature requirement) {
-        for (Map.Entry<String, Property> req : requirement.getProperties().entrySet()) {
-            boolean fullfilled = false;
-
-            //search for the right fieldtype and validate
-            for (Map.Entry<String, Property> property : properties.entrySet()) {
-                if (property.getValue().getClass().equals(req.getValue().getClass())) {
-                    if (property.getValue().validate(req.getValue())) {
-                        fullfilled = true;
-                        break;
-                    }
-                }
-            }
-            if (!fullfilled) {
-                return false;
-            }
-        }
-        return true;
-    }
-*/
 
     @Override
     public boolean equals(Object o) {

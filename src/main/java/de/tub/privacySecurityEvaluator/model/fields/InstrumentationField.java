@@ -8,18 +8,6 @@ import de.tub.privacySecurityEvaluator.model.Property;
 public class InstrumentationField extends Property<String> {
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        InstrumentationField that = (InstrumentationField) o;
 
-        return getValue() != null ? getValue().equals(that.getValue()) : that.getValue() == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return getValue() != null ? getValue().hashCode() : 0;
-    }
 }

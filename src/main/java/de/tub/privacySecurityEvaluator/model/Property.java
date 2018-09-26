@@ -1,6 +1,7 @@
 package de.tub.privacySecurityEvaluator.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import de.tub.privacySecurityEvaluator.model.fields.AllowedGuarantorField;
 import de.tub.privacySecurityEvaluator.model.strategies.RankingStrategy;
 import de.tub.privacySecurityEvaluator.model.strategies.ValidationStrategy;
 
@@ -64,7 +65,23 @@ public abstract class Property<T> {
     }
 
     public double rank(Property req) {
-        // if null exception
         return rankStrategy.rank(req, this);
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Property that = (Property) o;
+
+        return getValue() != null ? getValue().equals(that.getValue()) : that.getValue() == null;
+    }
+
+
+    @Override
+    public int hashCode() {
+        return getValue() != null ? getValue().hashCode() : 0;
+    }
+
 }

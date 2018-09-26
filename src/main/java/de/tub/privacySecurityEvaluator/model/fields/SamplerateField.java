@@ -8,24 +8,11 @@ import de.tub.privacySecurityEvaluator.model.Property;
  */
 public class SamplerateField extends Property <Integer>{
 
-
-
-
     @JsonSetter("minimum")
     public void setMinimum(int value) {
         setValue(value);
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        SamplerateField that = (SamplerateField) o;
-
-        return this.getValue().equals( that.getValue());
-    }
 
     @Override
     public int hashCode() {

@@ -24,15 +24,6 @@ public KeylengthField(){
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        KeylengthField that = (KeylengthField) o;
-
-        return getValue() == that.getValue();
-    }
 
     @Override
     public int hashCode() {
