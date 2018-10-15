@@ -19,7 +19,6 @@
 package de.tub.privacySecurityEvaluator.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import de.tub.privacySecurityEvaluator.model.fields.AllowedGuarantorField;
 import de.tub.privacySecurityEvaluator.model.strategies.RankingStrategy;
 import de.tub.privacySecurityEvaluator.model.strategies.ValidationStrategy;
 

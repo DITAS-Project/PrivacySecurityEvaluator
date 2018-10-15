@@ -23,8 +23,6 @@ import de.tub.privacySecurityEvaluator.model.Property;
 import de.tub.privacySecurityEvaluator.model.Request;
 import de.tub.privacySecurityEvaluator.model.fields.AvailablePurposeField;
 import de.tub.privacySecurityEvaluator.model.fields.PurposeField;
-import de.tub.privacySecurityEvaluator.model.strategies.ValidationStrategy;
-import de.tub.privacySecurityEvaluator.model.strategies.validation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

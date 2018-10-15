@@ -35,9 +35,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -124,10 +122,6 @@ public class ValidationTest {
         fieldTest("/validation/credentials.json", "/validation/requirementCredentials.json");
     }
 
-    @Test
-    public void testGuarantor() {
-        fieldTest("/validation/guarantor.json", "/validation/requirementGuarantor.json");
-    }
 
     @Test
     public void testInstrumentation() {

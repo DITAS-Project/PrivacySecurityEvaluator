@@ -21,16 +21,13 @@ package de.tub.privacySecurityEvaluator.service;
 import de.tub.privacySecurityEvaluator.model.BlueprintRanking;
 import de.tub.privacySecurityEvaluator.model.Feature;
 import de.tub.privacySecurityEvaluator.model.Property;
-import de.tub.privacySecurityEvaluator.model.Rankabale;
-import de.tub.privacySecurityEvaluator.model.strategies.ranking.GraphRankingStrategy;
-import de.tub.privacySecurityEvaluator.model.strategies.ranking.JaccardRankingStrategy;
-import de.tub.privacySecurityEvaluator.model.strategies.ranking.MinimumRankingStrategy;
-import de.tub.privacySecurityEvaluator.model.strategies.ranking.NoRankingStrategy;
-import de.tub.privacySecurityEvaluator.model.strategies.validation.*;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 @Profile("real")
 @Service

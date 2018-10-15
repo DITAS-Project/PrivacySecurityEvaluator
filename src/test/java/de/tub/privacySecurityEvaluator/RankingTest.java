@@ -27,7 +27,6 @@ import de.tub.privacySecurityEvaluator.model.Property;
 import de.tub.privacySecurityEvaluator.model.Request;
 import de.tub.privacySecurityEvaluator.model.fields.AllowedGuarantorField;
 import de.tub.privacySecurityEvaluator.service.EvaluatorServiceImpl;
-import de.tub.privacySecurityEvaluator.service.FilterService;
 import de.tub.privacySecurityEvaluator.service.FilterServiceImpl;
 import de.tub.privacySecurityEvaluator.util.PropertyDeserializer;
 import org.junit.Assert;
