@@ -1,3 +1,21 @@
+/*
+ * Copyright 2018 Information Systems Engineering, TU Berlin, Germany
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *                       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * This is being developed for the DITAS Project: https://www.ditas-project.eu/
+ */
+
 package de.tub.privacySecurityEvaluator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,9 +39,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Richard on 02.05.2018.
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class IntegrationTestIssue0010 {
@@ -79,7 +94,7 @@ public class IntegrationTestIssue0010 {
             en256.setId("encryptionAES_256");
             en256.setType("Encryption");
             en256.addProperty(new AlgorithmField("enum","AES"),"algorithm");
-            en256.addProperty(new KeylengthField("number",256),"keyLength");
+            en256.addProperty(new KeylengthField("number",256),"keylength");
             blueprintAttributes.add(en256);
 
             request.setBlueprintAttributes(blueprintAttributes);
@@ -129,7 +144,7 @@ public class IntegrationTestIssue0010 {
         Assert.assertEquals(1, blueprintRankingList.size());
 
         for (BlueprintRanking result : blueprintRankingList){
-            int keyLenght = ((KeylengthField) result.getBlueprint().getProperties().get("keyLength")).getValue();
+            int keyLenght = ((KeylengthField) result.getBlueprint().getProperties().get("keylength")).getValue();
 
             Assert.assertTrue(keyLenght > 128);
         }

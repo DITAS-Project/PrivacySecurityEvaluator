@@ -1,3 +1,21 @@
+/*
+ * Copyright 2018 Information Systems Engineering, TU Berlin, Germany
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *                       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * This is being developed for the DITAS Project: https://www.ditas-project.eu/
+ */
+
 package de.tub.privacySecurityEvaluator;
 
 
@@ -9,6 +27,7 @@ import de.tub.privacySecurityEvaluator.model.Property;
 import de.tub.privacySecurityEvaluator.model.Request;
 import de.tub.privacySecurityEvaluator.model.fields.AllowedGuarantorField;
 import de.tub.privacySecurityEvaluator.service.EvaluatorServiceImpl;
+import de.tub.privacySecurityEvaluator.service.FilterServiceImpl;
 import de.tub.privacySecurityEvaluator.util.PropertyDeserializer;
 import org.junit.Assert;
 import org.junit.Before;
@@ -29,12 +48,19 @@ public class RankingTest {
 
     private final TestHelper testHelper = new TestHelper();
     EvaluatorServiceImpl evaluator;
+    FilterServiceImpl filterService;
     ObjectMapper mapper;
 
     @BeforeClass
     public static void checkIfFilesPresent() {
         Assert.assertNotNull(ApplicationTests.class.getResourceAsStream("/ranking/allowedGuarantor.json"));
 
+    }
+
+
+    @Autowired
+    public void setFilterService(FilterServiceImpl filterService){
+        this.filterService= filterService;
     }
 
     @Autowired
@@ -58,8 +84,8 @@ public class RankingTest {
             Request request = mapper.readValue(testHelper.readToString("/ranking/allowedGuarantor.json"), Request.class);
 
             Feature required = request.getRequirement();
-            HashSet<Feature> filtered = evaluator.filter(required, request.getBlueprintAttributes());
-            HashSet<Feature> valid = evaluator.validate(required, filtered);
+            HashSet<Feature> valid = filterService.filter(request);
+
 
             List<Feature> allowedGuarantors = new LinkedList<>();
             for (Feature f : valid) {

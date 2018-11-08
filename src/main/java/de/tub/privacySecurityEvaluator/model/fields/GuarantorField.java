@@ -1,46 +1,32 @@
+/*
+ * Copyright 2018 Information Systems Engineering, TU Berlin, Germany
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *                       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * This is being developed for the DITAS Project: https://www.ditas-project.eu/
+ */
+
 package de.tub.privacySecurityEvaluator.model.fields;
 
 import de.tub.privacySecurityEvaluator.model.Property;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * GuarantorField
  */
 @Deprecated
-public class GuarantorField extends Property {
-    private List<String> value;
+public class GuarantorField extends Property<List<String>> {
 
-    @Override
-    public boolean validate(Property field) {
-        if (!(field instanceof GuarantorField)) return false;
-        List<String> workingList = new ArrayList<String>();
-        workingList.addAll(value);
-        workingList.retainAll(((GuarantorField) field).getValue());
-        return !workingList.isEmpty();
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        GuarantorField that = (GuarantorField) o;
-
-        return value != null ? value.equals(that.value) : that.value == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return value != null ? value.hashCode() : 0;
-    }
-
-    public List<String> getValue() {
-        return value;
-    }
-
-    public void setValue(List<String> value) {
-        this.value = value;
-    }
 }

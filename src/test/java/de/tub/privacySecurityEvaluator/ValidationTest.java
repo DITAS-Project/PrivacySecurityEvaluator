@@ -1,3 +1,21 @@
+/*
+ * Copyright 2018 Information Systems Engineering, TU Berlin, Germany
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *                       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * This is being developed for the DITAS Project: https://www.ditas-project.eu/
+ */
+
 package de.tub.privacySecurityEvaluator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,6 +24,7 @@ import de.tub.privacySecurityEvaluator.model.BlueprintRanking;
 import de.tub.privacySecurityEvaluator.model.Feature;
 import de.tub.privacySecurityEvaluator.model.Request;
 import de.tub.privacySecurityEvaluator.service.EvaluatorServiceImpl;
+import de.tub.privacySecurityEvaluator.service.FilterServiceImpl;
 import de.tub.privacySecurityEvaluator.util.PropertyDeserializer;
 import org.junit.Assert;
 import org.junit.Before;
@@ -16,9 +35,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -34,12 +51,20 @@ public class ValidationTest {
 
 
     EvaluatorServiceImpl evaluator;
+
+
+    FilterServiceImpl filterService;
     ObjectMapper mapper;
 
 
     @Autowired
     public void setEvaluator(EvaluatorServiceImpl evaluator) {
         this.evaluator = evaluator;
+    }
+
+    @Autowired
+    public void setFilterService(FilterServiceImpl filterService) {
+        this.filterService = filterService;
     }
 
     @Before
@@ -83,7 +108,9 @@ public class ValidationTest {
     }
 
     @Test
-    public  void testAllowedGuarantor() {fieldTest("/validation/allowedGuarantor.json", "/validation/requirementAllowedGuarantor.json");}
+    public void testAllowedGuarantor() {
+        fieldTest("/validation/allowedGuarantor.json", "/validation/requirementAllowedGuarantor.json");
+    }
 
     @Test
     public void testAnnouncementAddress() {
@@ -95,10 +122,6 @@ public class ValidationTest {
         fieldTest("/validation/credentials.json", "/validation/requirementCredentials.json");
     }
 
-    @Test
-    public void testGuarantor() {
-        fieldTest("/validation/guarantor.json", "/validation/requirementGuarantor.json");
-    }
 
     @Test
     public void testInstrumentation() {
@@ -135,7 +158,7 @@ public class ValidationTest {
         try {
             List<Feature> start = Arrays.asList(mapper.readValue(readToString("/validation/filterTest.json"), Feature[].class));
             Feature requirement = mapper.readValue(readToString("/validation/requirementAlgorithm.json"), Feature.class);
-            HashSet<Feature> filterd = evaluator.filter(requirement, start);
+            HashSet<Feature> filterd = filterService.filter(new Request(requirement, start));
             Assert.assertTrue(filterd.contains(start.get(1))); //could cause problems when unordered
             Assert.assertTrue(filterd.size() < start.size());
         } catch (IOException e) {
