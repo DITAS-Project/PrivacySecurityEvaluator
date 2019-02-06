@@ -10,19 +10,50 @@ info:
     url: 'http://www.apache.org/licenses/LICENSE-2.0'
 basePath: /
 tags:
+  - name: deprecated
+    description: Old Lagacy API, pleas update ASAP
   - name: privacy-security-evaluator
     description: DITAS privacy security blueprint evaluator
 paths:
   /filter:
     post:
       tags:
+        - deprecated
         - privacy-security-evaluator
       summary: evaluates a given blueprint request
-      operationId: filterPoliciesUsingPOST
+      operationId: filterPoliciesLagecy
       consumes:
         - application/json
       produces:
+        - application/json;charset=UTF-8
         - application/json
+        - '*/*'
+      parameters:
+        - in: body
+          name: input
+          description: input
+          required: true
+          schema:
+            $ref: '#/definitions/Request'
+      responses:
+        '200':
+          description: ranked blueprint metrics
+          schema:
+            $ref: '#/definitions/BlueprintRanking'
+        '400':
+          description: Request input did not match expected format or could not be ranked
+  /v1/filter:
+    post:
+      tags:
+        - privacy-security-evaluator
+      summary: evaluates a given blueprint request
+      operationId: filterPolicies
+      consumes:
+        - application/json
+      produces:
+        - application/json;charset=UTF-8
+        - application/json
+        - '*/*'
       parameters:
         - in: body
           name: input
@@ -38,52 +69,101 @@ paths:
         '400':
           description: Request input did not match expected format or could not be ranked
 definitions:
-  BluePrintMetric:
-    type: object
-    properties:
-      description:
-        type: string
-      properties:
-        $ref: '#/definitions/Property'
-      type:
-        type: string
   BlueprintRanking:
     type: object
     properties:
       blueprint:
-        $ref: '#/definitions/Property'
+        $ref: '#/definitions/Feature'
       score:
         type: number
         format: double
+    example:
+      - blueprint:
+          id: encryptionAES_128
+          type: Encryption
+          description: Encryption AES 128
+          properties:
+            keylength:
+              unit: number
+              value: 128
+            algorithm:
+              unit: enum
+              value: AES
+        score: 1
+      - blueprint:
+          id: encryptionAES_256
+          type: Encryption
+          description: Encryption AES 256
+          properties:
+            keylength:
+              unit: number
+              value: 256
+            algorithm:
+              unit: enum
+              value: AES
+        score: 2
+
+  Feature:
+    type: object
+    properties:
+      description:
+        type: string
+      id:
+        type: string
+      properties:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/Property'
+      type:
+        type: string
   Property:
     type: object
     properties:
-      id:
-        type: string
-      name:
-        type: string
-      properties:
-        type: array
-        items: 
-          $ref: '#/definitions/BaseProperty'
-      type:
-        type: string
-  BaseProperty:
-    type: object
-    properties:
-      name:
-        type: string
       unit:
         type: string
       value:
-        type: string
-        description: can be any data type not only a string (swagger 2.0 dose not support mixed types...)
+        type: object
   Request:
     type: object
     properties:
-      blueprintMetrics:
+      blueprintAttributes:
         type: array
         items:
-          $ref: '#/definitions/BluePrintMetric'
+          $ref: '#/definitions/Feature'
       requirement:
-        $ref: '#/definitions/Property'
+        $ref: '#/definitions/Feature'
+    example:
+      requirement:
+        id: encryptionAES_128
+        description: Encryption AES 128
+        type: Encryption
+        properties:
+          algorithm:
+            unit: enum
+            value: AES
+          keyLength:
+            unit: number
+            minimum: 128
+      blueprintAttributes:
+        - id: encryptionAES_128
+          description: Encryption AES 128
+          type: Encryption
+          properties:
+            algorithm:
+              unit: enum
+              value: AES
+            keyLength:
+              unit: number
+              minimum: 128
+        - id: encryptionAES_256
+          description: Encryption AES 256
+          type: Encryption
+          properties:
+            algorithm:
+              unit: enum
+              value: AES
+            keyLength:
+              unit: number
+              minimum: 256
+
+

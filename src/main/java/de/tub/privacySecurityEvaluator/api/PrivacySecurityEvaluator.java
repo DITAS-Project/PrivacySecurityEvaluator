@@ -55,7 +55,7 @@ public class PrivacySecurityEvaluator {
             @ApiResponse(code = 400, message = "Request input did not match expected format or could not be ranked")
     })
     public ResponseEntity<List<BlueprintRanking>> filterPolicies(@RequestBody  Request input) {
-        return ResponseEntity.ok(evaluatorService.evaluateRequest(input));
+        return ResponseEntity.status(200).body(evaluatorService.evaluateRequest(input));
     }
 
 
