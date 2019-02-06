@@ -6,17 +6,16 @@ pipeline {
     agent none
     stages {
         stage('Build - test') {
-        			agent {
-        				docker {
-                            image 'maven:latest'
-        					// TODO some cache to avoid npm sintall on every execution?
-        				}
-        			}
-        			steps {
-        				sh 'echo "testing"'
-        				sh 'mvn test'
-        			}
-        		}
+         agent {
+            docker {
+             image 'maven:latest'
+            }
+          }
+          steps {
+            sh 'echo "testing"'
+            sh 'mvn test'
+          }
+        }
         stage('Staging image creation') {
             agent any
             steps {
@@ -35,7 +34,7 @@ pipeline {
                 sh "docker login -u ditasgeneric -p ${password}"
                 echo "Done"
                 echo "Pushing the image ditas/${IMAGE_NAME}:staging"
-                sh "docker push ditas/${IMAGE_NAME}:staging"
+                sh "docker push ${IMAGE_NAME}:staging"
                 echo "Done "
             }
         }
