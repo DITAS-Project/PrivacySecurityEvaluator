@@ -31,7 +31,7 @@ public class LegacyAPISupport extends PrivacySecurityEvaluator {
 
     @Override
     @RequestMapping(value = "/filter", method = RequestMethod.POST)
-    @ApiOperation(value = "evaluates a given blueprint request",response = BlueprintRanking.class,produces = "application/json",tags = "deprectadeds")
+    @ApiOperation(value = "evaluates a given blueprint request",response = BlueprintRanking.class,produces = "application/json",tags = "deprecated")
     @ApiResponses(value = {
             @ApiResponse(code = 200,message = "ranked blueprint metrics"),
             @ApiResponse(code = 400, message = "Request input did not match expected format or could not be ranked")
