@@ -26,6 +26,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,7 +36,7 @@ import java.util.List;
 
 @RestController
 @Api(value = "pse",description = "DITAS privacy security blueprint evaluator")
-@RequestMapping(value = "/")
+@RequestMapping(value = "/v1/")
 public class PrivacySecurityEvaluator {
 
     private EvaluatorService evaluatorService;
@@ -53,8 +54,8 @@ public class PrivacySecurityEvaluator {
             @ApiResponse(code = 200,message = "ranked blueprint metrics"),
             @ApiResponse(code = 400, message = "Request input did not match expected format or could not be ranked")
     })
-    public List<BlueprintRanking> filterPolicies(@RequestBody  Request input) {
-        return evaluatorService.evaluateRequest(input);
+    public ResponseEntity<List<BlueprintRanking>> filterPolicies(@RequestBody  Request input) {
+        return ResponseEntity.ok(evaluatorService.evaluateRequest(input));
     }
 
 
