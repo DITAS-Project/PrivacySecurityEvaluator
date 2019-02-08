@@ -11,28 +11,27 @@ info:
 basePath: /
 tags:
   - name: deprecated
-    description: Old Lagacy API, pleas update ASAP
+    description: Old Lagacy API, please update ASAP
   - name: privacy-security-evaluator
     description: DITAS privacy security blueprint evaluator
 paths:
   /filter:
     post:
       tags:
-        - deprecated
         - privacy-security-evaluator
-      summary: evaluates a given blueprint request
+        - deprecated
+      description: evaluates a given blueprint request
+      summary: legacy-filter
       operationId: filterPoliciesLagecy
       consumes:
         - application/json
       produces:
         - application/json;charset=UTF-8
         - application/json
-        - '*/*'
       parameters:
         - in: body
           name: input
           description: input
-          required: true
           schema:
             $ref: '#/definitions/Request'
       responses:
@@ -46,14 +45,14 @@ paths:
     post:
       tags:
         - privacy-security-evaluator
-      summary: evaluates a given blueprint request
+      description: evaluates a given blueprint request
+      summary: filter
       operationId: filterPolicies
       consumes:
         - application/json
       produces:
         - application/json;charset=UTF-8
         - application/json
-        - '*/*'
       parameters:
         - in: body
           name: input
