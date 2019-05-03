@@ -80,8 +80,11 @@ public class IntegrationTestIssue0008 {
             requirement.setId("purpose requirement");
             requirement.setType("availablePurpose");
             requirement.setDescription("stuff");
-            HashSet<String> availablePurpose = new HashSet<>(Arrays.asList("research", "medical research", "nutritional research"));
-            requirement.addProperty(new AvailablePurposeField(availablePurpose), "availablePurpose");
+            Graph<String, DefaultEdge> availablePurpose= new DefaultDirectedGraph<String, DefaultEdge>(DefaultEdge.class);
+            availablePurpose.addVertex( "research");
+            availablePurpose.addVertex( "medical research");
+            availablePurpose.addVertex( "nutritional research");
+            requirement.addProperty(new AvailablePurposeField(availablePurpose, new HashMap<>()), "availablePurpose");
             request.setRequirement(requirement);
 
 

@@ -26,14 +26,16 @@ import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultEdge;
 
 import java.util.HashSet;
+import java.util.Set;
 
-public class DefaultGraphStrategy implements ValidationStrategy<Property>{
+public class DefaultGraphStrategy implements ValidationStrategy<Property> {
     @Override
     public boolean validate(Property req, Property blueprint) {
-        Graph<String,DefaultEdge> graph=((PurposeField)blueprint).getValue();
-        HashSet<String> availablePurpose= ((AvailablePurposeField)req).getValue();
-        for(String s: availablePurpose){
-            if(graph.containsVertex(s))return true;
+
+        Graph<String, DefaultEdge> graph=((Property<Graph<String,DefaultEdge>>) blueprint).getValue();
+        Set<String> availablePurpose = ((Property<Graph<String,DefaultEdge>>) req).getValue().vertexSet();
+        for (String s : availablePurpose) {
+            if (graph.containsVertex(s)) return true;
         }
 
         return false;

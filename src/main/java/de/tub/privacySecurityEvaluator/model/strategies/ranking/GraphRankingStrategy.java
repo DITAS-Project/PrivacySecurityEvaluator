@@ -26,7 +26,7 @@ import org.jgrapht.Graph;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultEdge;
 
-import java.util.HashSet;
+import java.util.Set;
 
 public class GraphRankingStrategy implements RankingStrategy<Property> {
     @Override
@@ -38,7 +38,7 @@ public class GraphRankingStrategy implements RankingStrategy<Property> {
         if(root ==null)return 0;
         Graph<String, DefaultEdge> value = ((PurposeField)blueprint).getValue();
         DijkstraShortestPath<String, DefaultEdge> dijkstraAlg= new DijkstraShortestPath<>(value);
-        HashSet<String> availablePurpose= ((AvailablePurposeField)req).getValue();
+        Set<String> availablePurpose= ((AvailablePurposeField)req).getValue().vertexSet();
         double rank= 0;
         for(String s: availablePurpose){
             if(value.containsVertex(s)){

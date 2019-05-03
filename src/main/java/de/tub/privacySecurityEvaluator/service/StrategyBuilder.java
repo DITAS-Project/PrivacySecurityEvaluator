@@ -85,7 +85,7 @@ public class StrategyBuilder {
                         val = noValidStrategy;
                         break;
                     case "availablepurpose":
-                        val = containsOnceStrategy;//need to think of this later because no validation method needed
+                        val = graphStrategy;//need to think of this later because no validation method needed
                         break;
                     case "allowedguarantor":
                         val = containsOnceStrategy;
