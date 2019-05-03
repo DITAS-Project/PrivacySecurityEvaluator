@@ -20,6 +20,7 @@ package de.tub.privacySecurityEvaluator.service;
 
 import de.tub.privacySecurityEvaluator.model.Feature;
 import de.tub.privacySecurityEvaluator.model.Property;
+import de.tub.privacySecurityEvaluator.model.fields.datautilityfields.*;
 import de.tub.privacySecurityEvaluator.model.strategies.RankingStrategy;
 import de.tub.privacySecurityEvaluator.model.strategies.ValidationStrategy;
 import de.tub.privacySecurityEvaluator.model.strategies.ranking.GraphRankingStrategy;
@@ -41,6 +42,8 @@ public class StrategyBuilder {
         ContainsOnceStrategy containsOnceStrategy = new ContainsOnceStrategy();
         DefaultIntegerStrategy integerStrategy = new DefaultIntegerStrategy();
         NoValidStrategy noValidStrategy = new NoValidStrategy();
+        MinimumStrategy minStrategy= new MinimumStrategy();
+        MaximumStrategy maxStrategy= new MaximumStrategy();
 
         for (Feature f : blueprints) {
             for (Map.Entry<String, Property> entry : f.getProperties().entrySet()) {
@@ -90,6 +93,37 @@ public class StrategyBuilder {
                     case "purpose":
                         val = graphStrategy;
                         break;
+                  /*  case "volume":
+                        val = graphStrategy;
+                        break;*/ //dont know how to validate yet
+                    case "accuracy":
+                        val = minStrategy;
+                        break;
+                    case "ramGain":
+                        val = maxStrategy; //just a guess for now
+                        break;
+                    case "ramLimit":
+                        val = maxStrategy; //just a guess
+                        break;
+                    case "spaceGain":
+                        val = maxStrategy; //just a guess
+                        break;
+                    case "spaceLimit":
+                        val = maxStrategy; //just aguess
+                        break;
+                    case "completeness":
+                        val = minStrategy;
+                        break;
+                    case "timeliness":
+                        val = maxStrategy;
+                        break;
+                    case "precision":
+                        val = minStrategy;
+                        break;
+                /*case "availability":
+                      val = graphStrategy;
+                        break;*/ //dont know how to validate yet
+
 
 
                 }
