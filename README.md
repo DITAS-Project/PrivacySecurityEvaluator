@@ -50,9 +50,104 @@ For testing you can use:
  mvn test
 ```
 
+## Configuration
 
-### API
-The service offers one method under ``POST /filter`` more information can be found under ``./api/``. 
+We implemented three different Strategies to rank the incoming blueprints: 
+* real - ranks the bluprints on how good they fit the requirements 
+* hashBased - ranks the blueprints based on their has value
+* random - ranks the blueprints randomly 
+
+
+The default strategy is `real` but for development you can change the profile in the resources/application.properties file.
+
+## Api Documentation
+Api Documentation
+
+
+Version: 1.0
+
+**License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+### /filter
+
+#### POST
+##### Summary:
+
+legacy-filter
+
+##### Description:
+
+evaluates a given blueprint request
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| input | body | input | No | [Request](#request) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | ranked blueprint metrics | [BlueprintRanking](#blueprintranking) |
+| 400 | Request input did not match expected format or could not be ranked |  |
+
+### /v1/filter
+
+#### POST
+##### Summary:
+
+filter
+
+##### Description:
+
+evaluates a given blueprint request
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| input | body | input | Yes | [Request](#request) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | ranked blueprint metrics | [BlueprintRanking](#blueprintranking) |
+| 400 | Request input did not match expected format or could not be ranked |  |
+
+### Models
+
+
+#### BlueprintRanking
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| blueprint | [Feature](#feature) |  | No |
+| score | double |  | No |
+
+#### Feature
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| description | string |  | No |
+| id | string |  | No |
+| properties | object |  | No |
+| type | string |  | No |
+
+#### Property
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| unit | string |  | No |
+| value | object |  | No |
+
+#### Request
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| blueprintAttributes | [ [Feature](#feature) ] |  | No |
+| requirement | [Feature](#feature) |  | No |
 
 ## Built With
 
