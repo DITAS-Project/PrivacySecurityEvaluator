@@ -28,12 +28,15 @@ import de.tub.privacySecurityEvaluator.model.strategies.ranking.JaccardRankingSt
 import de.tub.privacySecurityEvaluator.model.strategies.ranking.MinimumRankingStrategy;
 import de.tub.privacySecurityEvaluator.model.strategies.ranking.NoRankingStrategy;
 import de.tub.privacySecurityEvaluator.model.strategies.validation.*;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Collection;
 import java.util.Map;
 
 public class StrategyBuilder {
 
+    @Value("${filtering.datautil}")
+    private static boolean filterDatautil;
 
     public static void setDefaultValidation(Collection<Feature> blueprints) {
         DefaultStringStrategy stringStrategy = new DefaultStringStrategy();
@@ -42,9 +45,15 @@ public class StrategyBuilder {
         ContainsOnceStrategy containsOnceStrategy = new ContainsOnceStrategy();
         DefaultIntegerStrategy integerStrategy = new DefaultIntegerStrategy();
         NoValidStrategy noValidStrategy = new NoValidStrategy();
-        MinimumStrategy minStrategy= new MinimumStrategy();
-        MaximumStrategy maxStrategy= new MaximumStrategy();
+        ValidationStrategy minStrategy= new MinimumStrategy();
+        ValidationStrategy maxStrategy= new MaximumStrategy();
 
+        if(filterDatautil){
+            AlwaysTrueStrategy trueStrategy= new AlwaysTrueStrategy();
+            minStrategy=trueStrategy;
+            maxStrategy=trueStrategy;
+
+        }
         for (Feature f : blueprints) {
             for (Map.Entry<String, Property> entry : f.getProperties().entrySet()) {
 
