@@ -18,22 +18,52 @@
 
 package de.tub.privacySecurityEvaluator.model.fields;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import de.tub.privacySecurityEvaluator.model.Property;
+import de.tub.privacySecurityEvaluator.util.GraphDeserializer;
+import org.jgrapht.Graph;
+import org.jgrapht.graph.DefaultEdge;
 
-import java.util.HashSet;
+import java.util.HashMap;
 
 /**
  * AvailablePurposeField
  **/
-public class AvailablePurposeField extends Property<HashSet<String>> {
+@JsonDeserialize(using = GraphDeserializer.class)
+public class AvailablePurposeField extends Property<Graph<String, DefaultEdge>> {
 
 
-    public AvailablePurposeField(){
-        super();
+    @JsonIgnore
+    private Graph<String, DefaultEdge> value;
+    @JsonIgnore
+    private String root;
+
+    @JsonSerialize
+    @JsonProperty("value")
+    private final HashMap<String, String[]> availablePurpose;
+
+    public AvailablePurposeField(Graph<String, DefaultEdge> value, HashMap<String, String[]> availablePurpose) {
+        this.value = value;
+        this.availablePurpose = availablePurpose;
     }
 
-    public AvailablePurposeField(HashSet<String> value){
-        setValue(value);
+    public String getRoot() {
+        return root;
+    }
+
+    public void setRoot(String root) {
+        this.root = root;
+    }
+
+    public Graph<String, DefaultEdge> getValue() {
+        return value;
+    }
+
+    public void setValue(Graph<String, DefaultEdge> value) {
+        this.value = value;
     }
 
 }

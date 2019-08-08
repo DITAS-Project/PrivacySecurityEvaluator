@@ -6,8 +6,8 @@
     "properties": [
       {
         "name": "algorithm",
-        "unit": "enum",
-        "value": "AES"
+        "unit": "list",
+        "value": ["AES"]
       },
       {
         "name": "keylength",
@@ -27,8 +27,8 @@
         "properties": [
           {
             "name": "algorithm",
-            "unit": "enum",
-            "value": "AES"
+            "unit": "list",
+            "value": ["AES"]
           },
           {
             "name": "keylength",
@@ -48,8 +48,8 @@
         "properties": [
           {
             "name": "algorithm",
-            "unit": "enum",
-            "value": "AES"
+            "unit": "list",
+            "value": ["AES"]
           },
           {
             "name": "keylength",

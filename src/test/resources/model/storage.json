@@ -3,8 +3,8 @@
   "description": "encryption",
   "properties": {
     "algorithm": {
-      "unit": "enum",
-      "value": "AES"
+      "unit": "list",
+      "value": ["AES"]
     },
     "keylength": {
       "unit": "number",

@@ -11,8 +11,8 @@
       "value": "1.2.13"
     },
     "algorithm": {
-      "unit": "enum",
-      "value": "AES"
+      "unit": "list",
+      "value": ["AES"]
     },
     "keylength": {
       "unit": "number",

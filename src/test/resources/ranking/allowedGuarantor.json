@@ -1,19 +1,33 @@
-{  "requirement": {
+{
+  "requirement": {
     "id": "purposeControlResearch",
     "description": "PurposeControl Research",
     "type": "PurposeControl",
     "properties": {
       "availablePurpose": {
-        "unit": "list",
-        "value": [
-          "research",
-          "medical research",
-          "nutritional research"
-        ]
+        "unit": "graph",
+        "value": {
+          "Jeder": [
+            "NGO",
+            "oeffentl. Institute"
+          ],
+          "NGO": [
+            "OpenKnowlageFoundation",
+            "OpenWeatherMap"
+          ],
+          "OpenKnowlageFoundation": [],
+          "OpenWeatherMap": [],
+          "oeffentl. Institute": [
+            "TU Berlin"
+          ],
+          "TU Berlin": []
+        }
       },
       "allowedGuarantor": {
         "unit": "list",
-        "value": ["d63d0e21fdc05f618d55ef306c54af82"]
+        "value": [
+          "d63d0e21fdc05f618d55ef306c54af82"
+        ]
       }
     }
   },
@@ -24,17 +38,29 @@
       "type": "PurposeControl",
       "properties": {
         "availablePurpose": {
-          "unit": "list",
-          "value": [
-            "research",
-            "medical research",
-            "nutritional research"
-          ]
+          "unit": "graph",
+          "value": {
+            "Jeder": [
+              "NGO",
+              "oeffentl. Institute"
+            ],
+            "NGO": [
+              "OpenKnowlageFoundation",
+              "OpenWeatherMap"
+            ],
+            "OpenKnowlageFoundation": [],
+            "OpenWeatherMap": [],
+            "oeffentl. Institute": [
+              "TU Berlin"
+            ],
+            "TU Berlin": []
+          }
         },
         "allowedGuarantor": {
           "unit": "list",
           "value": [
-            "d63d0e21fdc05f618d55ef306c54af82", "safsdgsggagsfgfsa5"
+            "d63d0e21fdc05f618d55ef306c54af82",
+            "safsdgsggagsfgfsa5"
           ]
         }
       }

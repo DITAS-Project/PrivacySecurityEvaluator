@@ -37,6 +37,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -76,7 +78,7 @@ public class IntegrationTestIssue0010 {
             Feature requirement = new Feature();
             requirement.setId("encryptionAES_192");
             requirement.setType("Encryption");
-            requirement.addProperty(new AlgorithmField("enum","AES"),"algorithm");
+            requirement.addProperty(new AlgorithmField("list",Arrays.asList("AES")),"algorithm");
             requirement.addProperty(new KeylengthField("number",192),"keyLength");
             request.setRequirement(requirement);
 
@@ -86,14 +88,14 @@ public class IntegrationTestIssue0010 {
             Feature en128 = new Feature();
             en128.setId("encryptionAES_128");
             en128.setType("Encryption");
-            en128.addProperty(new AlgorithmField("enum","AES"),"algorithm");
+            en128.addProperty(new AlgorithmField("list", Arrays.asList("AES")),"algorithm");
             en128.addProperty(new KeylengthField("number",128),"keyLength");
             blueprintAttributes.add(en128);
 
             Feature en256 = new Feature();
             en256.setId("encryptionAES_256");
             en256.setType("Encryption");
-            en256.addProperty(new AlgorithmField("enum","AES"),"algorithm");
+            en256.addProperty(new AlgorithmField("list",Arrays.asList("AES")),"algorithm");
             en256.addProperty(new KeylengthField("number",256),"keylength");
             blueprintAttributes.add(en256);
 
