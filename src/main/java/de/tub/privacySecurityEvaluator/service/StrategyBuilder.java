@@ -47,6 +47,7 @@ public class StrategyBuilder {
         NoValidStrategy noValidStrategy = new NoValidStrategy();
         ValidationStrategy minStrategy= new MinimumStrategy();
         ValidationStrategy maxStrategy= new MaximumStrategy();
+        ListContainsOnceStrategy listOnceStrategy= new ListContainsOnceStrategy();
 
         if(filterDatautil){
             AlwaysTrueStrategy trueStrategy= new AlwaysTrueStrategy();
@@ -67,7 +68,7 @@ public class StrategyBuilder {
                         val = stringStrategy;
                         break;
                     case "algorithm":
-                        val = stringStrategy;
+                        val = listOnceStrategy;
                         break;
                     case "keylength":
                         val = integerStrategy;

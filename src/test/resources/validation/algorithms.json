@@ -5,8 +5,8 @@
     "type": "Encryption",
     "properties": {
       "algorithm": {
-        "unit": "enum",
-        "value": "AES"
+        "unit": "list",
+        "value": ["AES"]
       }
     }
   },
@@ -16,8 +16,8 @@
     "type": "Encryption",
     "properties": {
       "algorithm": {
-        "unit": "enum",
-        "value": "AES"
+        "unit": "list",
+        "value": ["AES"]
       }
     }
   },
@@ -27,8 +27,8 @@
     "type": "Encryption",
     "properties": {
       "algorithm": {
-        "unit": "enum",
-        "value": "to fail"
+        "unit": "list",
+        "value": ["to fail"]
       }
     }
   }

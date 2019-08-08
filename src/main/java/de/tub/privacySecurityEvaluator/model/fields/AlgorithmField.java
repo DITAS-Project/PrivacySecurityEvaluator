@@ -20,16 +20,18 @@ package de.tub.privacySecurityEvaluator.model.fields;
 
 import de.tub.privacySecurityEvaluator.model.Property;
 
+import java.util.List;
+
 /**
  * Algorithmfield
  */
-public class AlgorithmField extends Property<String> {
+public class AlgorithmField extends Property<List<String>> {
 
     public AlgorithmField(){
 
     }
 
-    public AlgorithmField(String unit,String value) {
+    public AlgorithmField(String unit,List<String> value) {
         super(unit);
         setValue(value);
     }
