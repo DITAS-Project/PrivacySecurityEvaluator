@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import de.tub.privacySecurityEvaluator.model.Feature;
 import de.tub.privacySecurityEvaluator.model.Property;
 import de.tub.privacySecurityEvaluator.model.fields.*;
@@ -102,8 +103,14 @@ public class PropertyDeserializer extends StdDeserializer<Feature> {
                             mapper.treeToValue(s.getValue(), GuarantorField.class);
                     break;
                 case "availablepurpose":
-                    property = mapper.treeToValue(s.getValue(), AvailablePurposeField.class);
-                    break;
+                    try {
+                        property = mapper.treeToValue(s.getValue(), AvailablePurposeField.class);
+                        break;
+                    }catch (MismatchedInputException e){
+                        property = mapper.treeToValue(s.getValue(), AvailablePurposeListField.class);
+                        break;
+                    }
+
                 case "allowedguarantor":
                     property = mapper.treeToValue(s.getValue(),
                             AllowedGuarantorField.class);

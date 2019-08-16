@@ -20,6 +20,7 @@ package de.tub.privacySecurityEvaluator.service;
 
 import de.tub.privacySecurityEvaluator.model.Feature;
 import de.tub.privacySecurityEvaluator.model.Property;
+import de.tub.privacySecurityEvaluator.model.fields.AvailablePurposeListField;
 import de.tub.privacySecurityEvaluator.model.fields.datautilityfields.*;
 import de.tub.privacySecurityEvaluator.model.strategies.RankingStrategy;
 import de.tub.privacySecurityEvaluator.model.strategies.ValidationStrategy;
@@ -95,6 +96,10 @@ public class StrategyBuilder {
                         val = noValidStrategy;
                         break;
                     case "availablepurpose":
+                        if(entry.getValue() instanceof AvailablePurposeListField){
+                            val= containsOnceStrategy;
+                            break;
+                        }
                         val = graphStrategy;//need to think of this later because no validation method needed
                         break;
                     case "allowedguarantor":
