@@ -1,0 +1,46 @@
+{
+  "requirement": {
+    "id": "purposeControl_research",
+    "description": "PurposeControl research",
+    "type": "PurposeControl",
+    "properties": {
+      "availablePurpose": {
+        "unit": "list",
+        "value": [
+          "research",
+          "medical research",
+          "nutritional research"
+        ]
+      },
+      "allowedGuarantor": {
+        "unit": "list",
+        "value": [
+          "d63d0e21fdc05f618d55ef306c54af82"
+        ]
+      }
+    }
+  },
+  "blueprintAttributes": [
+    {
+      "id": "purposeControl_research",
+      "description": "PurposeControl research",
+      "type": "PurposeControl",
+      "properties": {
+        "availablePurpose": {
+          "unit": "list",
+          "value": [
+            "research",
+            "medical research",
+            "nutritional research"
+          ]
+        },
+        "allowedGuarantor": {
+          "unit": "list",
+          "value": [
+            "d63d0e21fdc05f618d55ef306c54af82"
+          ]
+        }
+      }
+    }
+  ]
+}

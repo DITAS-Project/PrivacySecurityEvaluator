@@ -48,11 +48,23 @@ public class IntegrationTestIssue0028 {
     @BeforeClass
     public static void checkIfFilesPresent() {
         Assert.assertNotNull(ApplicationTests.class.getResourceAsStream("/integration/issue28.json"));
+        Assert.assertNotNull(ApplicationTests.class.getResourceAsStream("/integration/issue28b.json"));
+
     }
 
     @Test
     public void test() throws Exception{
         String request= helper.readToString("/integration/issue28.json");
+        mvc.perform(post("/v1/filter").content(request).contentType("application/json")).andExpect(status().isOk())
+                .andExpect(mvcResult -> {
+                    BlueprintRanking[] results= mapper.readValue(mvcResult.getResponse().getContentAsString(), BlueprintRanking[].class);
+                    Assert.assertEquals(results.length,1);
+                });
+    }
+
+    @Test
+    public void testB() throws Exception{
+        String request= helper.readToString("/integration/issue28b.json");
         mvc.perform(post("/v1/filter").content(request).contentType("application/json")).andExpect(status().isOk())
                 .andExpect(mvcResult -> {
                     BlueprintRanking[] results= mapper.readValue(mvcResult.getResponse().getContentAsString(), BlueprintRanking[].class);
