@@ -49,6 +49,7 @@ public class StrategyBuilder {
         ValidationStrategy minStrategy= new MinimumStrategy();
         ValidationStrategy maxStrategy= new MaximumStrategy();
         ListContainsOnceStrategy listOnceStrategy= new ListContainsOnceStrategy();
+        AlwaysTrueStrategy alwaysTrueStrategy= new AlwaysTrueStrategy();
 
         if(filterDatautil){
             AlwaysTrueStrategy trueStrategy= new AlwaysTrueStrategy();
@@ -90,7 +91,7 @@ public class StrategyBuilder {
                         val = stringStrategy;
                         break;
                     case "required":
-                        val = noValidStrategy;
+                        val = alwaysTrueStrategy;
                         break;
                     case "guarantor":
                         val = noValidStrategy;
