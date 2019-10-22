@@ -5,7 +5,7 @@
   "properties": {
     "algorithm": {
       "unit": "enum",
-      "value": "AES"
+      "value": ["AES"]
     }
   }
 }

@@ -179,8 +179,9 @@ public class ValidationTest {
             Assert.assertTrue(filteredList.contains(start.get(0))); //could cause problems when unordered
             Assert.assertTrue(filteredList.size() < start.size());
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            Assert.fail();
         }
     }
 
