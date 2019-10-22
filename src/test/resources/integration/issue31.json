@@ -1,0 +1,44 @@
+{
+  "blueprintAttributes": [
+    {
+      "id": "accessControl_direct",
+      "description": "Access Control Direct",
+      "type": "Protocol",
+      "properties": {
+        "required": {
+          "value": "true"
+        },
+        "protocol": {
+          "unit": "enum",
+          "value": "username/password"
+        },
+        "credentials": {
+          "unit": "list",
+          "value": [
+            "researcher_id"
+          ]
+        }
+      }
+    }
+  ],
+  "requirement": {
+    "id": "accessControl_direct",
+    "description": "Access Control Direct",
+    "type": "Protocol",
+    "properties": {
+      "required": {
+        "value": "true"
+      },
+      "protocol": {
+        "unit": "enum",
+        "value": "username/password"
+      },
+      "credentials": {
+        "unit": "list",
+        "value": [
+          "researcher_id"
+        ]
+      }
+    }
+  }
+}
