@@ -20,7 +20,6 @@ install dependencies (only needs to be done once):
 
 ```
 mvn clean install
-
 ```
 
 compile
@@ -54,7 +53,7 @@ For testing you can use:
 
 We implemented three different Strategies to rank the incoming blueprints: 
 * real - ranks the bluprints on how good they fit the requirements 
-* hashBased - ranks the blueprints based on their has value
+* hashBased - ranks the blueprints based on their hash value
 * random - ranks the blueprints randomly 
 
 
